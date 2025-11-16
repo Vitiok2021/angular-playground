@@ -1,0 +1,14 @@
+<ul>
+  @for (item of items; track $index) {
+  <li>
+    <p>{{ item.name }}</p>
+    <p>{{ item.price }}</p>
+    <app-price-display
+      [currentCurrency]="selectedCurrency()"
+      [currentPrice]="item.price"
+      (changeVal)="changeFromChild($event)"
+    ></app-price-display>
+  </li>
+  }
+</ul>
+{{ selectedCurrency() }}
