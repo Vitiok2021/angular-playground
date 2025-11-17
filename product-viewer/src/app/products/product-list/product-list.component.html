@@ -1,0 +1,5 @@
+@for (item of products(); track $index) {
+<app-product [productsPar]="item"> </app-product>
+}
+
+<p>Total:{{ totalPrice() }}</p>
