@@ -1,2 +1,7 @@
-<app-product-list></app-product-list>
+<app-counter
+  [start]="5"
+  (valueChanged)="onCounterChanged($event)"
+></app-counter>
+{{ parentValue }}
+<!-- <app-product-list></app-product-list> -->
 <router-outlet />
