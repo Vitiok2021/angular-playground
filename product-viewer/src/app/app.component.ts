@@ -12,9 +12,13 @@ import { CounterComponent } from './counters-folder/counter/counter.component';
 export class AppComponent {
   title = 'product-viewer';
 
-  parentValue = 0;
+  parentValue1 = 0;
+  parentValue2 = 0;
 
-  onCounterChanged(newVal: number) {
-    this.parentValue = newVal;
+  onCounter1Changed(newVal: number) {
+    this.parentValue1 = newVal;
+  }
+  onCounter2Changed(newVal: number) {
+    this.parentValue2 = newVal;
   }
 }

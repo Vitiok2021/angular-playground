@@ -1,9 +1,14 @@
 <app-counter
   [start]="5"
-  (valueChanged)="onCounterChanged($event)"
+  (valueChanged)="onCounter1Changed($event)"
 ></app-counter>
 <p>
-  {{ parentValue }}
+  {{ parentValue1 }}
 </p>
 <!-- <app-product-list></app-product-list> -->
+<app-counter
+  [start]="10"
+  (valueChanged)="onCounter2Changed($event)"
+></app-counter>
 <router-outlet />
+<p>{{ parentValue2 }}</p>
