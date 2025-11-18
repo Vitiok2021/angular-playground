@@ -1,4 +1,11 @@
-import { Component, input, output, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -9,8 +16,17 @@ import { Component, input, output, signal } from '@angular/core';
 export class CounterComponent {
   start = input<number>(0);
 
-  count = signal(this.start());
+  count = signal(0);
+
   valueChanged = output<number>();
+
+  constructor() {
+    effect(() => {
+      const startValue = this.start();
+      this.count.set(startValue);
+      this.valueChanged.emit(startValue);
+    });
+  }
 
   increment() {
     this.count.update((current) => current + 1);
