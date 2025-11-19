@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, Input, input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-counter-child',
@@ -6,8 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './counter-child.component.html',
   styleUrl: './counter-child.component.scss',
 })
-export class CounterChildComponent {
+export class CounterChildComponent implements OnInit {
   counter: number = 0;
+
+  @Input() initial: number = 0;
+  ngOnInit() {
+    this.counter = this.initial;
+  }
+
   increment() {
     this.counter = this.counter + 1;
   }
