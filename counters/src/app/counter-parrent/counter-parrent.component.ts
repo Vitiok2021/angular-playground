@@ -7,4 +7,9 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
   templateUrl: './counter-parrent.component.html',
   styleUrl: './counter-parrent.component.scss',
 })
-export class CounterParrentComponent {}
+export class CounterParrentComponent {
+  valueFromChild = 0;
+  changeValFromChild(val: number) {
+    this.valueFromChild = val;
+  }
+}

@@ -1,2 +1,6 @@
-<app-counter-child [initial]="2"></app-counter-child>
+<app-counter-child
+  [initial]="2"
+  (giveCount)="changeValFromChild($event)"
+></app-counter-child>
+{{ valueFromChild }}
 <app-counter-child [initial]="10"></app-counter-child>
