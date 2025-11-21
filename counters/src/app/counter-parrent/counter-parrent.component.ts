@@ -9,8 +9,8 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
 })
 export class CounterParrentComponent {
   fromOutput: number = 0;
-  fromOutputMethod(val: number) {
-    this.fromOutput = val;
+  fromOutputMethod(val: { id: number; value: number }) {
+    this.counters[val.id] = val.value;
   }
   counters: number[] = [5, 7, 12];
 }
