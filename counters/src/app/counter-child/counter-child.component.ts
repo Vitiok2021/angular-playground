@@ -18,6 +18,7 @@ export class CounterChildComponent implements OnInit {
   counterValue: number = 0;
 
   @Input() fromInput!: number;
+  @Input() counterId!: number;
   @Output() toOutput = new EventEmitter<number>();
 
   ngOnInit(): void {

@@ -1,6 +1,9 @@
 <app-counter-child
-  [initial]="2"
-  (giveCount)="changeValFromChild($event)"
+  [fromInput]="100"
+  (toOutput)="fromOutputMethod($event)"
 ></app-counter-child>
-{{ valueFromChild }}
-<app-counter-child [initial]="10"></app-counter-child>
+{{ fromOutput }}
+
+@for (item of counters; track $index) {
+<app-counter-child [fromInput]="item" [counterId]="$index"></app-counter-child>
+}

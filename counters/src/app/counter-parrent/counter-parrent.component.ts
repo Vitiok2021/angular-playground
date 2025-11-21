@@ -8,8 +8,9 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
   styleUrl: './counter-parrent.component.scss',
 })
 export class CounterParrentComponent {
-  valueFromChild = 0;
-  changeValFromChild(val: number) {
-    this.valueFromChild = val;
+  fromOutput: number = 0;
+  fromOutputMethod(val: number) {
+    this.fromOutput = val;
   }
+  counters: number[] = [5, 7, 12];
 }
