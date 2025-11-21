@@ -14,35 +14,13 @@ import {
   templateUrl: './counter-child.component.html',
   styleUrl: './counter-child.component.scss',
 })
-export class CounterChildComponent implements OnInit {
-  counter: number = 0;
-  @Output() giveCount = new EventEmitter<number>();
+export class CounterChildComponent {
+  counterValue: number = 0;
 
-  @Input() initial!: number;
-
-  ngOnInit() {
-    this.counter = this.initial;
-    this.giveCount.emit(this.counter);
+  plusOne() {
+    this.counterValue++;
   }
-
-  increment() {
-    this.counter = this.counter + 1;
-    this.giveCount.emit(this.counter);
-  }
-  decrement() {
-    this.counter = this.counter - 1;
-    this.giveCount.emit(this.counter);
-  }
-  resetToStart() {
-    this.counter = this.initial;
-    this.giveCount.emit(this.counter);
-  }
-  resetToZero() {
-    this.counter = 0;
-    this.giveCount.emit(this.counter);
-  }
-  resetToCustom() {
-    this.counter = 50;
-    this.giveCount.emit(this.counter);
+  minusOne() {
+    this.counterValue--;
   }
 }
