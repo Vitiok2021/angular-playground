@@ -45,5 +45,10 @@ export class CounterChildComponent implements OnInit {
     this.counterValue = 50;
     this.toOutput.emit({ id: this.counterId, value: this.counterValue });
   }
-  removeCounter() {}
+
+  @Output() remId = new EventEmitter<number>();
+
+  removeCounter() {
+    this.remId.emit(this.counterId);
+  }
 }
