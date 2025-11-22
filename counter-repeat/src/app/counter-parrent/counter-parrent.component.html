@@ -1,0 +1,10 @@
+@for (item of counters(); track item.id) {
+<app-counter-child
+  [fromInput]="item.value"
+  [counterId]="item.id"
+  (toOutput)="fromOutputMethod($event)"
+  (remId)="removeCounerPar($event)"
+></app-counter-child>
+}
+
+<button (click)="addCounter()">Add Counter</button>
