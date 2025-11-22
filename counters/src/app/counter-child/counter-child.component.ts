@@ -15,12 +15,16 @@ import {
   styleUrl: './counter-child.component.scss',
 })
 export class CounterChildComponent implements OnInit {
+  // локальний стан
   counterValue: number = 0;
 
-  @Input() fromInput!: number;
-  @Input() counterId!: number;
+  //дані вниз
+  @Input() fromInput!: number; //стартове значення
+  @Input() counterId!: number; //id
 
-  @Output() toOutput = new EventEmitter<{ id: number; value: number }>();
+  //дані наверх
+  @Output() toOutput = new EventEmitter<{ id: number; value: number }>(); //зміна значення
+  @Output() remId = new EventEmitter<number>(); //дані на видалення
 
   ngOnInit(): void {
     this.counterValue = this.fromInput;
@@ -45,8 +49,6 @@ export class CounterChildComponent implements OnInit {
     this.counterValue = 50;
     this.toOutput.emit({ id: this.counterId, value: this.counterValue });
   }
-
-  @Output() remId = new EventEmitter<number>();
 
   removeCounter() {
     this.remId.emit(this.counterId);

@@ -4,6 +4,13 @@
 ></app-counter-child>
 {{ fromOutput }}
 
-@for (item of counters; track $index) {
-<app-counter-child [fromInput]="item" [counterId]="$index"></app-counter-child>
+@for (item of counters; track item.id) {
+<app-counter-child
+  [fromInput]="item.value"
+  [counterId]="item.id"
+  (remId)="removeCounerPar($event)"
+></app-counter-child>
 }
+<p>
+  <button (click)="addCounter()">Add new counter</button>
+</p>
