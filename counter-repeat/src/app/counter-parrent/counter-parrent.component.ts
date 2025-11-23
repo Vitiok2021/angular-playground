@@ -44,4 +44,16 @@ export class CounterParrentComponent implements OnInit {
   removeCounerPar(id: number) {
     this.counters.update((list) => list.filter((item) => item.id !== id));
   }
+  editValue(event: any, id: number) {
+    const newVal = Number(event.target.value);
+
+    const item = this.counters().find((counter) => counter.id === id);
+
+    if (item) {
+      item.value = newVal;
+      this.counters.update((list) => [...list]);
+    }
+
+    this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+  }
 }

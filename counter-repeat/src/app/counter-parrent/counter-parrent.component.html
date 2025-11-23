@@ -5,6 +5,11 @@
   (toOutput)="fromOutputMethod($event)"
   (remId)="removeCounerPar($event)"
 ></app-counter-child>
+<input
+  type="number"
+  [value]="item.value"
+  (input)="editValue($event, item.id)"
+/>
 }
 
 <button (click)="addCounter()">Add Counter</button>
