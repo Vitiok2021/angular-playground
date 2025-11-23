@@ -8,6 +8,8 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
   styleUrl: './counter-parrent.component.scss',
 })
 export class CounterParrentComponent {
+  total = 0;
+
   counters = signal([
     { id: 1, value: 5 },
     { id: 2, value: 7 },
@@ -20,7 +22,9 @@ export class CounterParrentComponent {
         item.id === val.id ? { ...item, value: val.value } : item
       )
     );
+    this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
   }
+  //2 спосіб оновити масив
   // fromOutputMethod(val: { id: number; value: number }) {
   //   const item = this.counters().find((c) => c.id === val.id);
   //   if (item) {
