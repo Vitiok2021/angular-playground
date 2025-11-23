@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CounterChildComponent } from '../counter-child/counter-child.component';
 
 @Component({
@@ -7,9 +7,11 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
   templateUrl: './counter-parrent.component.html',
   styleUrl: './counter-parrent.component.scss',
 })
-export class CounterParrentComponent {
+export class CounterParrentComponent implements OnInit {
   total = 0;
-
+  ngOnInit(): void {
+    this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+  }
   counters = signal([
     { id: 1, value: 5 },
     { id: 2, value: 7 },
