@@ -5,9 +5,9 @@ import { computed, Injectable, signal } from '@angular/core';
 })
 export class CounterService {
   counters = signal([
-    { id: 1, value: 5 },
-    { id: 2, value: 7 },
-    { id: 3, value: 12 },
+    { id: 1, value: 5, start: 5 },
+    { id: 2, value: 7, start: 7 },
+    { id: 3, value: 12, start: 12 },
   ]);
 
   total = computed(() => this.counters().reduce((sum, c) => sum + c.value, 0));
@@ -21,7 +21,10 @@ export class CounterService {
   addCounter() {
     const nextId = Math.max(...this.counters().map((c) => c.id)) + 1;
     const random = Math.floor(Math.random() * 20);
-    this.counters.update((list) => [...list, { id: nextId, value: random }]);
+    this.counters.update((list) => [
+      ...list,
+      { id: nextId, value: random, start: random },
+    ]);
   }
 
   removeCounter(id: number) {
@@ -33,6 +36,21 @@ export class CounterService {
       counters.map((counter) => ({ ...counter, value: 0 }))
     );
   }
-  resetAllToStart() {}
-  resetAllToRandom() {}
+  resetAllToStart() {
+    this.counters.update((counters) =>
+      counters.map((counter) => ({ ...counter, value: counter.start }))
+    );
+  }
+  resetAllToRandom() {
+    this.counters.update((counters) =>
+      counters.map((counter) => {
+        let random = Math.floor(Math.random() * 20);
+        return {
+          ...counter,
+          value: random,
+          start: random,
+        };
+      })
+    );
+  }
 }
