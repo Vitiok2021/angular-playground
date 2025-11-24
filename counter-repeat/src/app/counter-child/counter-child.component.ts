@@ -6,10 +6,10 @@ import {
   output,
   signal,
 } from '@angular/core';
-
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-counter-child',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './counter-child.component.html',
   styleUrl: './counter-child.component.scss',
 })
