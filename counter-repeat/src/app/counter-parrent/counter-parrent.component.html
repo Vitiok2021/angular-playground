@@ -14,3 +14,7 @@
 
 <button (click)="addCounter()">Add Counter</button>
 <p>Total sum: {{ counterService.total() }}</p>
+
+<button (click)="counterService.resetAllToZero()">All to zero</button>
+<button (click)="counterService.resetAllToStart()">All to start</button>
+<button (click)="counterService.resetAllToRandom()">All to random</button>
