@@ -1,5 +1,6 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { CounterChildComponent } from '../counter-child/counter-child.component';
+import { CounterService } from '../counters/counter.service';
 
 @Component({
   selector: 'app-counter-parrent',
@@ -7,56 +8,21 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
   templateUrl: './counter-parrent.component.html',
   styleUrl: './counter-parrent.component.scss',
 })
-export class CounterParrentComponent implements OnInit {
-  // total = 0;
-  total = computed(() =>
-    this.counters().reduce((sum, item) => sum + item.value, 0)
-  );
-  ngOnInit(): void {
-    // this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
-  }
-  counters = signal([
-    { id: 1, value: 5 },
-    { id: 2, value: 7 },
-    { id: 3, value: 12 },
-  ]);
+export class CounterParrentComponent {
+  constructor(public counterService: CounterService) {}
 
   fromOutputMethod(val: { id: number; value: number }) {
-    this.counters.update((list) =>
-      list.map((item) =>
-        item.id === val.id ? { ...item, value: val.value } : item
-      )
-    );
-    // this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+    this.counterService.updateCounter(val.id, val.value);
   }
-  //2 спосіб оновити масив
-  // fromOutputMethod(val: { id: number; value: number }) {
-  //   const item = this.counters().find((c) => c.id === val.id);
-  //   if (item) {
-  //     item.value = val.value;
-  //     this.counters.update((arr) => [...arr]); // оновити сигнал
-  //   }
-  // }
   addCounter() {
-    const nextId = Math.max(...this.counters().map((c) => c.id)) + 1;
-    const random = Math.floor(Math.random() * 20);
-
-    this.counters.update((list) => [...list, { id: nextId, value: random }]);
+    this.counterService.addCounter();
   }
 
   removeCounerPar(id: number) {
-    this.counters.update((list) => list.filter((item) => item.id !== id));
+    this.counterService.removeCounter(id);
   }
   editValue(event: any, id: number) {
     const newVal = Number(event.target.value);
-
-    const item = this.counters().find((counter) => counter.id === id);
-
-    if (item) {
-      item.value = newVal;
-      this.counters.update((list) => [...list]);
-    }
-
-    // this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+    this.counterService.updateCounter(id, newVal);
   }
 }

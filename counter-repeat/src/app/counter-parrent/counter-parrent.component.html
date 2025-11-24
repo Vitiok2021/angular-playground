@@ -1,4 +1,4 @@
-@for (item of counters(); track item.id) {
+@for (item of counterService.counters(); track item.id) {
 <app-counter-child
   [fromInput]="item.value"
   [counterId]="item.id"
@@ -13,4 +13,4 @@
 }
 
 <button (click)="addCounter()">Add Counter</button>
-<p>Total sum: {{ total() }}</p>
+<p>Total sum: {{ counterService.total() }}</p>
