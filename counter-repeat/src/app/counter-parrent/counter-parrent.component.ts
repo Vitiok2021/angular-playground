@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { CounterChildComponent } from '../counter-child/counter-child.component';
 
 @Component({
@@ -8,9 +8,12 @@ import { CounterChildComponent } from '../counter-child/counter-child.component'
   styleUrl: './counter-parrent.component.scss',
 })
 export class CounterParrentComponent implements OnInit {
-  total = 0;
+  // total = 0;
+  total = computed(() =>
+    this.counters().reduce((sum, item) => sum + item.value, 0)
+  );
   ngOnInit(): void {
-    this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+    // this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
   }
   counters = signal([
     { id: 1, value: 5 },
@@ -24,7 +27,7 @@ export class CounterParrentComponent implements OnInit {
         item.id === val.id ? { ...item, value: val.value } : item
       )
     );
-    this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+    // this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
   }
   //2 спосіб оновити масив
   // fromOutputMethod(val: { id: number; value: number }) {
@@ -54,6 +57,6 @@ export class CounterParrentComponent implements OnInit {
       this.counters.update((list) => [...list]);
     }
 
-    this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
+    // this.total = this.counters().reduce((sum, item) => sum + item.value, 0);
   }
 }
