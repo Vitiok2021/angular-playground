@@ -1,16 +1,26 @@
-<p>{{ counterValue() }}</p>
+<mat-card class="counter-card">
+  <p>{{ counterValue() }}</p>
 
-<button mat-raised-button color="primary" (click)="plusOne()">+</button>
-<button mat-raised-button color="accent" (click)="minusOne()">-</button>
+  <div class="group">
+    <button mat-raised-button color="primary" (click)="plusOne()">+</button>
+    <button mat-raised-button color="accent" (click)="minusOne()">-</button>
+  </div>
 
-<button mat-stroked-button color="primary" (click)="resToStart()">
-  Reset to start
-</button>
-<button mat-stroked-button color="primary" (click)="resToZero()">
-  Reset to 0
-</button>
-<button mat-stroked-button color="primary" (click)="resToCust()">
-  Reset to 50
-</button>
+  <div class="group">
+    <button mat-stroked-button color="primary" (click)="resToStart()">
+      Reset to start
+    </button>
+    <button mat-stroked-button color="primary" (click)="resToZero()">
+      Reset to 0
+    </button>
+    <button mat-stroked-button color="primary" (click)="resToCust()">
+      Reset to 50
+    </button>
+  </div>
 
-<button mat-flat-button color="warn" (click)="removeCounter()">Remove</button>
+  <div class="group">
+    <button mat-flat-button color="warn" (click)="removeCounter()">
+      Remove
+    </button>
+  </div>
+</mat-card>

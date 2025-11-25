@@ -7,9 +7,10 @@ import {
   signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-counter-child',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatCardModule],
   templateUrl: './counter-child.component.html',
   styleUrl: './counter-child.component.scss',
 })
