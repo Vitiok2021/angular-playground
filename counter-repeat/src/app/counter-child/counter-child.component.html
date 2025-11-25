@@ -1,10 +1,16 @@
 <p>{{ counterValue() }}</p>
 
 <button mat-raised-button color="primary" (click)="plusOne()">+</button>
-<button (click)="minusOne()">-</button>
+<button mat-raised-button color="accent" (click)="minusOne()">-</button>
 
-<button (click)="resToStart()">Reset to start</button>
-<button (click)="resToZero()">Reset to 0</button>
-<button (click)="resToCust()">Reset to 50</button>
+<button mat-stroked-button color="primary" (click)="resToStart()">
+  Reset to start
+</button>
+<button mat-stroked-button color="primary" (click)="resToZero()">
+  Reset to 0
+</button>
+<button mat-stroked-button color="primary" (click)="resToCust()">
+  Reset to 50
+</button>
 
-<button (click)="removeCounter()">Remove</button>
+<button mat-flat-button color="warn" (click)="removeCounter()">Remove</button>
