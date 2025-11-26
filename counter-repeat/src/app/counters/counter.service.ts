@@ -22,7 +22,7 @@ export class CounterService {
   total = computed(() => this.counters().reduce((sum, c) => sum + c.value, 0));
 
   updateCounter(id: number, newValue: number) {
-    this._counters.update((list) =>
+    this.setState((list) =>
       list.map((item) => (item.id === id ? { ...item, value: newValue } : item))
     );
   }
@@ -30,28 +30,28 @@ export class CounterService {
   addCounter() {
     const nextId = Math.max(...this.counters().map((c) => c.id)) + 1;
     const random = Math.floor(Math.random() * 20);
-    this._counters.update((list) => [
+    this.setState((list) => [
       ...list,
       { id: nextId, value: random, start: random },
     ]);
   }
 
   removeCounter(id: number) {
-    this._counters.update((list) => list.filter((c) => c.id !== id));
+    this.setState((list) => list.filter((c) => c.id !== id));
   }
 
   resetAllToZero() {
-    this._counters.update((counters) =>
+    this.setState((counters) =>
       counters.map((counter) => ({ ...counter, value: 0 }))
     );
   }
   resetAllToStart() {
-    this._counters.update((counters) =>
+    this.setState((counters) =>
       counters.map((counter) => ({ ...counter, value: counter.start }))
     );
   }
   resetAllToRandom() {
-    this._counters.update((counters) =>
+    this.setState((counters) =>
       counters.map((counter) => {
         let random = Math.floor(Math.random() * 20);
         return {
