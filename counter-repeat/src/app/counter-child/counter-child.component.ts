@@ -23,6 +23,8 @@ export class CounterChildComponent implements OnInit, OnChanges {
   toOutput = output<{ id: number; value: number }>(); // подія наверх
   remId = output<number>(); // подія remove
 
+  toStart = input<number>();
+
   ngOnInit() {
     this.counterValue.set(this.fromInput());
   }
@@ -38,8 +40,9 @@ export class CounterChildComponent implements OnInit, OnChanges {
     this.toOutput.emit({ id: this.counterId(), value: this.counterValue() });
   }
   resToStart() {
-    this.counterValue.set(this.fromInput());
-    this.toOutput.emit({ id: this.counterId(), value: this.counterValue() });
+    const start = this.toStart()!;
+    this.counterValue.set(start);
+    this.toOutput.emit({ id: this.counterId(), value: start });
   }
   resToZero() {
     this.counterValue.set(0);
