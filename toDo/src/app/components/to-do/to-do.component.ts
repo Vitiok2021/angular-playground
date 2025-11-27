@@ -16,8 +16,10 @@ export class ToDoComponent {
   completedCount = this.toDoService.completedCount;
   notCompletedCount = this.toDoService.notCompletedCount;
   newTitle = '';
+
   addToDo(title: string) {
     this.toDoService.addTodo(title);
+    this.newTitle = '';
   }
   toggle(id: number) {
     this.toDoService.toggleCompleted(id);
