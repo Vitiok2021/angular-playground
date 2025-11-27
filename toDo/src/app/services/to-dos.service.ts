@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { ToDo } from '../interfaces/to-do';
 
 @Injectable({
@@ -36,4 +36,11 @@ export class ToDosService {
       return list.filter((item) => item.id !== id);
     });
   }
+
+  completedCount = computed(
+    () => this._state().filter((counter) => counter.completed).length
+  );
+  notCompletedCount = computed(
+    () => this._state().filter((counter) => !counter.completed).length
+  );
 }
