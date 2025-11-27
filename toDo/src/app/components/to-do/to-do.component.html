@@ -1,1 +1,7 @@
-<p>to-do works!</p>
+<input type="text" [(ngModel)]="newTitle" placeholder="New toDo" />
+<button (click)="addToDo(newTitle)">Add Test</button>
+
+<div *ngFor="let item of state()">
+  {{ item.id }} - {{ item.title }} - {{ item.completed ? "done" : "active" }}
+  <button (click)="toggle(item.id)">Toggle</button>
+</div>
