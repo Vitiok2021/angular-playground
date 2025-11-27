@@ -1,0 +1,38 @@
+// .counters-list {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 16px; /* відстань між рядками */
+//   margin-bottom: 24px;
+// }
+.counters-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  padding-top: 16px;
+}
+.counter-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* відстань між карточкою та input */
+}
+
+.counter-row input {
+  width: 80px;
+}
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.page {
+  max-width: 900px;
+  margin: 16px auto;
+  padding: 16px;
+}

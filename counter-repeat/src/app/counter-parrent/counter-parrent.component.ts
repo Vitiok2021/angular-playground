@@ -1,10 +1,21 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { CounterChildComponent } from '../counter-child/counter-child.component';
 import { CounterService } from '../counters/counter.service';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-counter-parrent',
-  imports: [CounterChildComponent],
+  imports: [
+    CounterChildComponent,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatFormFieldModule,
+  ],
   templateUrl: './counter-parrent.component.html',
   styleUrl: './counter-parrent.component.scss',
 })

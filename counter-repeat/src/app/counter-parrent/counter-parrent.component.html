@@ -1,20 +1,54 @@
-@for (item of counterService.counters(); track item.id) {
-<app-counter-child
-  [fromInput]="item.value"
-  [counterId]="item.id"
-  (toOutput)="fromOutputMethod($event)"
-  (remId)="removeCounerPar($event)"
-></app-counter-child>
-<input
-  type="number"
-  [value]="item.value"
-  (input)="editValue($event, item.id)"
-/>
-}
+<mat-toolbar color="primary">Counter Lab</mat-toolbar>
+<div class="page">
+  <div class="counters-list">
+    @for (item of counterService.counters(); track item.id) {
+    <div class="counter-row">
+      <app-counter-child
+        [toStart]="item.start"
+        [fromInput]="item.value"
+        [counterId]="item.id"
+        (toOutput)="fromOutputMethod($event)"
+        (remId)="removeCounerPar($event)"
+      ></app-counter-child>
+      <mat-form-field appearance="outline">
+        <mat-label>Value</mat-label>
+        <input
+          matInput
+          type="number"
+          [value]="item.value"
+          (input)="editValue($event, item.id)"
+        />
+      </mat-form-field>
+    </div>
+    }
+  </div>
 
-<button (click)="addCounter()">Add Counter</button>
-<p>Total sum: {{ counterService.total() }}</p>
+  <div class="summary">
+    <button mat-raised-button color="primary" (click)="addCounter()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <p>Total sum: {{ counterService.total() }}</p>
 
-<button (click)="counterService.resetAllToZero()">All to zero</button>
-<button (click)="counterService.resetAllToStart()">All to start</button>
-<button (click)="counterService.resetAllToRandom()">All to random</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="counterService.resetAllToZero()"
+    >
+      All to zero
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="counterService.resetAllToStart()"
+    >
+      All to start
+    </button>
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="counterService.resetAllToRandom()"
+    >
+      All to random
+    </button>
+  </div>
+</div>

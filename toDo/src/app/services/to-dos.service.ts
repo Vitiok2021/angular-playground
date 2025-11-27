@@ -1,0 +1,39 @@
+import { Injectable, signal } from '@angular/core';
+import { ToDo } from '../interfaces/to-do';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ToDosService {
+  constructor() {}
+
+  private readonly _state = signal<ToDo[]>([]);
+  state = this._state.asReadonly();
+
+  private setState(reducer: (state: ToDo[]) => ToDo[]) {
+    this._state.update(reducer);
+  }
+
+  addTodo(title: string) {
+    const autoincrId =
+      this._state().length === 0
+        ? 1
+        : Math.max(...this._state().map((item) => item.id)) + 1;
+    this.setState((list) => [
+      ...list,
+      { id: autoincrId, title: title, completed: false },
+    ]);
+  }
+  toggleCompleted(id: number) {
+    this.setState((list) => {
+      return list.map((item) =>
+        item.id === id ? { ...item, completed: !item.completed } : item
+      );
+    });
+  }
+  removeTodo(id: number) {
+    this.setState((list) => {
+      return list.filter((item) => item.id !== id);
+    });
+  }
+}
