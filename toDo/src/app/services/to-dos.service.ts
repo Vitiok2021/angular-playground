@@ -15,9 +15,11 @@ export class ToDosService {
   }
 
   private readonly _filter = signal<'all' | 'active' | 'completed'>('all');
-  filtet = this._filter.asReadonly();
+  filter = this._filter.asReadonly();
 
-  setFilter(filter: 'all' | 'active' | 'completed') {}
+  setFilter(filter: 'all' | 'active' | 'completed') {
+    this._filter.set(filter);
+  }
 
   addTodo(title: string) {
     const autoincrId =
