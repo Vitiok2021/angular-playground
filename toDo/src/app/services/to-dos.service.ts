@@ -14,6 +14,11 @@ export class ToDosService {
     this._state.update(reducer);
   }
 
+  private readonly _filter = signal<'all' | 'active' | 'completed'>('all');
+  filtet = this._filter.asReadonly();
+
+  setFilter(filter: 'all' | 'active' | 'completed') {}
+
   addTodo(title: string) {
     const autoincrId =
       this._state().length === 0
