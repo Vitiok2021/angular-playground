@@ -14,6 +14,7 @@ export class ToDosService {
     this._state.update(reducer);
   }
 
+  // TODO: filters will be added tomorrow
   private readonly _filter = signal<'all' | 'active' | 'completed'>('all');
   filter = this._filter.asReadonly();
 
