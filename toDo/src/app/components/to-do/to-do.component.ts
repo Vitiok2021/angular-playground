@@ -17,6 +17,8 @@ export class ToDoComponent {
   notCompletedCount = this.toDoService.notCompletedCount;
   newTitle = '';
 
+  selectedFilter: 'all' | 'active' | 'completed' = 'all';
+
   addToDo(title: string) {
     this.toDoService.addTodo(title);
     this.newTitle = '';
