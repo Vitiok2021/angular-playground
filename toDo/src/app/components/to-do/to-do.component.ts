@@ -19,6 +19,8 @@ export class ToDoComponent {
 
   selectedFilter: 'all' | 'active' | 'completed' = 'all';
 
+  filteredTodos2 = this.toDoService.filteredTodos;
+
   addToDo(title: string) {
     this.toDoService.addTodo(title);
     this.newTitle = '';
@@ -28,5 +30,9 @@ export class ToDoComponent {
   }
   remove(id: number) {
     this.toDoService.removeTodo(id);
+  }
+  applyFilter(filter: 'all' | 'active' | 'completed') {
+    this.selectedFilter = filter;
+    this.toDoService.setFilter(filter);
   }
 }

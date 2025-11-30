@@ -9,8 +9,14 @@
 />
 <button (click)="addToDo(newTitle)">Add Test</button>
 
-<div *ngFor="let item of state()">
+<div *ngFor="let item of filteredTodos2()">
   {{ item.id }} - {{ item.title }} - {{ item.completed ? "done" : "active" }}
   <button (click)="toggle(item.id)">Toggle</button>
   <button (click)="remove(item.id)">Remove</button>
+</div>
+
+<div class="filters">
+  <button (click)="applyFilter('all')">All</button>
+  <button (click)="applyFilter('active')">Active</button>
+  <button (click)="applyFilter('completed')">Completed</button>
 </div>

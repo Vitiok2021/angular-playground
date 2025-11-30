@@ -22,7 +22,7 @@ export class ToDosService {
     this._filter.set(filter);
   }
 
-  filterToDos = computed(() => {
+  filteredTodos = computed(() => {
     const filter = this._filter();
     const todos = this._state();
 
