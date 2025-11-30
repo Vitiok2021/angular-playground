@@ -14,13 +14,28 @@ export class ToDosService {
     this._state.update(reducer);
   }
 
-  // TODO: filters will be added tomorrow
+  // to-Do: filters will be added tomorrow
   private readonly _filter = signal<'all' | 'active' | 'completed'>('all');
   filter = this._filter.asReadonly();
 
   setFilter(filter: 'all' | 'active' | 'completed') {
     this._filter.set(filter);
   }
+
+  filterToDos = computed(() => {
+    const filter = this._filter();
+    const todos = this._state();
+
+    if (filter === 'completed') {
+      return todos.filter((item) => item.completed);
+    }
+
+    if (filter === 'active') {
+      return todos.filter((item) => !item.completed);
+    }
+
+    return todos;
+  });
 
   addTodo(title: string) {
     const autoincrId =
