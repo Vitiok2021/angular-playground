@@ -59,6 +59,13 @@ export class ToDosService {
       );
     });
   }
+  updateTodo(id: number, newTitle: string) {
+    this.setState((list) => {
+      return list.map((item) =>
+        item.id === id ? { ...item, title: newTitle } : item
+      );
+    });
+  }
   removeTodo(id: number) {
     this.setState((list) => {
       return list.filter((item) => item.id !== id);
