@@ -10,9 +10,20 @@
 <button (click)="addToDo(newTitle)">Add Test</button>
 
 <div *ngFor="let item of filteredTodos2()">
-  {{ item.id }} - {{ item.title }} - {{ item.completed ? "done" : "active" }}
+  {{ item.id }} - <span *ngIf="editingId !== item.id">{{ item.title }}</span
+  ><input
+    type="text"
+    *ngIf="editingId === item.id"
+    [(ngModel)]="editingTitle"
+  />
+  <button *ngIf="editingId === item.id" (click)="saveEdit(item.id)">
+    Save
+  </button>
+  -
+  {{ item.completed ? "done" : "active" }}
   <button (click)="toggle(item.id)">Toggle</button>
   <button (click)="remove(item.id)">Remove</button>
+  <button (click)="startEdit(item.id, item.title)">Edit</button>
 </div>
 
 <div class="filters">

@@ -40,4 +40,17 @@ export class ToDoComponent {
     this.selectedFilter = filter;
     this.toDoService.setFilter(filter);
   }
+
+  editingId: number | null = null;
+  editingTitle: string = '';
+
+  startEdit(id: number, currentTitle: string) {
+    this.editingId = id;
+    this.editingTitle = currentTitle;
+  }
+  saveEdit(id: number) {
+    this.toDoService.updateTodo(id, this.editingTitle);
+    this.editingId = null;
+    this.editingTitle = '';
+  }
 }
