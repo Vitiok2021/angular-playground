@@ -1,11 +1,16 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal, effect } from '@angular/core';
 import { ToDo } from '../interfaces/to-do';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToDosService {
-  constructor() {}
+  constructor() {
+    const localSaved = localStorage.getItem('todos');
+    if (localSaved) {
+      this._state.set(JSON.parse(localSaved));
+    }
+  }
 
   private readonly _state = signal<ToDo[]>([]);
   state = this._state.asReadonly();
@@ -66,4 +71,9 @@ export class ToDosService {
   notCompletedCount = computed(
     () => this._state().filter((counter) => !counter.completed).length
   );
+
+  private readonly _persistEffect = effect(() => {
+    const todos = this._state();
+    localStorage.setItem('todos', JSON.stringify(todos));
+  });
 }

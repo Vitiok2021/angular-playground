@@ -16,7 +16,22 @@
 </div>
 
 <div class="filters">
-  <button (click)="applyFilter('all')">All</button>
-  <button (click)="applyFilter('active')">Active</button>
-  <button (click)="applyFilter('completed')">Completed</button>
+  <button
+    (click)="applyFilter('all')"
+    [class.active]="selectedFilter === 'all'"
+  >
+    All
+  </button>
+  <button
+    (click)="applyFilter('active')"
+    [class.active]="selectedFilter === 'active'"
+  >
+    Active
+  </button>
+  <button
+    (click)="applyFilter('completed')"
+    [class.active]="selectedFilter === 'completed'"
+  >
+    Completed
+  </button>
 </div>

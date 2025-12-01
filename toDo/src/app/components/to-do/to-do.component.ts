@@ -22,6 +22,11 @@ export class ToDoComponent {
   filteredTodos2 = this.toDoService.filteredTodos;
 
   addToDo(title: string) {
+    const trimmed = title.trim();
+    if (!trimmed) {
+      return;
+    }
+
     this.toDoService.addTodo(title);
     this.newTitle = '';
   }
