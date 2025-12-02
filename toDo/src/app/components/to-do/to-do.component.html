@@ -19,6 +19,7 @@
   <button *ngIf="editingId === item.id" (click)="saveEdit(item.id)">
     Save
   </button>
+  <button *ngIf="editingId === item.id" (click)="cancelEdit()">Cancel</button>
   -
   {{ item.completed ? "done" : "active" }}
   <button (click)="toggle(item.id)">Toggle</button>

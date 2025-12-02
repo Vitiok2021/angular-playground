@@ -53,4 +53,8 @@ export class ToDoComponent {
     this.editingId = null;
     this.editingTitle = '';
   }
+  cancelEdit() {
+    this.editingId = null;
+    this.editingTitle = '';
+  }
 }
