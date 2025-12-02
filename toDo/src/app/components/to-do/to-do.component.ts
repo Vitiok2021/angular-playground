@@ -57,4 +57,7 @@ export class ToDoComponent {
     this.editingId = null;
     this.editingTitle = '';
   }
+  clearCompl() {
+    this.toDoService.clearCompleted();
+  }
 }
