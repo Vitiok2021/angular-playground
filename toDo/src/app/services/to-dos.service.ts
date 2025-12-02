@@ -83,4 +83,7 @@ export class ToDosService {
     const todos = this._state();
     localStorage.setItem('todos', JSON.stringify(todos));
   });
+  clearCompleted() {
+    this.setState((list) => list.filter((item) => !item.completed));
+  }
 }

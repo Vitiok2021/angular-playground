@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { ToDosService } from '../../services/to-dos.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-to-do',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatButtonModule],
   templateUrl: './to-do.component.html',
   styleUrl: './to-do.component.scss',
 })
