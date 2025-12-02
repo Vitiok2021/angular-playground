@@ -3,10 +3,12 @@ import { ToDosService } from '../../services/to-dos.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-to-do',
-  imports: [CommonModule, FormsModule, MatButtonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, MatButtonModule, MatInputModule],
   templateUrl: './to-do.component.html',
   styleUrl: './to-do.component.scss',
 })

@@ -2,12 +2,13 @@
 <div>Active: {{ notCompletedCount() }}</div>
 
 <input
+  id="addTest"
   type="text"
   [(ngModel)]="newTitle"
   placeholder="New toDo"
   (keyup.enter)="addToDo(newTitle)"
 />
-<button matButton (click)="addToDo(newTitle)">Add Test</button>
+<button matButton="elevated" (click)="addToDo(newTitle)">Add Test</button>
 
 <div *ngFor="let item of filteredTodos2()">
   {{ item.id }} - <span *ngIf="editingId !== item.id">{{ item.title }}</span
