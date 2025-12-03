@@ -1,19 +1,22 @@
 <div>Completed: {{ completedCount() }}</div>
 <div>Active: {{ notCompletedCount() }}</div>
 
-<mat-form-field>
-  <input
-    matInput
-    id="addTest"
-    type="text"
-    [(ngModel)]="newTitle"
-    placeholder="New toDo"
-    (keyup.enter)="addToDo(newTitle)"
-  />
-</mat-form-field>
-<button matButton (click)="addToDo(newTitle)" mat-raised-button>
-  Add Test
-</button>
+<div class="form-todo">
+  <mat-form-field class="todo-field">
+    <mat-label>ToDo</mat-label>
+    <input
+      matInput
+      id="addTest"
+      type="text"
+      [(ngModel)]="newTitle"
+      placeholder="New toDo"
+      (keyup.enter)="addToDo(newTitle)"
+    />
+  </mat-form-field>
+  <button matButton (click)="addToDo(newTitle)" mat-raised-button>
+    Add Test
+  </button>
+</div>
 
 <div *ngFor="let item of filteredTodos2()">
   {{ item.id }} - <span *ngIf="editingId !== item.id">{{ item.title }}</span
