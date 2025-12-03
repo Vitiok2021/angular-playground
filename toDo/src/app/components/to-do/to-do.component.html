@@ -30,8 +30,12 @@
   </button>
   <button *ngIf="editingId === item.id" (click)="cancelEdit()">Cancel</button>
   -
-  {{ item.completed ? "done" : "active" }}
-  <button (click)="toggle(item.id)">Toggle</button>
+  <!-- {{ item.completed ? "done" : "active" }} -->
+  <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">{{
+    item.title
+  }}</mat-checkbox>
+
+  <!-- <button (click)="toggle(item.id)">Toggle</button> -->
   <button (click)="remove(item.id)">Remove</button>
   <button (click)="startEdit(item.id, item.title)">Edit</button>
 </div>
