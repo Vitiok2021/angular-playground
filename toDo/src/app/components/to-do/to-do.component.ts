@@ -54,9 +54,6 @@ export class ToDoComponent {
   filteredTodos2 = this.toDoService.filteredTodos;
 
   addToDo(title: string) {
-    this.snackBar.open('Task added!', 'Close', {
-      duration: 2000,
-    });
     const trimmed = title.trim();
     if (!trimmed) {
       return;
@@ -64,6 +61,9 @@ export class ToDoComponent {
 
     this.toDoService.addTodo(title);
     this.newTitle = '';
+    this.snackBar.open('Task added!', 'Close', {
+      duration: 2000,
+    });
   }
   toggle(id: number) {
     this.toDoService.toggleCompleted(id);
