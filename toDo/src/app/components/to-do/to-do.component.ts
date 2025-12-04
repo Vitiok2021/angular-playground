@@ -11,7 +11,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../../edit-dialog/edit-dialog.component';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 @Component({
   selector: 'app-to-do',
   standalone: true,
@@ -25,6 +25,7 @@ import { EditDialogComponent } from '../../edit-dialog/edit-dialog.component';
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatButtonToggleModule,
   ],
   templateUrl: './to-do.component.html',
   styleUrl: './to-do.component.scss',

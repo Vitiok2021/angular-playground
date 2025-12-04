@@ -32,25 +32,13 @@
   </button>
 </div>
 
-<div class="filters">
-  <button
-    (click)="applyFilter('all')"
-    [class.active]="selectedFilter === 'all'"
-  >
-    All
-  </button>
-  <button
-    (click)="applyFilter('active')"
-    [class.active]="selectedFilter === 'active'"
-  >
-    Active
-  </button>
-  <button
-    (click)="applyFilter('completed')"
-    [class.active]="selectedFilter === 'completed'"
-  >
-    Completed
-  </button>
+<mat-button-toggle-group
+  [(ngModel)]="selectedFilter"
+  (change)="applyFilter(selectedFilter)"
+>
+  <mat-button-toggle value="all"> All </mat-button-toggle>
+  <mat-button-toggle value="active"> Active </mat-button-toggle>
+  <mat-button-toggle value="completed"> Completed </mat-button-toggle>
+</mat-button-toggle-group>
 
-  <button (click)="clearCompl()">Clear Completed</button>
-</div>
+<button mat-button color="warn" (click)="clearCompl()">Clear Completed</button>
