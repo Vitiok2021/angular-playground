@@ -25,7 +25,9 @@ import { FormsModule } from '@angular/forms';
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button (click)="onCancel()">Cancel</button>
-      <button mat-button (click)="onSave()">Save</button>
+      <button mat-button [disabled]="!data.title?.trim()" (click)="onSave()">
+        Save
+      </button>
     </mat-dialog-actions>
   `,
 })
