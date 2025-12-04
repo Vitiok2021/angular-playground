@@ -2,6 +2,10 @@
   background-color: #4caf50;
   color: white;
 }
+.todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
 .form-todo {
   display: flex;
   column-gap: 10px;
@@ -10,5 +14,11 @@
 .todo-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   gap: 8px;
+}
+mat-button-toggle-group {
+  margin-top: 20px;
 }

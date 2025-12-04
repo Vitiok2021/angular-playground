@@ -1,44 +1,50 @@
-<div>Completed: {{ completedCount() }}</div>
-<div>Active: {{ notCompletedCount() }}</div>
+<div class="todo-container">
+  <div>Completed: {{ completedCount() }}</div>
+  <div>Active: {{ notCompletedCount() }}</div>
 
-<div class="form-todo">
-  <mat-form-field class="todo-field">
-    <mat-label>ToDo</mat-label>
-    <input
-      matInput
-      id="addTest"
-      type="text"
-      [(ngModel)]="newTitle"
-      placeholder="New toDo"
-      (keyup.enter)="addToDo(newTitle)"
-    />
-  </mat-form-field>
-  <button matButton (click)="addToDo(newTitle)" mat-raised-button>
-    Add Test
+  <div class="form-todo">
+    <mat-form-field class="todo-field">
+      <mat-label>ToDo</mat-label>
+      <input
+        matInput
+        id="addTest"
+        type="text"
+        [(ngModel)]="newTitle"
+        placeholder="New toDo"
+        (keyup.enter)="addToDo(newTitle)"
+      />
+    </mat-form-field>
+    <button matButton (click)="addToDo(newTitle)" mat-raised-button>
+      Add Test
+    </button>
+  </div>
+
+  <div
+    *ngFor="let item of filteredTodos2()"
+    class="todo-item"
+    [class.completed]="item.completed"
+  >
+    <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">
+      {{ item.title }}
+    </mat-checkbox>
+    <button mat-icon-button color="accent" (click)="openEditDialog(item)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="remove(item.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-button-toggle-group
+    [(ngModel)]="selectedFilter"
+    (change)="applyFilter(selectedFilter)"
+  >
+    <mat-button-toggle value="all"> All </mat-button-toggle>
+    <mat-button-toggle value="active"> Active </mat-button-toggle>
+    <mat-button-toggle value="completed"> Completed </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <button mat-button color="warn" (click)="clearCompl()">
+    Clear Completed
   </button>
 </div>
-
-<div *ngFor="let item of filteredTodos2()" class="todo-item">
-  <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">
-    {{ item.title }}
-  </mat-checkbox>
-
-  <button mat-icon-button color="warn" (click)="remove(item.id)">
-    <mat-icon>delete</mat-icon>
-  </button>
-
-  <button mat-icon-button color="accent" (click)="openEditDialog(item)">
-    <mat-icon>edit</mat-icon>
-  </button>
-</div>
-
-<mat-button-toggle-group
-  [(ngModel)]="selectedFilter"
-  (change)="applyFilter(selectedFilter)"
->
-  <mat-button-toggle value="all"> All </mat-button-toggle>
-  <mat-button-toggle value="active"> Active </mat-button-toggle>
-  <mat-button-toggle value="completed"> Completed </mat-button-toggle>
-</mat-button-toggle-group>
-
-<button mat-button color="warn" (click)="clearCompl()">Clear Completed</button>
