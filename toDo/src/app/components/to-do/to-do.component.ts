@@ -9,6 +9,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { EditDialogComponent } from '../../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-to-do',
@@ -22,12 +24,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatCheckboxModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   templateUrl: './to-do.component.html',
   styleUrl: './to-do.component.scss',
 })
 export class ToDoComponent {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  openEditDialog(item: any) {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: { ...item },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toDoService.updateTodo(result.id, result.title);
+      }
+    });
+  }
   private toDoService = inject(ToDosService);
   state = this.toDoService.state;
   completedCount = this.toDoService.completedCount;
@@ -61,22 +75,6 @@ export class ToDoComponent {
     this.toDoService.setFilter(filter);
   }
 
-  editingId: number | null = null;
-  editingTitle: string = '';
-
-  startEdit(id: number, currentTitle: string) {
-    this.editingId = id;
-    this.editingTitle = currentTitle;
-  }
-  saveEdit(id: number) {
-    this.toDoService.updateTodo(id, this.editingTitle);
-    this.editingId = null;
-    this.editingTitle = '';
-  }
-  cancelEdit() {
-    this.editingId = null;
-    this.editingTitle = '';
-  }
   clearCompl() {
     this.toDoService.clearCompleted();
   }

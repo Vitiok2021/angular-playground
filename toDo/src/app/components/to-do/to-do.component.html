@@ -19,31 +19,15 @@
 </div>
 
 <div *ngFor="let item of filteredTodos2()" class="todo-item">
-  {{ item.id }} - <span *ngIf="editingId !== item.id">{{ item.title }}</span
-  ><input
-    type="text"
-    *ngIf="editingId === item.id"
-    [(ngModel)]="editingTitle"
-  />
-  <button *ngIf="editingId === item.id" (click)="saveEdit(item.id)">
-    Save
-  </button>
-  <button *ngIf="editingId === item.id" (click)="cancelEdit()">Cancel</button>
-  -
-  <!-- {{ item.completed ? "done" : "active" }} -->
-  <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">{{
-    item.title
-  }}</mat-checkbox>
+  <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">
+    {{ item.title }}
+  </mat-checkbox>
 
-  <!-- <button (click)="toggle(item.id)">Toggle</button> -->
   <button mat-icon-button color="warn" (click)="remove(item.id)">
     <mat-icon>delete</mat-icon>
   </button>
-  <button
-    mat-icon-button
-    color="accent"
-    (click)="startEdit(item.id, item.title)"
-  >
+
+  <button mat-icon-button color="accent" (click)="openEditDialog(item)">
     <mat-icon>edit</mat-icon>
   </button>
 </div>
