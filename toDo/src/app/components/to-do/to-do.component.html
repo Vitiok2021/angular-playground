@@ -18,7 +18,7 @@
   </button>
 </div>
 
-<div *ngFor="let item of filteredTodos2()">
+<div *ngFor="let item of filteredTodos2()" class="todo-item">
   {{ item.id }} - <span *ngIf="editingId !== item.id">{{ item.title }}</span
   ><input
     type="text"
@@ -36,8 +36,16 @@
   }}</mat-checkbox>
 
   <!-- <button (click)="toggle(item.id)">Toggle</button> -->
-  <button (click)="remove(item.id)">Remove</button>
-  <button (click)="startEdit(item.id, item.title)">Edit</button>
+  <button mat-icon-button color="warn" (click)="remove(item.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    color="accent"
+    (click)="startEdit(item.id, item.title)"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
 </div>
 
 <div class="filters">
