@@ -52,7 +52,8 @@ export class ToDoComponent {
       }
     });
   }
-  private toDoService = inject(ToDosService);
+  toDoService = inject(ToDosService);
+  sortCompletedLast = this.toDoService.sortCompletedLast;
   state = this.toDoService.state;
   completedCount = this.toDoService.completedCount;
   notCompletedCount = this.toDoService.notCompletedCount;

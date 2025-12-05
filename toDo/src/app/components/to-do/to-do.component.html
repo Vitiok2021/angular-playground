@@ -53,5 +53,13 @@
   <button mat-button color="warn" (click)="clearCompl()">
     Clear Completed
   </button>
-  <button mat-button (click)="toggleSortCompletedLast()">Completed Last</button>
+  <button
+    mat-raised-button
+    [color]="sortCompletedLast() ? 'accent' : 'primary'"
+    (click)="toggleSortCompletedLast()"
+    class="sort-btn"
+  >
+    <mat-icon class="sort-icon">arrow_downward</mat-icon>
+    Completed Last
+  </button>
 </div>

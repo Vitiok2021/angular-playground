@@ -39,3 +39,14 @@ mat-button-toggle-group {
 .cdk-drag-placeholder {
   opacity: 0.3;
 }
+.sort-btn {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s ease;
+}
+
+.sort-icon {
+  font-size: 18px;
+}
