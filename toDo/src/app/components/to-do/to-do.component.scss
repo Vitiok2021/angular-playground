@@ -18,7 +18,24 @@
   padding-top: 8px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   gap: 8px;
+  padding: 6px 0;
+  cursor: grab;
 }
 mat-button-toggle-group {
   margin-top: 20px;
+}
+
+.cdk-drag-preview {
+  border-radius: 4px;
+  background: #e0e0e0;
+  padding: 6px;
+}
+
+.drag-icon {
+  cursor: grab;
+  margin-left: auto;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
 }

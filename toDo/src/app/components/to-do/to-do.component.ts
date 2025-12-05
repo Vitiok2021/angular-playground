@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../../edit-dialog/edit-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-to-do',
   standalone: true,
@@ -26,12 +27,20 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSnackBarModule,
     MatDialogModule,
     MatButtonToggleModule,
+    DragDropModule,
   ],
   templateUrl: './to-do.component.html',
   styleUrl: './to-do.component.scss',
 })
 export class ToDoComponent {
   constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  drop(event: CdkDragDrop<any[]>) {
+    const todos = [...this.state()];
+    const moved = todos.splice(event.previousIndex, 1)[0];
+    todos.splice(event.currentIndex, 0, moved);
+
+    this.toDoService.setNewOrder(todos);
+  }
   openEditDialog(item: any) {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: { ...item },

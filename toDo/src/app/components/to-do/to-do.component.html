@@ -19,20 +19,26 @@
     </button>
   </div>
 
-  <div
-    *ngFor="let item of filteredTodos2()"
-    class="todo-item"
-    [class.completed]="item.completed"
-  >
-    <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">
-      {{ item.title }}
-    </mat-checkbox>
-    <button mat-icon-button color="accent" (click)="openEditDialog(item)">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button color="warn" (click)="remove(item.id)">
-      <mat-icon>delete</mat-icon>
-    </button>
+  <div cdkDropList (cdkDropListDropped)="drop($event)" class="todo-list">
+    <div
+      *ngFor="let item of filteredTodos2()"
+      cdkDrag
+      class="todo-item"
+      [class.completed]="item.completed"
+    >
+      <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">
+        {{ item.title }}
+      </mat-checkbox>
+      <span class="drag-icon">
+        <mat-icon>drag_indicator</mat-icon>
+      </span>
+      <button mat-icon-button color="accent" (click)="openEditDialog(item)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="remove(item.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
 
   <mat-button-toggle-group
