@@ -88,4 +88,7 @@ export class ToDoComponent {
   clearCompl() {
     this.toDoService.clearCompleted();
   }
+  toggleSortCompletedLast() {
+    this.toDoService.toggleSortCompletedLast();
+  }
 }
