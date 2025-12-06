@@ -15,7 +15,13 @@
         #todoInput
       />
     </mat-form-field>
-    <button (click)="addToDo(newTitle)" mat-raised-button>Add Task</button>
+    <button
+      (click)="addToDo(newTitle)"
+      mat-raised-button
+      [disabled]="!newTitle.trim()"
+    >
+      Add Task
+    </button>
   </div>
 
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="todo-list">

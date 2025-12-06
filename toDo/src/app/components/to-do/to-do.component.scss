@@ -20,6 +20,15 @@
   gap: 8px;
   padding: 6px 0;
   cursor: grab;
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: fade-in 0.25s ease forwards;
+}
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 mat-button-toggle-group {
   margin-top: 20px;
