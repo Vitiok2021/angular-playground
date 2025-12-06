@@ -48,18 +48,20 @@
     <mat-button-toggle value="completed"> Completed </mat-button-toggle>
   </mat-button-toggle-group>
 
-  <button mat-button color="warn" (click)="clearCompl()">
-    Clear Completed
-  </button>
-  <button
-    mat-raised-button
-    [color]="sortCompletedLast() ? 'accent' : 'primary'"
-    (click)="toggleSortCompletedLast()"
-    class="sort-btn"
-  >
-    <mat-icon class="sort-icon" [class.rotated]="!sortCompletedLast()"
-      >arrow_downward</mat-icon
+  <div class="todo-actions">
+    <button
+      mat-raised-button
+      [color]="sortCompletedLast() ? 'accent' : 'primary'"
+      (click)="toggleSortCompletedLast()"
+      class="sort-btn"
     >
-    Completed Last
-  </button>
+      <mat-icon class="sort-icon" [class.rotated]="!sortCompletedLast()"
+        >arrow_downward</mat-icon
+      >
+      Completed Last
+    </button>
+    <button mat-button color="warn" (click)="clearCompl()">
+      Clear Completed
+    </button>
+  </div>
 </div>
