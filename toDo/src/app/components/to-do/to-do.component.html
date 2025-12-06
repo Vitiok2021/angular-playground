@@ -12,6 +12,7 @@
         [(ngModel)]="newTitle"
         placeholder="New toDo"
         (keyup.enter)="addToDo(newTitle)"
+        #todoInput
       />
     </mat-form-field>
     <button (click)="addToDo(newTitle)" mat-raised-button>Add Task</button>

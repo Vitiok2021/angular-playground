@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { ToDosService } from '../../services/to-dos.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +33,8 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
   styleUrl: './to-do.component.scss',
 })
 export class ToDoComponent {
+  @ViewChild('todoInput') todoInput!: any;
+
   constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {}
   drop(event: CdkDragDrop<any[]>) {
     const todos = [...this.state()];
@@ -71,6 +73,7 @@ export class ToDoComponent {
 
     this.toDoService.addTodo(title);
     this.newTitle = '';
+    this.todoInput.nativeElement.focus();
     this.snackBar.open('Task added!', 'Close', {
       duration: 2000,
     });
