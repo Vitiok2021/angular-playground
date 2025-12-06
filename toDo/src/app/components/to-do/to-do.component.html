@@ -14,9 +14,7 @@
         (keyup.enter)="addToDo(newTitle)"
       />
     </mat-form-field>
-    <button matButton (click)="addToDo(newTitle)" mat-raised-button>
-      Add Test
-    </button>
+    <button (click)="addToDo(newTitle)" mat-raised-button>Add Task</button>
   </div>
 
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="todo-list">
@@ -59,7 +57,9 @@
     (click)="toggleSortCompletedLast()"
     class="sort-btn"
   >
-    <mat-icon class="sort-icon">arrow_downward</mat-icon>
+    <mat-icon class="sort-icon" [class.rotated]="!sortCompletedLast()"
+      >arrow_downward</mat-icon
+    >
     Completed Last
   </button>
 </div>

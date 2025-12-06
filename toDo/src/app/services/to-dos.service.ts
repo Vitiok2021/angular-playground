@@ -29,14 +29,16 @@ export class ToDosService {
 
   filteredTodos = computed(() => {
     const filter = this._filter();
-    const todos = this._state();
+    let todos = [...this._state()];
 
     if (filter === 'completed') {
       return todos.filter((item) => item.completed);
+    } else if (filter === 'active') {
+      return todos.filter((item) => !item.completed);
     }
 
-    if (filter === 'active') {
-      return todos.filter((item) => !item.completed);
+    if (this._sortCompletedLast?.()) {
+      todos.sort((a, b) => Number(a.completed) - Number(b.completed));
     }
 
     return todos;
@@ -85,5 +87,15 @@ export class ToDosService {
   });
   clearCompleted() {
     this.setState((list) => list.filter((item) => !item.completed));
+  }
+  setNewOrder(newList: ToDo[]) {
+    this._state.set(newList);
+  }
+
+  private readonly _sortCompletedLast = signal(false);
+  sortCompletedLast = this._sortCompletedLast.asReadonly();
+
+  toggleSortCompletedLast() {
+    this._sortCompletedLast.update((item) => !item);
   }
 }
