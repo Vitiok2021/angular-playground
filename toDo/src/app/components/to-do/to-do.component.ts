@@ -37,7 +37,7 @@ export class ToDoComponent {
 
   constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {}
   drop(event: CdkDragDrop<any[]>) {
-    const todos = [...this.state()];
+    const todos = [...this.filteredTodos2()];
     const moved = todos.splice(event.previousIndex, 1)[0];
     todos.splice(event.currentIndex, 0, moved);
 
@@ -72,6 +72,14 @@ export class ToDoComponent {
     }
 
     this.toDoService.addTodo(title);
+    setTimeout(() => {
+      const list = document.querySelectorAll('.todo-item');
+      const last = list[list.length - 1];
+      last?.classList.add('new');
+      setTimeout(() => {
+        last?.classList.remove('new');
+      }, 300);
+    });
     this.newTitle = '';
     this.todoInput.nativeElement.focus();
     this.snackBar.open('Task added!', 'Close', {

@@ -24,7 +24,12 @@
     </button>
   </div>
 
-  <div cdkDropList (cdkDropListDropped)="drop($event)" class="todo-list">
+  <div
+    cdkDropList
+    [cdkDropListData]="filteredTodos2()"
+    (cdkDropListDropped)="drop($event)"
+    class="todo-list"
+  >
     <div
       *ngFor="let item of filteredTodos2()"
       cdkDrag
@@ -34,7 +39,7 @@
       <mat-checkbox [checked]="item.completed" (change)="toggle(item.id)">
         {{ item.title }}
       </mat-checkbox>
-      <span class="drag-icon">
+      <span cdkDragHandle class="drag-icon">
         <mat-icon>drag_indicator</mat-icon>
       </span>
       <button mat-icon-button color="accent" (click)="openEditDialog(item)">
