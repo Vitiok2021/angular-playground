@@ -1,3 +1,8 @@
 import { Routes } from '@angular/router';
+import { MoviesPageComponent } from './components/movies-page/movies-page.component';
+import { MovieDetailsPageComponent } from './components/movie-details-page/movie-details-page.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: 'movies', component: MoviesPageComponent },
+  { path: 'movies/:id', component: MovieDetailsPageComponent },
+];
