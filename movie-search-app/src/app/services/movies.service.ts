@@ -14,6 +14,7 @@ export class MoviesService {
       year: 1999,
       genre: 'Sci-Fi',
       description: 'Lorem...',
+      image: 'https://picsum.photos/200/300',
     },
     {
       id: 2,
@@ -25,6 +26,6 @@ export class MoviesService {
   ];
 
   getMovieById(id: number) {
-    return this.movies.find((movie) => (movie.id = id));
+    return this.movies.find((movie) => movie.id === id);
   }
 }
