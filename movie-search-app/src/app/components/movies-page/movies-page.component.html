@@ -1,1 +1,10 @@
-<p>movies-page works!</p>
+<div class="cards__container">
+  <ul class="cards__list">
+    <li *ngFor="let movie of movies" class="cards__item">
+      {{ movie.title }}
+      <button [routerLink]="['/movies', movie.id]" class="card__btn">
+        Details
+      </button>
+    </li>
+  </ul>
+</div>
