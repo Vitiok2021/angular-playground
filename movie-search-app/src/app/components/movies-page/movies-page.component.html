@@ -1,6 +1,9 @@
 <div class="cards__container">
+  <div class="card__input">
+    <input type="text" placeholder="search..." [(ngModel)]="searchTerm" />
+  </div>
   <ul class="cards__list">
-    <li *ngFor="let movie of movies" class="cards__item">
+    <li *ngFor="let movie of filteredMovies" class="cards__item">
       {{ movie.title }}
       <button [routerLink]="['/movies', movie.id]" class="card__btn">
         Details
