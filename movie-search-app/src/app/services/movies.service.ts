@@ -22,6 +22,7 @@ export class MoviesService {
       year: 2010,
       genre: 'Sci-Fi',
       description: 'Lorem...',
+      image: 'https://picsum.photos/200/300',
     },
   ];
 

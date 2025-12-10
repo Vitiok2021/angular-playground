@@ -6,7 +6,7 @@ import { MoviesService } from '../../services/movies.service';
   selector: 'app-movie-details-page',
   imports: [RouterModule],
   templateUrl: './movie-details-page.component.html',
-  styleUrl: './movie-details-page.component.scss',
+  styleUrls: ['./movie-details-page.component.scss'],
   standalone: true,
 })
 export class MovieDetailsPageComponent implements OnInit {
