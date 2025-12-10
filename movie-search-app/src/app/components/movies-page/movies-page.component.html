@@ -4,10 +4,15 @@
   </div>
   <ul class="cards__list">
     <li *ngFor="let movie of filteredMovies" class="cards__item">
-      {{ movie.title }}
+      <p><img [src]="movie.image" alt="{{ movie.title }}" /></p>
+      <p>{{ movie.title }}</p>
+      <p>{{ movie.year }}</p>
       <button [routerLink]="['/movies', movie.id]" class="card__btn">
         Details
       </button>
+    </li>
+    <li *ngIf="filteredMovies.length === 0" class="empty-message">
+      No movie found
     </li>
   </ul>
 </div>
