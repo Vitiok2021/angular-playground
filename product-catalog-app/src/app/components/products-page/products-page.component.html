@@ -7,7 +7,7 @@
       <p class="products__img">
         <img [src]="product.image" alt="{{ product.name }}" />
       </p>
-      <button [routerLink]="['/products', 'product.id']">Details</button>
+      <button [routerLink]="['/products', product.id]">Details</button>
     </li>
   </ul>
 </div>
