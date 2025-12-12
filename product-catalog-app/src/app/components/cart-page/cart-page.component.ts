@@ -3,7 +3,7 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-cart-page',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
