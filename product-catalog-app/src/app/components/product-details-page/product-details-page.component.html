@@ -5,4 +5,5 @@
     <img [src]="product?.image" alt="{{ product?.name }}" />
   </div>
   <button [routerLink]="['/products']" class="card__back">Back</button>
+  <button (click)="addToCart()" class="card__add-to-cart">Add</button>
 </div>
