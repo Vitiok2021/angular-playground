@@ -26,7 +26,7 @@ export class ProductDetailsPageComponent implements OnInit {
   }
   addToCart() {
     if (this.product) {
-      this.cartService.add(this.product);
+      this.cartService.add(this.product!);
     }
   }
 }
