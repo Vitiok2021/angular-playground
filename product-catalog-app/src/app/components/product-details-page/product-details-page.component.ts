@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-cart-page',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './product-details-page.component.html',
   styleUrl: './product-details-page.component.scss',
 })
