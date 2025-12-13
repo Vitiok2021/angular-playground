@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-cart-page',
   imports: [],
-  templateUrl: './cart-page.component.html',
-  styleUrl: './cart-page.component.scss',
+  templateUrl: './product-details-page.component.html',
+  styleUrl: './product-details-page.component.scss',
 })
-export class CartPageComponent implements OnInit {
+export class ProductDetailsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
