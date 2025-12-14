@@ -25,6 +25,8 @@ export class ProductDetailsPageComponent implements OnInit {
     });
   }
   addToCart() {
+    console.log('ADDING', this.product);
+
     if (this.product) {
       this.cartService.add(this.product!);
     }
