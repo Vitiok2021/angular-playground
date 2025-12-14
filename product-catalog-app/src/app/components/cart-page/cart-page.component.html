@@ -1,1 +1,8 @@
-<p>cart-page works!</p>
+<div class="cart__items">
+  <div *ngFor="let item of items()" class="cart__item">
+    <p>
+      {{ item.product.name }} - <span>{{ item.quantity }}</span>
+    </p>
+  </div>
+  <p class="cart__total">Total sum: {{ total() }} грн</p>
+</div>

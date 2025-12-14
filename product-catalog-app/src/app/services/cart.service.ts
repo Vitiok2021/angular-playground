@@ -1,6 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cart-item';
+import { computed } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -24,8 +25,15 @@ export class CartService {
       return [...currentItems, { product, quantity: 1 }];
     });
   }
-  remove(id: number) {}
-  clear() {}
+  // remove(id: number) {}
+  // clear() {}
 
   items$ = this.items.asReadonly();
+
+  total: Signal<number> = computed(() => {
+    return this.items().reduce(
+      (sum, item) => sum + item.product.price * item.quantity,
+      0
+    );
+  });
 }

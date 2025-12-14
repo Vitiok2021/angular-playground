@@ -1,4 +1,6 @@
 <div class="products__container">
+  <button [routerLink]="['/cart']" class="products__cart">Cart</button>
+
   <ul class="products__list">
     <li *ngFor="let product of products" class="products__item">
       <p class="products__category">{{ product.category }}</p>
