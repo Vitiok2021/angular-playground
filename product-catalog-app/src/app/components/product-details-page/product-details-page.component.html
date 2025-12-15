@@ -1,4 +1,11 @@
-<div class="card__item">
+<div class="not-found" *ngIf="notFound()">
+  <p>Product not found</p>
+  <button class="not-found__btn" [routerLink]="['/products']">
+    Back to products
+  </button>
+</div>
+
+<div class="card__item" *ngIf="product()">
   <h3 class="card__title">{{ product()?.name }}</h3>
   <p class="card__price">{{ product()?.price }}</p>
   <div class="card__image">

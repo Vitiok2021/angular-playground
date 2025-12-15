@@ -8,6 +8,7 @@ import { ProductService } from './product.service';
 })
 export class ProductDetailService {
   product = signal<Product | null>(null);
+  notFound = signal(false);
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
@@ -15,7 +16,14 @@ export class ProductDetailService {
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
       const product = this.productService.getProductById(id);
-      this.product.set(product ?? null);
+
+      if (product) {
+        this.product.set(product ?? null);
+        this.notFound.set(false);
+      } else {
+        this.product.set(null);
+        this.notFound.set(true);
+      }
     });
   }
 }
