@@ -1,8 +1,8 @@
 <div class="card__item">
-  <h3 class="card__title">{{ product?.name }}</h3>
-  <p class="card__price">{{ product?.price }}</p>
+  <h3 class="card__title">{{ product()?.name }}</h3>
+  <p class="card__price">{{ product()?.price }}</p>
   <div class="card__image">
-    <img [src]="product?.image" alt="{{ product?.name }}" />
+    <img [src]="product()?.image" alt="{{ product()?.name }}" />
   </div>
   <button [routerLink]="['/products']" class="card__back">Back</button>
   <button (click)="addToCart()" class="card__add-to-cart">Add</button>

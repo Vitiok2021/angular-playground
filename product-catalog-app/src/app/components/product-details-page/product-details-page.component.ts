@@ -1,34 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { ProductDetailService } from '../../services/product-detail.service';
 @Component({
   selector: 'app-product-details-page',
+  providers: [ProductDetailService],
   imports: [RouterLink],
   templateUrl: './product-details-page.component.html',
   styleUrl: './product-details-page.component.scss',
 })
-export class ProductDetailsPageComponent implements OnInit {
+export class ProductDetailsPageComponent {
+  product;
   constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private cartService: CartService
-  ) {}
-  id: string | null = null;
-  product: any | null = null;
-
-  ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      this.product = this.productService.getProductById(Number(this.id));
-    });
+    private cartService: CartService,
+    private productDetailService: ProductDetailService
+  ) {
+    this.product = this.productDetailService.product;
   }
-  addToCart() {
-    console.log('ADDING', this.product);
 
-    if (this.product) {
-      this.cartService.add(this.product!);
+  addToCart() {
+    const product = this.product();
+    if (product) {
+      this.cartService.add(product);
     }
   }
 }
