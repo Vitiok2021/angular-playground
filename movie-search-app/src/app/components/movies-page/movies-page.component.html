@@ -1,9 +1,16 @@
 <div class="cards__container">
   <div class="card__input">
-    <input type="text" placeholder="search..." [(ngModel)]="searchTerm" />
+    <input
+      type="text"
+      placeholder="search..."
+      [(ngModel)]="searchTerm"
+      (input)="filterMovies()"
+    />
   </div>
   <ul class="cards__list">
-    <li *ngFor="let movie of filteredMovies" class="cards__item">
+    @for(movie of filteredMovies; track movie.id) {
+
+    <li class="cards__item">
       <p><img [src]="movie.image" alt="{{ movie.title }}" /></p>
       <p>{{ movie.title }}</p>
       <p>{{ movie.year }}</p>
@@ -11,8 +18,8 @@
         Details
       </button>
     </li>
-    <li *ngIf="filteredMovies.length === 0" class="empty-message">
-      No movie found
-    </li>
+    } @empty {
+    <li class="empty-message">No movie found</li>
+    }
   </ul>
 </div>
