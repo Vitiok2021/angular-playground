@@ -24,4 +24,7 @@ export class MovieDetailsPageComponent implements OnInit {
       this.movie = this.movieService.getMovieById(Number(this.id));
     });
   }
+  toggleFav(id: number) {
+    this.movieService.toggleFavorite(id);
+  }
 }
