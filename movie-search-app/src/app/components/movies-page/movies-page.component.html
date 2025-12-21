@@ -17,6 +17,12 @@
       <button [routerLink]="['/movies', movie.id]" class="card__btn">
         Details
       </button>
+      <button
+        (click)="toggleFavorite(movie.id)"
+        [class.favorite]="movie.isFavorite"
+      >
+        Favorite
+      </button>
     </li>
     } @empty {
     <li class="empty-message">No movie found</li>

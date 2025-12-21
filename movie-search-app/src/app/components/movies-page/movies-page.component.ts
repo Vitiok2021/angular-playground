@@ -26,7 +26,10 @@ export class MoviesPageComponent implements OnInit {
     const term = this.searchTerm.trim().toLowerCase();
 
     this.filteredMovies = this.movies.filter((movie) =>
-      movie.title.toLowerCase().startsWith(term)
+      movie.title.toLowerCase().includes(term)
     );
+  }
+  toggleFavorite(id: number) {
+    this.movieService.toggleFavorite(id);
   }
 }

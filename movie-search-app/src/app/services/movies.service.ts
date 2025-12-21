@@ -15,6 +15,7 @@ export class MoviesService {
       genre: 'Sci-Fi',
       description: 'Lorem...',
       image: 'https://picsum.photos/200/300',
+      isFavorite: false,
     },
     {
       id: 2,
@@ -23,10 +24,17 @@ export class MoviesService {
       genre: 'Sci-Fi',
       description: 'Lorem...',
       image: 'https://picsum.photos/200/300',
+      isFavorite: false,
     },
   ];
 
   getMovieById(id: number) {
     return this.movies.find((movie) => movie.id === id);
+  }
+
+  toggleFavorite(id: number) {
+    const findMovie = this.movies.find((movie) => movie.id === id);
+    if (findMovie) findMovie.isFavorite = !findMovie.isFavorite;
+    // console.log(findMovie?.isFavorite);
   }
 }
