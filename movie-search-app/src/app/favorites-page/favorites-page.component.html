@@ -1,0 +1,16 @@
+<ul class="favorite-list">
+  @for(movie of favoriteMovies; track movie.id) {
+
+  <li class="favorite-list__item">
+    <p class="favorite-list__item-name">{{ movie.title }}</p>
+    <p class="favorite-list__item-year">{{ movie.year }}</p>
+    <p class="favorite-list__item-genre">{{ movie.genre }}</p>
+    <p class="favorite-list__item-descr">{{ movie.description }}</p>
+    @if(movie.isFavorite){
+    <button (click)="removeFromFav(movie.id)">Remove</button>
+    }
+  </li>
+  } @empty {
+  <p class="favorite-list__not-found">Список улюблених фільмів порожній</p>
+  }
+</ul>
