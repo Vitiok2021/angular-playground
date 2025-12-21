@@ -5,6 +5,10 @@
     <p class="favorite-list__item-name">{{ movie.title }}</p>
     <p class="favorite-list__item-year">{{ movie.year }}</p>
     <p class="favorite-list__item-genre">{{ movie.genre }}</p>
+    <p class="favorite-list__item-img">
+      <img [src]="movie.image" alt="{{ movie.title }}" />
+    </p>
+
     <p class="favorite-list__item-descr">{{ movie.description }}</p>
     @if(movie.isFavorite){
     <button (click)="removeFromFav(movie.id)">Remove</button>
@@ -14,3 +18,6 @@
   <p class="favorite-list__not-found">Список улюблених фільмів порожній</p>
   }
 </ul>
+<a [routerLink]="['/movies']" class="favorite-link__home"
+  >Повернутись до списку</a
+>

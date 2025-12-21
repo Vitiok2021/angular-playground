@@ -7,6 +7,7 @@
       (input)="filterMovies()"
     />
   </div>
+  <a [routerLink]="['/favorites']" class="card-link__favorite">Favorites</a>
   <ul class="cards__list">
     @for(movie of filteredMovies; track movie.id) {
 

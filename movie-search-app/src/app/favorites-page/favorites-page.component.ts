@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { Movie } from '../interfaces/movie';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorites-page',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './favorites-page.component.html',
   styleUrl: './favorites-page.component.scss',
 })
