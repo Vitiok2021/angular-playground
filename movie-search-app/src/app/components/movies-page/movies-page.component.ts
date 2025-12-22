@@ -16,8 +16,10 @@ export class MoviesPageComponent implements OnInit {
   filteredMovies: Movie[] = [];
   constructor(private movieService: MoviesService) {}
   ngOnInit(): void {
-    this.movies = this.movieService.movies;
-    this.filteredMovies = this.movieService.movies;
+    this.movieService.getMovieFromApi().subscribe((data: Movie[]) => {
+      this.movies = data;
+      this.filteredMovies = data;
+    });
   }
 
   searchTerm: string = '';

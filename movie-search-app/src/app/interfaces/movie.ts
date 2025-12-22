@@ -2,8 +2,8 @@ export interface Movie {
   id: number;
   title: string;
   genre: string;
-  year: number;
+  year: string;
   description: string;
-  image: string;
+  poster: string;
   isFavorite: boolean;
 }

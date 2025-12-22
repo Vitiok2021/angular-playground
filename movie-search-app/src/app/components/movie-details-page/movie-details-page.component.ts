@@ -18,11 +18,14 @@ export class MovieDetailsPageComponent implements OnInit {
   id: string | null = null;
   movie: any | null = null;
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      this.movie = this.movieService.getMovieById(Number(this.id));
-    });
+    const idFromRoute = this.route.snapshot.paramMap.get('id');
+
+    if (idFromRoute) {
+      const id = +idFromRoute;
+      this.movieService.getMovieByIdFromApi(id).subscribe((data) => {
+        this.movie = data;
+      });
+    }
   }
   toggleFav(id: number) {
     this.movieService.toggleFavorite(id);

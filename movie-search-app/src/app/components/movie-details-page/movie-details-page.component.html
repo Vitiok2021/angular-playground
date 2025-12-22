@@ -2,7 +2,7 @@
   @if(movie) {
   <p class="card__title">{{ movie.title }}</p>
   <p class="card__year">{{ movie.year }}</p>
-  <p class="card__img"><img [src]="movie.image" alt="movie poster" /></p>
+  <p class="card__img"><img [src]="movie.poster" alt="movie poster" /></p>
   @if(movie.isFavorite){
   <p>Фільм у списку улюблених</p>
   }

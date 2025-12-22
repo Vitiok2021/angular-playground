@@ -12,7 +12,7 @@
     @for(movie of filteredMovies; track movie.id) {
 
     <li class="cards__item">
-      <p><img [src]="movie.image" alt="{{ movie.title }}" /></p>
+      <p><img [src]="movie.poster" alt="{{ movie.title }}" /></p>
       <p>{{ movie.title }}</p>
       <p>{{ movie.year }}</p>
       <button [routerLink]="['/movies', movie.id]" class="card__btn">
