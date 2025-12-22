@@ -43,16 +43,19 @@ export class MoviesService {
 
   getMovieByIdFromApi(id: number) {
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${this.apiKey}`;
-
+    const cashedMovie = this.movies.find((movie) => movie.id === id);
     return this.http.get(url).pipe(
-      map((movie: any) => ({
-        id: movie.id,
-        title: movie.title,
-        description: movie.overview,
-        year: movie.release_date,
-        poster: 'https://image.tmdb.org/t/p/w342' + movie.poster_path,
-        isFavorite: false,
-      }))
+      map(
+        (movie: any) =>
+          ({
+            id: movie.id,
+            title: movie.title,
+            description: movie.overview,
+            year: movie.release_date,
+            poster: 'https://image.tmdb.org/t/p/w342' + movie.poster_path,
+            isFavorite: cashedMovie ? cashedMovie.isFavorite : false,
+          } as Movie)
+      )
     );
   }
   // movies = [
