@@ -15,7 +15,11 @@ interface TMBDResponse {
 })
 export class MoviesService {
   movies: Movie[] = [];
-  constructor() {}
+  constructor() {
+    const savedData = localStorage.getItem('movies_cache');
+
+    if (savedData) this.movies = JSON.parse(savedData);
+  }
 
   apiKey = '75f74b703457c28185faa7bd588e0f9a';
   private http = inject(HttpClient);
@@ -87,5 +91,6 @@ export class MoviesService {
     const findMovie = this.movies.find((movie) => movie.id === id);
     if (findMovie) findMovie.isFavorite = !findMovie.isFavorite;
     // console.log(findMovie?.isFavorite);
+    localStorage.setItem('movies_cache', JSON.stringify(this.movies));
   }
 }
