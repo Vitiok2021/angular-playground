@@ -19,3 +19,13 @@
 .favorite {
   border-color: blue;
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.search-field {
+  width: 300px; // Або інша зручна ширина
+}
