@@ -5,9 +5,20 @@ import { MoviesService } from '../../services/movies.service';
 import { FormsModule } from '@angular/forms';
 import { Movie } from '../../interfaces/movie';
 
+import { MatButtonModule, MatButton } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @Component({
   selector: 'app-movies-page',
-  imports: [RouterLink, FormsModule],
+  imports: [
+    RouterLink,
+    FormsModule,
+    MatButton,
+    MatButtonModule,
+    MatInputModule, 
+    MatFormFieldModule,
+  ],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.scss',
 })
