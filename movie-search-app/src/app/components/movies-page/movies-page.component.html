@@ -25,25 +25,32 @@
   <ul class="cards__list">
     @for(movie of filteredMovies; track movie.id) {
 
-    <li class="cards__item">
-      <p><img [src]="movie.poster" alt="{{ movie.title }}" /></p>
-      <p>{{ movie.title }}</p>
-      <p>{{ movie.year }}</p>
-      <button
-        mat-raised-button
-        color="primary"
-        [routerLink]="['/movies', movie.id]"
-        class="card__btn"
-      >
-        Details
-      </button>
-      <button
-        (click)="toggleFavorite(movie.id)"
-        [class.favorite]="movie.isFavorite"
-      >
-        Favorite
-      </button>
-    </li>
+    <mat-card class="cards__item">
+      <img mat-card-image [src]="movie.poster" alt="{{ movie.title }}" />
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.year }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/movies', movie.id]"
+          class="card__btn"
+        >
+          Details
+        </button>
+        <button
+          mat-icon-button
+          (click)="toggleFavorite(movie.id)"
+          [color]="movie.isFavorite ? 'warn' : ''"
+        >
+          <span class="material-icons">
+            {{ movie.isFavorite ? "favorite" : "favorite_border" }}
+          </span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
     } @empty {
     <li class="empty-message">No movie found</li>
     }

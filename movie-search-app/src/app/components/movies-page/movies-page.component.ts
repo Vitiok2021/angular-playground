@@ -8,6 +8,8 @@ import { Movie } from '../../interfaces/movie';
 import { MatButtonModule, MatButton } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-movies-page',
@@ -16,8 +18,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatButton,
     MatButtonModule,
-    MatInputModule, 
+    MatInputModule,
     MatFormFieldModule,
+    MatCardModule,
+    MatIconModule,
   ],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.scss',
