@@ -22,7 +22,7 @@
       >Favorites</a
     >
   </div>
-  <ul class="cards__list">
+  <div class="cards__list">
     @for(movie of filteredMovies; track movie.id) {
 
     <mat-card class="cards__item">
@@ -52,7 +52,7 @@
       </mat-card-actions>
     </mat-card>
     } @empty {
-    <li class="empty-message">No movie found</li>
+    <p class="empty-message">No movie found</p>
     }
-  </ul>
+  </div>
 </div>

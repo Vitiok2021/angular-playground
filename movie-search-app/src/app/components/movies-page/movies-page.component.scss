@@ -10,7 +10,8 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
   gap: 25px;
 }
 .cards__item {
@@ -28,7 +29,9 @@
   gap: 20px;
   margin-bottom: 20px;
 }
-
+mat-card-header {
+  flex-grow: 1;
+}
 .search-field {
   width: 300px; // Або інша зручна ширина
 }

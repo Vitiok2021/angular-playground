@@ -34,6 +34,7 @@ export class MoviesService {
             ({
               id: movie.id,
               title: movie.title,
+              genre: movie.original_language || 'Unknown',
               description: movie.overview,
               year: movie.release_date,
               isFavorite: false,
@@ -54,6 +55,7 @@ export class MoviesService {
           ({
             id: movie.id,
             title: movie.title,
+            genre: movie.original_language || 'Unknown',
             description: movie.overview,
             year: movie.release_date,
             poster: 'https://image.tmdb.org/t/p/w342' + movie.poster_path,
