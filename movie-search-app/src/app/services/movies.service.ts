@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { Movie } from '../interfaces/movie';
 import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
+import { Movie } from '../interfaces/movie';
 
 interface TMBDResponse {
   results: any[];

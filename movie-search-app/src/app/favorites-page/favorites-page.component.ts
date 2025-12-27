@@ -1,12 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MoviesService } from '../services/movies.service';
-import { Movie } from '../interfaces/movie';
-import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { JsonPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { Movie } from '../interfaces/movie';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-favorites-page',
