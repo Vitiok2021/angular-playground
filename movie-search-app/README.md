@@ -1,59 +1,31 @@
-# MovieSearchApp
+# 🎬 Movie Search App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+![Preview of the App](preview.png)
 
-## Development server
+Цей додаток дозволяє шукати фільми, переглядати їх деталі та зберігати у список улюблених.
+Дані беруться з TMDB API.
 
-To start a local development server, run:
+🔗 **[Подивитись Демо](https://vitiok2021.github.io/movie-search-app/)**
 
-```bash
-ng serve
-```
+## 🛠 Технології
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 19** (Signals, Control Flow, Standalone Components)
+- **Angular Material** (UI Components)
+- **SCSS** (BEM methodology)
+- **RxJS**
+- **TMDB API**
 
-## Code scaffolding
+## 🚀 Функціонал
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- 🔥 **Популярні новинки:** Головна сторінка автоматично завантажує список з 20 найпопулярніших фільмів (TMDB Trends).
+- 🔍 **Живий пошук:** Можливість знайти будь-який фільм за назвою.
+- 📄 **Деталі:** Окремі сторінки з описом, рейтингом та жанром.
+- ❤️ **Обране:** Локальне збереження улюблених фільмів (LocalStorage).
+- 📱 **Адаптив:** Grid-сітка, яка підлаштовується під мобільні та десктопи.
 
-```bash
-ng generate component component-name
-```
+## 📦 Як запустити локально
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Клонувати репозиторій:
+   ```bash
+   git clone [https://github.com/Vitiok2021/movie-search-app.git](https://github.com/Vitiok2021/movie-search-app.git)
+   ```

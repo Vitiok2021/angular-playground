@@ -3,13 +3,7 @@
 
   <ul class="products__list">
     <li *ngFor="let product of products" class="products__item">
-      <p class="products__category">{{ product.category }}</p>
-      <p class="products__title">{{ product.name }}</p>
-      <p class="products__price">{{ product.price }}</p>
-      <p class="products__img">
-        <img [src]="product.image" alt="{{ product.name }}" />
-      </p>
-      <button [routerLink]="['/products', product.id]">Details</button>
+      <app-product-card [product]="product"></app-product-card>
     </li>
   </ul>
 </div>
