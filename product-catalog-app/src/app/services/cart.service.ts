@@ -38,4 +38,15 @@ export class CartService {
       0
     );
   });
+
+  updateQuantity(id: number, newQuantity: number) {
+    this.items.update((items) =>
+      items.map((item) => {
+        if (item.product.id === id) {
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      })
+    );
+  }
 }

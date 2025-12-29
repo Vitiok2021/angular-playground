@@ -1,6 +1,12 @@
 <div class="cart__items">
   <div *ngFor="let item of items()" class="cart__item">
     <app-product-card [product]="item.product"></app-product-card>
+
+    <div class="cart__controls">
+      <button (click)="decrement(item)">-</button>
+      <span>{{ item.quantity }}</span>
+      <button (click)="increment(item)">+</button>
+    </div>
     <button (click)="deleteProduct(item.product.id)">Delete</button>
   </div>
   <p class="cart__total">Total sum: {{ total() }} грн</p>

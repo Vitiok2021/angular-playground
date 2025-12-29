@@ -18,4 +18,10 @@ export class CartPageComponent {
   deleteProduct(id: number) {
     this.cartService.remove(id);
   }
+  decrement(item: CartItem) {
+    this.cartService.updateQuantity(item.product.id, item.quantity - 1);
+  }
+  increment(item: CartItem) {
+    this.cartService.updateQuantity(item.product.id, item.quantity + 1);
+  }
 }
