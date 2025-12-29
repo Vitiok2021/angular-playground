@@ -1,9 +1,7 @@
 <div class="cart__items">
   <div *ngFor="let item of items()" class="cart__item">
-    <p>
-      {{ item.product.name }} - <span>{{ item.quantity }}</span>
-      <button (click)="deleteProduct(item.product.id)">Delete</button>
-    </p>
+    <app-product-card [product]="item.product"></app-product-card>
+    <button (click)="deleteProduct(item.product.id)">Delete</button>
   </div>
   <p class="cart__total">Total sum: {{ total() }} грн</p>
 </div>
