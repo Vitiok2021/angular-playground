@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { NgFor } from '@angular/common';
 import { CartItem } from '../../interfaces/cart-item';
@@ -9,13 +9,12 @@ import { CartItem } from '../../interfaces/cart-item';
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
-export class CartPageComponent implements OnInit {
-  constructor(private cartService: CartService) {}
-  items!: Signal<CartItem[]>;
-  total!: Signal<number>;
+export class CartPageComponent {
+  private cartService = inject(CartService);
+  items = this.cartService.items$;
+  total = this.cartService.total;
 
-  ngOnInit(): void {
-    this.items = this.cartService.items$;
-    this.total = this.cartService.total;
+  deleteProduct(id: number) {
+    this.cartService.remove(id);
   }
 }
