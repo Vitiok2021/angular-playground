@@ -1,4 +1,4 @@
-import { Injectable, Signal, signal } from '@angular/core';
+import { effect, Injectable, Signal, signal } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cart-item';
 import { computed } from '@angular/core';
@@ -8,6 +8,20 @@ import { computed } from '@angular/core';
 })
 export class CartService {
   private items = signal<CartItem[]>([]);
+  items$ = this.items.asReadonly();
+
+  constructor() {
+    const isBrowser = typeof localStorage !== 'undefined';
+    if (isBrowser) {
+      const saveItems = localStorage.getItem('cartItems');
+      if (saveItems) this.items.set(JSON.parse(saveItems));
+      effect(() => {
+        const items = this.items();
+        console.log(this.items());
+        localStorage.setItem('cartItems', JSON.stringify(items));
+      });
+    }
+  }
 
   add(product: Product) {
     this.items.update((currentItems) => {
@@ -30,7 +44,6 @@ export class CartService {
       items.filter((item) => item.product.id !== id)
     );
   }
-  items$ = this.items.asReadonly();
 
   total: Signal<number> = computed(() => {
     return this.items().reduce(
