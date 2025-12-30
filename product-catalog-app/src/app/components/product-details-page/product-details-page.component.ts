@@ -19,18 +19,26 @@ export class ProductDetailsPageComponent implements OnInit {
 
   product = signal<Product | null>(null);
   notFound = signal(false);
+
+  isLoading = signal(true);
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
+
+      this.isLoading.set(true);
 
       if (id) {
         this.productService.getProductById(id).subscribe({
           next: (serverProduct) => {
             this.product.set(serverProduct);
             this.notFound.set(false);
+            this.isLoading.set(false);
           },
           error: (err) => {
             this.notFound.set(true);
+            console.log(err);
+            this.isLoading.set(false);
           },
         });
       } else {

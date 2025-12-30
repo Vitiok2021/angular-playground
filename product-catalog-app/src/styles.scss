@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+
+/* 1. Головне правило верстальщика: зручні розміри */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Скидаємо відступи за замовчуванням */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Загальні налаштування тіла */
+body {
+  font-family: Arial, sans-serif; /* або твій шрифт */
+  line-height: 1.5;
+}
+
+/* 4. Прибираємо крапки у списків глобально (якщо треба) */
+ul {
+  list-style: none;
+}
+
+/* 5. Картинки гнучкі за замовчуванням */
+img {
+  max-width: 100%;
+  display: block; /* прибирає нижній відступ у рядкових елементів */
+}
