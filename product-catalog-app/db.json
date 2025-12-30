@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Wi-Fi Router",
+      "price": 1200,
+      "image": "https://m.media-amazon.com/images/I/51R2a9p-vNL._AC_SL1000_.jpg",
+      "description": "High-speed router"
+    },
+    {
+      "id": 2,
+      "name": "Mechanical Keyboard",
+      "price": 2500,
+      "image": "https://resource.logitech.com/content/dam/logitech/en/products/keyboards/mx-mechanical/gallery/mx-mechanical-keyboard-top-view-graphite-us.png",
+      "description": "Clicky switches"
+    },
+    {
+      "id": 3,
+      "name": "Gaming Mouse",
+      "price": 1500,
+      "image": "https://resource.logitech.com/content/dam/gaming/en/products/g502-lightspeed-gaming-mouse/g502-lightspeed-gallery-1.png",
+      "description": "RGB lights"
+    }
+  ]
+}

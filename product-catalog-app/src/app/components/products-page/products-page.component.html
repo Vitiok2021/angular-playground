@@ -5,5 +5,8 @@
     <li *ngFor="let product of products" class="products__item">
       <app-product-card [product]="product"></app-product-card>
     </li>
+    <li *ngFor="let product of productsFromJson()" class="products__item">
+      <app-product-card [product]="product"></app-product-card>
+    </li>
   </ul>
 </div>
