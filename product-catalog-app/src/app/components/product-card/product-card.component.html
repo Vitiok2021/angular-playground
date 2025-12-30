@@ -1,7 +1,7 @@
 <p class="products__img">
   <img [src]="product.image" alt="{{ product.name }}" />
 </p>
-<p class="products__category">{{ product.category }}</p>
+<p class="products__category">{{ product.description }}</p>
 <p class="products__title">{{ product.name }}</p>
 <p class="products__price">{{ product.price }}</p>
 <button [routerLink]="['/products', product.id]">Details</button>

@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { NgIf } from '@angular/common';
@@ -12,25 +12,28 @@ import { ProductService } from '../../services/product.service';
   styleUrl: './product-details-page.component.scss',
 })
 export class ProductDetailsPageComponent implements OnInit {
+  constructor() {}
+  private productService = inject(ProductService);
+  private route = inject(ActivatedRoute);
+  private cartService = inject(CartService);
+
   product = signal<Product | null>(null);
   notFound = signal(false);
-  constructor(
-    private cartService: CartService,
-    private route: ActivatedRoute,
-    private productService: ProductService
-  ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const idString = params.get('id');
-      const id = Number(idString);
+      const id = Number(params.get('id'));
 
-      const foundProduct = this.productService.getProductById(id);
-
-      if (foundProduct) {
-        this.product.set(foundProduct);
-        this.notFound.set(false);
+      if (id) {
+        this.productService.getProductById(id).subscribe({
+          next: (serverProduct) => {
+            this.product.set(serverProduct);
+            this.notFound.set(false);
+          },
+          error: (err) => {
+            this.notFound.set(true);
+          },
+        });
       } else {
-        this.product.set(null);
         this.notFound.set(true);
       }
     });

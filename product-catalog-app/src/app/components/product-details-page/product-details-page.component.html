@@ -6,11 +6,13 @@
 </div>
 
 <div class="card__item" *ngIf="product()">
-  <h3 class="card__title">{{ product()?.name }}</h3>
-  <p class="card__price">{{ product()?.price }}</p>
   <div class="card__image">
     <img [src]="product()?.image" alt="{{ product()?.name }}" />
   </div>
+  <h3 class="card__title">{{ product()?.name }}</h3>
+  <p class="card__price">{{ product()?.price }}</p>
+  <p class="card__descr">{{ product()?.description }}</p>
+
   <a [routerLink]="['/products']" class="card__back">Back</a>
   <button (click)="addToCart()" class="card__add-to-cart">Add</button>
 </div>

@@ -13,12 +13,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.scss',
 })
-export class ProductsPageComponent implements OnInit {
-  constructor(private productService: ProductService) {}
-  products: Product[] = [];
-  ngOnInit(): void {
-    this.products = this.productService.products;
-  }
+export class ProductsPageComponent {
+  constructor() {}
 
   private productServiceFromJson = inject(ProductService);
   productsFromJson = toSignal(this.productServiceFromJson.getProducts(), {
