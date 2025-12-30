@@ -10,4 +10,7 @@
     <button (click)="deleteProduct(item.product.id)">Delete</button>
   </div>
   <p class="cart__total">Total sum: {{ total() }} грн</p>
+  <div class="cart__line">
+    <a [routerLink]="['/products']">Back to products</a>
+  </div>
 </div>

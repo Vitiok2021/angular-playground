@@ -3,10 +3,11 @@ import { CartService } from '../../services/cart.service';
 import { NgFor } from '@angular/common';
 import { CartItem } from '../../interfaces/cart-item';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [NgFor, ProductCardComponent],
+  imports: [NgFor, ProductCardComponent, RouterLink],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })

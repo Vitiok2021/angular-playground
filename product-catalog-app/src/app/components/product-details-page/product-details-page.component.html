@@ -11,6 +11,6 @@
   <div class="card__image">
     <img [src]="product()?.image" alt="{{ product()?.name }}" />
   </div>
-  <button [routerLink]="['/products']" class="card__back">Back</button>
+  <a [routerLink]="['/products']" class="card__back">Back</a>
   <button (click)="addToCart()" class="card__add-to-cart">Add</button>
 </div>
