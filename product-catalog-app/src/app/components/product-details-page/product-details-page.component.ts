@@ -46,10 +46,16 @@ export class ProductDetailsPageComponent implements OnInit {
       }
     });
   }
+  showNotification = signal(false);
   addToCart() {
     const product = this.product();
     if (product) {
       this.cartService.add(product);
+      this.showNotification.set(true);
+
+      setTimeout(() => {
+        this.showNotification.set(false);
+      }, 2000);
     }
   }
 }

@@ -14,6 +14,7 @@
   <p class="card__price">{{ product()?.price }}</p>
   <p class="card__descr">{{ product()?.description }}</p>
 
-  <a [routerLink]="['/products']" class="card__back">Back</a>
   <button (click)="addToCart()" class="card__add-to-cart">Add</button>
+  <div class="toast" *ngIf="showNotification()">✅ Product added to cart!</div>
+  <a [routerLink]="['/products']" class="card__back">Back</a>
 </div>
