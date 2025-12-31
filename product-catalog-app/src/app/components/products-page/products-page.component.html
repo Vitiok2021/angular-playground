@@ -1,9 +1,13 @@
 <div class="products__container">
-  <button [routerLink]="['/cart']" class="products__cart">Cart</button>
+  <button mat-flat-button [routerLink]="['/cart']" class="products__cart">
+    Cart
+  </button>
 
   <ul class="products__list">
     <li *ngFor="let product of productsFromJson()" class="products__item">
-      <app-product-card [product]="product"></app-product-card>
+      <mat-card class="products__wrapper">
+        <app-product-card [product]="product"></app-product-card>
+      </mat-card>
     </li>
   </ul>
 </div>

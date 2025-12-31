@@ -37,3 +37,16 @@ img {
   max-width: 100%;
   display: block; /* прибирає нижній відступ у рядкових елементів */
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.mat-mdc-unelevated-button.mat-warn {
+  --mdc-filled-button-container-color: #f44336; /* Червоний */
+  --mdc-filled-button-label-text-color: white; /* Білий текст */
+}

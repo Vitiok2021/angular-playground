@@ -1,71 +1,10 @@
-:host {
-  display: flex;
-  flex-direction: column;
-
-  height: 100%;
-
-  border: 1px solid lightblue;
-  padding: 10px;
-  border-radius: 10px;
-  background: white;
-}
 .products__img {
   height: 200px;
-  flex-grow: 1;
-  align-content: center;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  width: 100%;
+  object-fit: contain;
+  margin-top: 10px;
   img {
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-}
-.products__title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-.products__price {
-  color: green;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.products__category {
-  color: gray;
-  font-size: 14px;
-  margin-bottom: 10px;
-
-  // Лайфхак: якщо опис довгий, обрізаємо його (3 крапки)
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.products__price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 15px;
-  // Тут ключовий момент для кнопки!
-  // Якщо ми хочемо, щоб все, що нижче ціни, полетіло вниз:
-  margin-bottom: auto;
-}
-button {
-  width: 100%;
-  padding: 10px;
-  background: blue;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease 0s;
-
-  // Або так (якщо не задав margin-bottom: auto ціні)
-  // margin-top: auto;
-  @media (any-hover: hover) {
-    &:hover {
-      background: rgb(79, 79, 238);
-    }
+    height: 100%;
   }
 }

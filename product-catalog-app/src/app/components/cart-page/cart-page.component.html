@@ -1,16 +1,25 @@
 <div class="cart__items">
-  <div *ngFor="let item of items()" class="cart__item">
+  <mat-card *ngFor="let item of items()" class="cart__item">
     <app-product-card [product]="item.product"></app-product-card>
 
     <div class="cart__controls">
       <button (click)="decrement(item)">-</button>
       <span>{{ item.quantity }}</span>
       <button (click)="increment(item)">+</button>
+      <p class="row-total">
+        <span>{{ item.product.price * item.quantity }}</span>
+      </p>
     </div>
-    <button (click)="deleteProduct(item.product.id)">Delete</button>
-  </div>
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="deleteProduct(item.product.id)"
+    >
+      Delete
+    </button>
+  </mat-card>
   <p class="cart__total">Total sum: {{ total() }} грн</p>
   <div class="cart__line">
-    <a [routerLink]="['/products']">Back to products</a>
+    <a mat-flat-button [routerLink]="['/products']">Back to products</a>
   </div>
 </div>

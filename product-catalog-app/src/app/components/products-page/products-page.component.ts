@@ -6,10 +6,18 @@ import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-products-page',
-  imports: [NgFor, RouterLink, ProductCardComponent],
+  imports: [
+    NgFor,
+    RouterLink,
+    ProductCardComponent,
+    MatCardModule,
+    MatButtonModule,
+  ],
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.scss',
 })

@@ -7,7 +7,8 @@
   gap: 25px;
   grid-template-columns: repeat(auto-fill, minmax(280px, 300px));
 }
-.products__item {
-  list-style: none;
+
+.products__wrapper {
   height: 100%;
+  padding: 10px;
 }

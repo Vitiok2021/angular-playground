@@ -29,3 +29,16 @@
     opacity: 1;
   }
 }
+.card__quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0; // Відступ зверху і знизу
+}
+
+.card__quantity-val {
+  font-size: 20px;
+  font-weight: bold;
+  min-width: 25px;
+  text-align: center;
+}
