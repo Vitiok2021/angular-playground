@@ -20,7 +20,9 @@ export class CartPageComponent {
     this.cartService.remove(id);
   }
   decrement(item: CartItem) {
-    this.cartService.updateQuantity(item.product.id, item.quantity - 1);
+    if (item.quantity > 0) {
+      this.cartService.updateQuantity(item.product.id, item.quantity - 1);
+    }
   }
   increment(item: CartItem) {
     this.cartService.updateQuantity(item.product.id, item.quantity + 1);

@@ -23,7 +23,7 @@ export class CartService {
     }
   }
 
-  add(product: Product) {
+  add(product: Product, count: number = 1) {
     this.items.update((currentItems) => {
       const existing = currentItems.find(
         (item) => item.product.id === product.id
@@ -32,11 +32,11 @@ export class CartService {
       if (existing) {
         return currentItems.map((item) =>
           item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + count }
             : item
         );
       }
-      return [...currentItems, { product, quantity: 1 }];
+      return [...currentItems, { product, quantity: count }];
     });
   }
   remove(id: number) {
