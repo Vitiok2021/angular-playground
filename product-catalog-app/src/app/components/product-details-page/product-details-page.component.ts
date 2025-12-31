@@ -47,10 +47,18 @@ export class ProductDetailsPageComponent implements OnInit {
     });
   }
   showNotification = signal(false);
+  quantity = signal(1);
+  increment() {
+    this.quantity.update((val) => val + 1);
+  }
+  decrement() {
+    this.quantity.update((val) => (val > 1 ? val - 1 : 1));
+  }
   addToCart() {
     const product = this.product();
     if (product) {
-      this.cartService.add(product);
+      this.cartService.add(product, this.quantity());
+      this.quantity.set(1);
       this.showNotification.set(true);
 
       setTimeout(() => {

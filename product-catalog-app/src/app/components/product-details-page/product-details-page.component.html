@@ -6,7 +6,7 @@
   </button>
 </div>
 
-<div class="card__item" *ngIf="product()">
+<div class="card__item" *ngIf="!isLoading() && product()">
   <div class="card__image">
     <img [src]="product()?.image" alt="{{ product()?.name }}" />
   </div>
@@ -14,7 +14,12 @@
   <p class="card__price">{{ product()?.price }}</p>
   <p class="card__descr">{{ product()?.description }}</p>
 
-  <button (click)="addToCart()" class="card__add-to-cart">Add</button>
+  <button (click)="addToCart()" class="card__add-to-cart">Add to cart</button>
+  <div class="card__quantity-control">
+    <button (click)="decrement()">-</button>
+    <span class="card__quantity-val">{{ quantity() }}</span>
+    <button (click)="increment()">+</button>
+  </div>
   <div class="toast" *ngIf="showNotification()">✅ Product added to cart!</div>
   <a [routerLink]="['/products']" class="card__back">Back</a>
 </div>
