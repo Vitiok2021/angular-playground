@@ -6,20 +6,30 @@
   </button>
 </div>
 
-<div class="card__item" *ngIf="!isLoading() && product()">
+<mat-card class="card__item" *ngIf="!isLoading() && product()">
   <div class="card__image">
-    <img [src]="product()?.image" alt="{{ product()?.name }}" />
+    <img mat-card-image [src]="product()?.image" alt="{{ product()?.name }}" />
   </div>
-  <h3 class="card__title">{{ product()?.name }}</h3>
-  <p class="card__price">{{ product()?.price }}</p>
-  <p class="card__descr">{{ product()?.description }}</p>
+  <mat-card-content>
+    <mat-card-title class="card__title">{{ product()?.name }}</mat-card-title>
+    <mat-card-subtitle class="card__descr">{{
+      product()?.description
+    }}</mat-card-subtitle>
+    <p class="card__price">{{ product()?.price }} грн.</p>
 
-  <button (click)="addToCart()" class="card__add-to-cart">Add to cart</button>
-  <div class="card__quantity-control">
-    <button (click)="decrement()">-</button>
-    <span class="card__quantity-val">{{ quantity() }}</span>
-    <button (click)="increment()">+</button>
-  </div>
-  <div class="toast" *ngIf="showNotification()">✅ Product added to cart!</div>
-  <a [routerLink]="['/products']" class="card__back">Back</a>
-</div>
+    <mat-card-actions>
+      <button mat-raised-button (click)="addToCart()" class="card__add-to-cart">
+        Add to cart
+      </button>
+      <div class="card__quantity-control">
+        <button mat-stroked-button (click)="decrement()">-</button>
+        <span class="card__quantity-val">{{ quantity() }}</span>
+        <button mat-stroked-button (click)="increment()">+</button>
+      </div>
+      <div class="toast" *ngIf="showNotification()">
+        ✅ Product added to cart!
+      </div>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
+<a mat-flat-button [routerLink]="['/products']" class="card__back">Back</a>

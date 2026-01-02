@@ -4,10 +4,12 @@ import { CartService } from '../../services/cart.service';
 import { NgIf } from '@angular/common';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-product-details-page',
   providers: [],
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf, MatButtonModule, MatCardModule],
   templateUrl: './product-details-page.component.html',
   styleUrl: './product-details-page.component.scss',
 })
