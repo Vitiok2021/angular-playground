@@ -1,9 +1,13 @@
 <div class="products__img">
   <img mat-card-image [src]="product.image" alt="{{ product.name }}" />
 </div>
-<div class="products__category">{{ product.description }}</div>
-<h3 class="products__title">{{ product.name }}</h3>
-<div class="products__price">{{ product.price }}</div>
-<button mat-flat-button [routerLink]="['/products', product.id]">
-  Details
-</button>
+<mat-card-content>
+  <mat-card-title class="products__title">{{ product.name }}</mat-card-title>
+  <mat-card-subtitle class="products__category">{{
+    product.description
+  }}</mat-card-subtitle>
+  <div class="products__price">{{ product.price }} грн.</div>
+  <button mat-flat-button [routerLink]="['/products', product.id]">
+    Details
+  </button>
+</mat-card-content>

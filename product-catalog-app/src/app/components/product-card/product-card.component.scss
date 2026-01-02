@@ -1,10 +1,22 @@
 .products__img {
+  padding: 10px;
   height: 200px;
   width: 100%;
-  object-fit: contain;
-  margin-top: 10px;
+  margin-bottom: 10px;
   img {
-    max-width: 100%;
+    object-fit: contain;
+    width: 100%;
     height: 100%;
+  }
+}
+.products__title {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+.products__category,
+.products__price {
+  &:not(:last-child) {
+    margin-bottom: 15px;
   }
 }
