@@ -1,7 +1,9 @@
 .products__container {
   padding: 10px;
+  text-align: right;
 }
 .products__list {
+  text-align: left;
   display: grid;
   justify-content: center;
   gap: 25px;

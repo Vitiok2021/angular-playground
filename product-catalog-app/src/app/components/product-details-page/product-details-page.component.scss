@@ -1,7 +1,7 @@
 :host {
   display: block;
   padding: 20px;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 .loading {
@@ -47,39 +47,87 @@
   text-align: center;
 }
 .card__item {
-  padding: 10px;
+  padding: 20px;
   display: flex;
-  gap: 20px;
+  gap: 30px;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   &:not(:last-child) {
     margin-bottom: 40px;
   }
+  @media (max-width: 680px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .card__image {
-  border-radius: 15px;
-  flex: 0 1 45%;
+  border-radius: 12px;
+  flex: 0 0 50%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f5f5f5;
   img {
     width: 100%;
     height: auto;
+    max-height: 400px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
   }
+  @media (max-width: 680px) {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+mat-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card__title {
+  font-size: 28px; /* Більший заголовок */
+  font-weight: bold;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.card__descr {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.card__price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px; /* Більший відступ до кнопок */
 }
 mat-card-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   padding: 0;
+  margin-top: auto;
 }
-.card__title,
-.card__descr,
-.card__price {
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
+.card__quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 4px;
+  padding: 2px;
 }
-mat-card-content {
-  flex: 1;
+
+.card__quantity-val {
+  font-size: 18px;
+  font-weight: 500;
+  min-width: 30px;
+  text-align: center;
 }
