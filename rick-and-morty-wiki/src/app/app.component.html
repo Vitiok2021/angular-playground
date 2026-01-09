@@ -1,3 +1,10 @@
 <h1>Rick & Morty Wiki</h1>
+<ul>
+  @for (character of characters; track $index) {
+  <li>
+    <p>{{ character.name }} - {{ character.status }}</p>
+  </li>
+  }
+</ul>
 
 <router-outlet />
