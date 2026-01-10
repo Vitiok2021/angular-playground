@@ -10,7 +10,7 @@ export class RickAndMortyService {
 
   private apiUrl = 'https://rickandmortyapi.com/api/character';
 
-  getCharacters() {
-    return this.http.get<ApiResponse>(this.apiUrl);
+  getCharacters(page: number = 1) {
+    return this.http.get<ApiResponse>(this.apiUrl + '?page=' + page);
   }
 }
