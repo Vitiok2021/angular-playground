@@ -11,11 +11,17 @@ import { Character } from './models/character';
 })
 export class AppComponent {
   title = 'Rick & Morty Wiki';
+  private rickAndMorty = inject(RickAndMortyService);
+
+  characters: Character[] = [];
+
+  totalPages: number = 0;
+
+  currentPage: number = 1;
+
   constructor() {
     this.showCharters();
   }
-  private rickAndMorty = inject(RickAndMortyService);
-  characters: Character[] = [];
   showCharters() {
     this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
       this.characters = data.results;
@@ -23,7 +29,6 @@ export class AppComponent {
       console.log(data);
     });
   }
-  currentPage: number = 1;
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage = this.currentPage - 1;
@@ -36,6 +41,4 @@ export class AppComponent {
       this.showCharters();
     }
   }
-
-  totalPages: number = 0;
 }

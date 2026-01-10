@@ -22,13 +22,19 @@
     }
   </ul>
   <div class="app__action">
-    <button class="app__prev" (click)="prevPage()">Prev</button>
+    <button
+      class="app__prev"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Prev
+    </button>
     <button
       class="app__next"
       (click)="nextPage()"
       [disabled]="currentPage === totalPages"
     >
-      Next
+      Next &rarr;
     </button>
   </div>
 </div>

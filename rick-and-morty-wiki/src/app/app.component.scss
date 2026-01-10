@@ -26,6 +26,9 @@ li {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 25px;
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
   }
 
   &__card {
@@ -79,6 +82,27 @@ li {
     }
     &.alive {
       color: #55cc44;
+    }
+  }
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    button {
+      border: none;
+      background-color: #add8e6;
+      padding: 5px 10px;
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          &:not(:disabled) {
+            background-color: #7eafc0;
+          }
+        }
+      }
     }
   }
 }
