@@ -10,7 +10,7 @@ import { Character } from './models/character';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'rick-and-morty-wiki';
+  title = 'Rick & Morty Wiki';
 
   constructor() {
     this.showCharters();
