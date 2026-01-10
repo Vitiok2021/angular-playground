@@ -19,7 +19,8 @@ export class AppComponent {
   showCharters() {
     this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
       this.characters = data.results;
-      // console.log(data);
+      this.totalPages = data.info.pages;
+      console.log(data);
     });
   }
   currentPage: number = 1;
@@ -30,7 +31,11 @@ export class AppComponent {
     }
   }
   nextPage() {
-    this.currentPage = this.currentPage + 1;
-    this.showCharters();
+    if (this.currentPage < this.totalPages) {
+      this.currentPage = this.currentPage + 1;
+      this.showCharters();
+    }
   }
+
+  totalPages: number = 0;
 }
