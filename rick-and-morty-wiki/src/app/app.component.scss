@@ -85,6 +85,13 @@ li {
     }
   }
   &__action {
+    &--category {
+      margin-bottom: 30px;
+      & .active {
+        background-color: #202329;
+        color: #fff;
+      }
+    }
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,7 +99,11 @@ li {
     button {
       border: none;
       background-color: #add8e6;
-      padding: 5px 10px;
+      padding: 7px 15px;
+      transition: background-color 0.3s ease 0s;
+      border-radius: 7px;
+      text-transform: uppercase;
+      font-size: 14px;
       &:not(:disabled) {
         cursor: pointer;
       }

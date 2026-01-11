@@ -19,8 +19,14 @@ export class AppComponent {
 
   currentPage: number = 1;
 
+  currentCategory: string = 'character';
+
   constructor() {
     this.showCharters();
+  }
+  selectCategory(categoryName: string) {
+    this.currentCategory = categoryName;
+    this.currentPage = 1;
   }
   showCharters() {
     this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {

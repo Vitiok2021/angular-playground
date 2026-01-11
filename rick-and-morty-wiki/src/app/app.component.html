@@ -1,5 +1,21 @@
 <div class="app__container">
   <h1 class="app__title">{{ title }}</h1>
+  <div class="app__action app__action--category">
+    <button
+      class="app__btn-character"
+      (click)="selectCategory('character')"
+      [class.active]="currentCategory === 'character'"
+    >
+      Personages
+    </button>
+    <button
+      class="app__btn-location"
+      (click)="selectCategory('location')"
+      [class.active]="currentCategory === 'location'"
+    >
+      Location
+    </button>
+  </div>
   <ul class="app__cards">
     @for (character of characters; track $index) {
     <li class="app__card">
