@@ -35,7 +35,7 @@ export class AppComponent {
       this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
         this.characters = data.results;
         this.totalPages = data.info.pages;
-        // console.log(data);
+        console.log(data);
       });
     } else {
       this.rickAndMorty.getLocations(this.currentPage).subscribe((data) => {
