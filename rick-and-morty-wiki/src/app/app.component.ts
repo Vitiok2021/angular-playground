@@ -14,6 +14,7 @@ export class AppComponent {
   private rickAndMorty = inject(RickAndMortyService);
 
   characters: Character[] = [];
+  locations: any = [];
 
   totalPages: number = 0;
 
@@ -27,13 +28,22 @@ export class AppComponent {
   selectCategory(categoryName: string) {
     this.currentCategory = categoryName;
     this.currentPage = 1;
+    this.showCharters();
   }
   showCharters() {
-    this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
-      this.characters = data.results;
-      this.totalPages = data.info.pages;
-      console.log(data);
-    });
+    if (this.currentCategory === 'character') {
+      this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
+        this.characters = data.results;
+        this.totalPages = data.info.pages;
+        // console.log(data);
+      });
+    } else {
+      this.rickAndMorty.getLocations(this.currentPage).subscribe((data) => {
+        console.log('Locations:', data);
+        this.locations = data.results;
+        this.totalPages = data.info.pages;
+      });
+    }
   }
   prevPage() {
     if (this.currentPage > 1) {

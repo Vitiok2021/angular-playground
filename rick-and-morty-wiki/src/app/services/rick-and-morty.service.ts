@@ -13,4 +13,9 @@ export class RickAndMortyService {
   getCharacters(page: number = 1) {
     return this.http.get<ApiResponse>(this.apiUrl + '?page=' + page);
   }
+  getLocations(page: number = 1) {
+    return this.http.get<any>(
+      'https://rickandmortyapi.com/api/location?page=' + page
+    );
+  }
 }

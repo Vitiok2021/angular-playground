@@ -16,6 +16,7 @@
       Location
     </button>
   </div>
+  @if(currentCategory==='character'){
   <ul class="app__cards">
     @for (character of characters; track $index) {
     <li class="app__card">
@@ -37,6 +38,19 @@
     </li>
     }
   </ul>
+  } @if(currentCategory==='location'){
+  <ul class="app__cards">
+    @for (loc of locations; track $index) {
+    <li class="app__card app__card--location">
+      <div class="app__info">
+        <h3 class="app__name">{{ loc.name }}</h3>
+        <p>{{ loc.type }}</p>
+        <p style="color: #666; font-size: 0.9em">{{ loc.dimension }}</p>
+      </div>
+    </li>
+    }
+  </ul>
+  }
   <div class="app__action">
     <button
       class="app__prev"
