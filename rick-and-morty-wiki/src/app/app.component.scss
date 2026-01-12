@@ -55,6 +55,7 @@ li {
       padding: 20px;
       justify-content: center;
       min-height: 150px;
+      transition: transform 0.2s, box-shadow 0.2s;
       .app__name {
         font-size: 1.5rem;
         margin-bottom: 10px;
@@ -63,6 +64,14 @@ li {
       p {
         color: #666;
         margin: 5px 0;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+          border-left-color: #d84315;
+          background-color: #fffbf0;
+        }
       }
     }
     @media (any-hover: hover) {
