@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RickAndMortyService } from './services/rick-and-morty.service';
-import { Character } from './models/character';
+import { Character, Episode } from './models/character';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +15,7 @@ export class AppComponent {
 
   characters: Character[] = [];
   locations: any = [];
+  episodes: Episode[] = [];
 
   totalPages: number = 0;
 
@@ -37,10 +38,15 @@ export class AppComponent {
         this.totalPages = data.info.pages;
         console.log(data);
       });
-    } else {
+    } else if (this.currentCategory === 'location') {
       this.rickAndMorty.getLocations(this.currentPage).subscribe((data) => {
         console.log('Locations:', data);
         this.locations = data.results;
+        this.totalPages = data.info.pages;
+      });
+    } else {
+      this.rickAndMorty.getEpisodes(this.currentPage).subscribe((data) => {
+        this.episodes = data.results;
         this.totalPages = data.info.pages;
       });
     }

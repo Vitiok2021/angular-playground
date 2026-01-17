@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ApiResponse } from '../models/character';
+import { ApiResponse, Episode } from '../models/character';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,12 @@ export class RickAndMortyService {
   }
   getLocations(page: number = 1) {
     return this.http.get<any>(
-      'https://rickandmortyapi.com/api/location?page=' + page
+      'https://rickandmortyapi.com/api/location?page=' + page,
+    );
+  }
+  getEpisodes(page: number = 1) {
+    return this.http.get<any>(
+      'https://rickandmortyapi.com/api/episode?page=' + page,
     );
   }
 }

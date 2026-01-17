@@ -15,41 +15,62 @@
     >
       Location
     </button>
+    <button
+      class="app__btn-episode"
+      (click)="selectCategory('episode')"
+      [class.active]="currentCategory === 'episode'"
+    >
+      Episode
+    </button>
   </div>
-  @if(currentCategory==='character'){
-  <ul class="app__cards">
-    @for (character of characters; track $index) {
-    <li class="app__card">
-      <div class="app__image">
-        <img [src]="character.image" [alt]="character.name" />
-      </div>
-      <div class="app__info">
-        <h3 class="app__name">{{ character.name }}</h3>
-        <div>
-          <span
-            class="app__status"
-            [class.dead]="character.status === 'Dead'"
-            [class.alive]="character.status === 'Alive'"
-            >●</span
-          >
-          <span class="app__species">{{ character.species }}</span>
-        </div>
-      </div>
-    </li>
-    }
-  </ul>
-  } @if(currentCategory==='location'){
-  <ul class="app__cards">
-    @for (loc of locations; track $index) {
-    <li class="app__card app__card--location">
-      <div class="app__info">
-        <h3 class="app__name">{{ loc.name }}</h3>
-        <p>{{ loc.type }}</p>
-        <p style="color: #666; font-size: 0.9em">{{ loc.dimension }}</p>
-      </div>
-    </li>
-    }
-  </ul>
+  @if (currentCategory === "character") {
+    <ul class="app__cards">
+      @for (character of characters; track $index) {
+        <li class="app__card">
+          <div class="app__image">
+            <img [src]="character.image" [alt]="character.name" />
+          </div>
+          <div class="app__info">
+            <h3 class="app__name">{{ character.name }}</h3>
+            <div>
+              <span
+                class="app__status"
+                [class.dead]="character.status === 'Dead'"
+                [class.alive]="character.status === 'Alive'"
+                >●</span
+              >
+              <span class="app__species">{{ character.species }}</span>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+  @if (currentCategory === "location") {
+    <ul class="app__cards">
+      @for (loc of locations; track $index) {
+        <li class="app__card app__card--location">
+          <div class="app__info">
+            <h3 class="app__name">{{ loc.name }}</h3>
+            <p>{{ loc.type }}</p>
+            <p>{{ loc.dimension }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+  @if (currentCategory === "episode") {
+    <ul class="app__cards">
+      @for (episode of episodes; track $index) {
+        <li class="app__card app__card-episode">
+          <div class="app__info">
+            <h3 class="app__name">{{ episode.name }}</h3>
+            <p>{{ episode.air_date }}</p>
+            <p>{{ episode.episode }}</p>
+          </div>
+        </li>
+      }
+    </ul>
   }
   <div class="app__action">
     <button
