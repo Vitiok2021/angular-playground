@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-location-card',
   imports: [],
   templateUrl: './location-card.component.html',
-  styleUrl: './location-card.component.scss'
+  styleUrl: './location-card.component.scss',
 })
 export class LocationCardComponent {
-
+  @Input() location: any;
 }

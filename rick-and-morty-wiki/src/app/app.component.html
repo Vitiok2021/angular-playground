@@ -25,7 +25,7 @@
   </div>
   @if (currentCategory === "character") {
     <ul class="app__cards">
-      @for (item of characters; track $index) {
+      @for (item of characters; track item.id) {
         <li class="app__card">
           <app-character-card [character]="item"></app-character-card>
         </li>
@@ -34,13 +34,9 @@
   }
   @if (currentCategory === "location") {
     <ul class="app__cards">
-      @for (loc of locations; track $index) {
+      @for (loc of locations; track loc.id) {
         <li class="app__card app__card--location">
-          <div class="app__info">
-            <h3 class="app__name">{{ loc.name }}</h3>
-            <p>{{ loc.type }}</p>
-            <p>{{ loc.dimension }}</p>
-          </div>
+          <app-location-card [location]="loc"></app-location-card>
         </li>
       }
     </ul>
