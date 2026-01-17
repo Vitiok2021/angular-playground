@@ -25,23 +25,9 @@
   </div>
   @if (currentCategory === "character") {
     <ul class="app__cards">
-      @for (character of characters; track $index) {
+      @for (item of characters; track $index) {
         <li class="app__card">
-          <div class="app__image">
-            <img [src]="character.image" [alt]="character.name" />
-          </div>
-          <div class="app__info">
-            <h3 class="app__name">{{ character.name }}</h3>
-            <div>
-              <span
-                class="app__status"
-                [class.dead]="character.status === 'Dead'"
-                [class.alive]="character.status === 'Alive'"
-                >●</span
-              >
-              <span class="app__species">{{ character.species }}</span>
-            </div>
-          </div>
+          <app-character-card [character]="item"></app-character-card>
         </li>
       }
     </ul>

@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RickAndMortyService } from './services/rick-and-morty.service';
 import { Character, Episode } from './models/character';
+import { CharacterCardComponent } from './cards/character-card/character-card.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CharacterCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
