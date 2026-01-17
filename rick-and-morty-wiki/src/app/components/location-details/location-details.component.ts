@@ -3,23 +3,22 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 
 @Component({
-  selector: 'app-character-details',
+  selector: 'app-location-details',
   imports: [RouterLink],
-  templateUrl: './character-details.component.html',
-  styleUrl: './character-details.component.scss',
+  templateUrl: './location-details.component.html',
+  styleUrl: './location-details.component.scss',
 })
-export class CharacterDetailsComponent implements OnInit {
+export class LocationDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private rickAndMorty = inject(RickAndMortyService);
 
-  character: any;
+  location: any;
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-
     if (id) {
-      this.rickAndMorty.getCharacter(Number(id)).subscribe((data) => {
-        this.character = data;
-        console.log(this.character);
+      this.rickAndMorty.getLocation(Number(id)).subscribe((data) => {
+        this.location = data;
+        console.log(data);
       });
     }
   }

@@ -21,6 +21,9 @@ export class RickAndMortyService {
       'https://rickandmortyapi.com/api/location?page=' + page,
     );
   }
+  getLocation(id: number) {
+    return this.http.get<any>('https://rickandmortyapi.com/api/location/' + id);
+  }
   getEpisodes(page: number = 1) {
     return this.http.get<any>(
       'https://rickandmortyapi.com/api/episode?page=' + page,
