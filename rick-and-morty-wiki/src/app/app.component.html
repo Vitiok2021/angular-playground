@@ -43,13 +43,9 @@
   }
   @if (currentCategory === "episode") {
     <ul class="app__cards">
-      @for (episode of episodes; track $index) {
+      @for (item of episodes; track $index) {
         <li class="app__card app__card-episode">
-          <div class="app__info">
-            <h3 class="app__name">{{ episode.name }}</h3>
-            <p>{{ episode.air_date }}</p>
-            <p>{{ episode.episode }}</p>
-          </div>
+          <app-episode-card [episode]="item"></app-episode-card>
         </li>
       }
     </ul>

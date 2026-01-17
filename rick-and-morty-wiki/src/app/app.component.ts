@@ -4,10 +4,16 @@ import { RickAndMortyService } from './services/rick-and-morty.service';
 import { Character, Episode } from './models/character';
 import { CharacterCardComponent } from './cards/character-card/character-card.component';
 import { LocationCardComponent } from './cards/location-card/location-card.component';
+import { EpisodeCardComponent } from './cards/episode-card/episode-card.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CharacterCardComponent, LocationCardComponent],
+  imports: [
+    RouterOutlet,
+    CharacterCardComponent,
+    LocationCardComponent,
+    EpisodeCardComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
