@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {
+  RouterOutlet,
+  RouterLinkWithHref,
+  RouterLinkActive,
+} from '@angular/router';
 import { Character, Episode } from './models/character';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLinkWithHref, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'Rick & Morty Wiki';
+}

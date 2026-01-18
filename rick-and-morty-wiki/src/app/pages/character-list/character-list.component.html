@@ -1,37 +1,12 @@
-<h1 class="app__title">{{ title }}</h1>
-<div class="app__action app__action--category">
-  <button
-    class="app__btn-character"
-    (click)="selectCategory('character')"
-    [class.active]="currentCategory === 'character'"
-  >
-    Personages
-  </button>
-  <button
-    class="app__btn-location"
-    (click)="selectCategory('location')"
-    [class.active]="currentCategory === 'location'"
-  >
-    Location
-  </button>
-  <button
-    class="app__btn-episode"
-    (click)="selectCategory('episode')"
-    [class.active]="currentCategory === 'episode'"
-  >
-    Episode
-  </button>
-</div>
-@if (currentCategory === "character") {
-  <ul class="app__cards">
-    @for (item of characters; track item.id) {
-      <li class="app__card" [routerLink]="['/character', item.id]">
-        <app-character-card [character]="item"></app-character-card>
-      </li>
-    }
-  </ul>
-}
-@if (currentCategory === "location") {
+<ul class="app__cards">
+  @for (item of characters; track item.id) {
+    <li class="app__card" [routerLink]="['/character', item.id]">
+      <app-character-card [character]="item"></app-character-card>
+    </li>
+  }
+</ul>
+
+<!-- @if (currentCategory === "location") {
   <ul class="app__cards">
     @for (loc of locations; track loc.id) {
       <li
@@ -51,11 +26,12 @@
       </li>
     }
   </ul>
-}
+} -->
 <div class="app__action">
   <button class="app__prev" (click)="prevPage()" [disabled]="currentPage === 1">
     Prev
   </button>
+  <span>{{ currentPage }} / {{ totalPages }}</span>
   <button
     class="app__next"
     (click)="nextPage()"
