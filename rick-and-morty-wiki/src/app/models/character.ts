@@ -4,12 +4,21 @@ export interface Character {
   status: string;
   species: string;
   image: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
 }
 export interface Location {
   id: number;
   name: string;
   type: string;
-  demension: string;
+  dimension: string;
   residents: string[];
   url: string;
   created: string;

@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
+import { Character } from '../../models/character';
 
 @Component({
   selector: 'app-character-details',
@@ -12,7 +13,7 @@ export class CharacterDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private rickAndMorty = inject(RickAndMortyService);
 
-  character: any;
+  character: Character | null = null;
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
