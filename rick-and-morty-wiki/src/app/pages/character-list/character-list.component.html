@@ -6,16 +6,6 @@
   }
 </ul>
 
-<!-- 
-@if (currentCategory === "episode") {
-  <ul class="app__cards">
-    @for (item of episodes; track $index) {
-      <li class="app__card app__card-episode">
-        <app-episode-card [episode]="item"></app-episode-card>
-      </li>
-    }
-  </ul>
-}  -->
 <div class="app__action">
   <button class="app__prev" (click)="prevPage()" [disabled]="currentPage === 1">
     Prev

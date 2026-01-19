@@ -1,1 +1,7 @@
-<p>episode-list works!</p>
+<ul class="app__cards">
+  @for (item of episodes; track item.id) {
+    <li class="app__card" [routerLink]="['/episodes', item.id]">
+      <app-episode-card [episode]="item"></app-episode-card>
+    </li>
+  }
+</ul>

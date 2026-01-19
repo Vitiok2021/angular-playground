@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
 import { CharacterListComponent } from './pages/character-list/character-list.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
-import { LocationCardComponent } from './cards/location-card/location-card.component';
 import { LocationListComponent } from './pages/location-list/location-list.component';
 import { EpisodeListComponent } from './pages/episode-list/episode-list.component';
 
@@ -28,7 +27,7 @@ export const routes: Routes = [
     component: LocationDetailsComponent,
   },
   {
-    path: 'episode',
+    path: 'episodes',
     component: EpisodeListComponent,
   },
 ];

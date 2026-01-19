@@ -13,34 +13,21 @@ export class CharacterListComponent {
   private rickAndMorty = inject(RickAndMortyService);
 
   characters: Character[] = [];
-  // locations: any = [];
-  // episodes: Episode[] = [];
 
   totalPages: number = 0;
 
   currentPage: number = 1;
-  // currentCategory: string = 'character';
 
   constructor() {
     this.showCharters();
   }
-  // selectCategory(categoryName: string) {
-  //   this.currentCategory = categoryName;
-  //   this.currentPage = 1;
-  //   this.showCharters();
-  // }
+
   showCharters() {
     this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
       this.characters = data.results;
       this.totalPages = data.info.pages;
       console.log(data);
     });
-
-    // else {
-    //   this.rickAndMorty.getEpisodes(this.currentPage).subscribe((data) => {
-    //     this.episodes = data.results;
-    //     this.totalPages = data.info.pages;
-    //   });
   }
   prevPage() {
     if (this.currentPage > 1) {
