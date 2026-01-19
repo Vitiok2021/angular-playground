@@ -6,18 +6,7 @@
   }
 </ul>
 
-<!-- @if (currentCategory === "location") {
-  <ul class="app__cards">
-    @for (loc of locations; track loc.id) {
-      <li
-        class="app__card app__card--location"
-        [routerLink]="['/location', loc.id]"
-      >
-        <app-location-card [location]="loc"></app-location-card>
-      </li>
-    }
-  </ul>
-}
+<!-- 
 @if (currentCategory === "episode") {
   <ul class="app__cards">
     @for (item of episodes; track $index) {
@@ -26,7 +15,7 @@
       </li>
     }
   </ul>
-} -->
+}  -->
 <div class="app__action">
   <button class="app__prev" (click)="prevPage()" [disabled]="currentPage === 1">
     Prev

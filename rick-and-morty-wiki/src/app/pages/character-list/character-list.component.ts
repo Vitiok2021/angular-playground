@@ -35,13 +35,8 @@ export class CharacterListComponent {
       this.totalPages = data.info.pages;
       console.log(data);
     });
-    // } else if (this.currentCategory === 'location') {
-    //   this.rickAndMorty.getLocations(this.currentPage).subscribe((data) => {
-    //     console.log('Locations:', data);
-    //     this.locations = data.results;
-    //     this.totalPages = data.info.pages;
-    //   });
-    // } else {
+
+    // else {
     //   this.rickAndMorty.getEpisodes(this.currentPage).subscribe((data) => {
     //     this.episodes = data.results;
     //     this.totalPages = data.info.pages;
