@@ -30,4 +30,5 @@ export const routes: Routes = [
     path: 'episodes',
     component: EpisodeListComponent,
   },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
