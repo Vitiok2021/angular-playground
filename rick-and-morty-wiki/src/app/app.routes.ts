@@ -4,6 +4,7 @@ import { CharacterListComponent } from './pages/character-list/character-list.co
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
 import { LocationListComponent } from './pages/location-list/location-list.component';
 import { EpisodeListComponent } from './pages/episode-list/episode-list.component';
+import { EpisodeDetailsComponent } from './components/episode-details/episode-details.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,10 @@ export const routes: Routes = [
   {
     path: 'episodes',
     component: EpisodeListComponent,
+  },
+  {
+    path: 'episodes/id',
+    component: EpisodeDetailsComponent,
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
