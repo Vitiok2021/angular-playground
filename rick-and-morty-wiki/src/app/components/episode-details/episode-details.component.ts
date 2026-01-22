@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Episode } from '../../models/character';
 
 @Component({
   selector: 'app-episode-details',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './episode-details.component.html',
   styleUrl: './episode-details.component.scss',
 })

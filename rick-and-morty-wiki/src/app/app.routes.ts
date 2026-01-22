@@ -32,7 +32,7 @@ export const routes: Routes = [
     component: EpisodeListComponent,
   },
   {
-    path: 'episodes/id',
+    path: 'episode/:id',
     component: EpisodeDetailsComponent,
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
