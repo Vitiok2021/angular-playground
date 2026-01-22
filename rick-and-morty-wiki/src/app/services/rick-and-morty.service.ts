@@ -31,4 +31,9 @@ export class RickAndMortyService {
       'https://rickandmortyapi.com/api/episode?page=' + page,
     );
   }
+  getEpisode(id: number) {
+    return this.http.get<Episode>(
+      'https://rickandmortyapi.com/api/episode/' + id,
+    );
+  }
 }
