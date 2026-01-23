@@ -29,7 +29,14 @@
   text-align: center; /* Текст по центру */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* М'яка тінь */
   border: 1px solid #eee;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
+  &:hover {
+    transform: translateY(-5px); /* Піднімається вгору на 5px */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Тінь стає глибшою */
+  }
   h1 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
