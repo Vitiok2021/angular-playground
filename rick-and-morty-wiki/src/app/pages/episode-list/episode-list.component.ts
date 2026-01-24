@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { EpisodeCardComponent } from '../../cards/episode-card/episode-card.component';
 import { Episode } from '../../models/character';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-episode-list',
-  imports: [RouterLink, EpisodeCardComponent],
+  imports: [RouterLink, EpisodeCardComponent, PaginationComponent],
   templateUrl: './episode-list.component.html',
   styleUrl: './episode-list.component.scss',
 })

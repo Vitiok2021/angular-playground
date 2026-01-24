@@ -3,10 +3,11 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { RouterLink } from '@angular/router';
 import { LocationCardComponent } from '../../cards/location-card/location-card.component';
 import { Location } from '../../models/character';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-location-list',
-  imports: [RouterLink, LocationCardComponent],
+  imports: [RouterLink, LocationCardComponent, PaginationComponent],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.scss',
 })

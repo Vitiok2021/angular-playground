@@ -5,3 +5,9 @@
     </li>
   }
 </ul>
+<app-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (next)="nextPage()"
+  (prev)="prevPage()"
+></app-pagination>
