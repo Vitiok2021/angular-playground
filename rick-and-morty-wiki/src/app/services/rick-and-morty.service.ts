@@ -8,7 +8,7 @@ import { ApiResponse, Character, Episode, Location } from '../models/character';
 export class RickAndMortyService {
   private http = inject(HttpClient);
 
-  private apiUrl = '/api';
+  private apiUrl = 'https://rickandmortyapi.com/api';
 
   getCharacters(page: number = 1) {
     const params = new HttpParams().set('page', page.toString());

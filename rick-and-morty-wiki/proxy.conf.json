@@ -1,8 +1,0 @@
-{
-  "/api": {
-    "target": "https://rickandmortyapi.com",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  }
-}
