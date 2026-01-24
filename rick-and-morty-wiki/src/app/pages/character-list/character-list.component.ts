@@ -3,9 +3,10 @@ import { RouterLink } from '@angular/router';
 import { CharacterCardComponent } from '../../cards/character-card/character-card.component';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { Character } from '../../models/character';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 @Component({
   selector: 'app-character-list',
-  imports: [RouterLink, CharacterCardComponent],
+  imports: [RouterLink, CharacterCardComponent, PaginationComponent],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })

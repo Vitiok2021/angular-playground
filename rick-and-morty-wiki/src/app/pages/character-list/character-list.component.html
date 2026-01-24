@@ -5,17 +5,9 @@
     </li>
   }
 </ul>
-
-<div class="app__action">
-  <button class="app__prev" (click)="prevPage()" [disabled]="currentPage === 1">
-    Prev
-  </button>
-  <span>{{ currentPage }} / {{ totalPages }}</span>
-  <button
-    class="app__next"
-    (click)="nextPage()"
-    [disabled]="currentPage === totalPages"
-  >
-    Next &rarr;
-  </button>
-</div>
+<app-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (next)="nextPage()"
+  (prev)="prevPage()"
+></app-pagination>
