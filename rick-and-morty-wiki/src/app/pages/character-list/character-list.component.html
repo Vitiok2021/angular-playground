@@ -1,3 +1,6 @@
+@if (isLoading) {
+  <div class="loader">Loading... ⏳</div>
+} @else {}
 <div class="search-box">
   <input
     type="text"
@@ -5,6 +8,29 @@
     (input)="onSearch($event)"
     class="search-input"
   />
+  <select
+    [value]="statusQuery"
+    (change)="onFilterStatus($event)"
+    class="filter-select"
+  >
+    <option value="">All Statuses</option>
+    <option value="alive">Alive</option>
+    <option value="dead">Dead</option>
+    <option value="unknown">Unknown</option>
+  </select>
+  <button
+    (click)="resetFilters()"
+    class="reset-btn"
+    title="Clear filters"
+    [disabled]="isLoading"
+  >
+    ❌
+  </button>
+  @if (error) {
+    <div class="error-message">
+      {{ error }}
+    </div>
+  }
 </div>
 
 <ul class="app__cards">

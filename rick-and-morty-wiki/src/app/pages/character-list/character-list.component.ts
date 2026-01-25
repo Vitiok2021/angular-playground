@@ -21,17 +21,42 @@ export class CharacterListComponent {
 
   searchQuery: string = '';
 
+  statusQuery: string = '';
+
+  private searchTimeout: any;
+
+  error: string = '';
+
+  isLoading: boolean = false;
+
   constructor() {
     this.showCharters();
   }
 
   showCharters() {
+    this.error = '';
+    this.isLoading = true;
     this.rickAndMorty
-      .getCharacters(this.currentPage, this.searchQuery)
-      .subscribe((data) => {
-        this.characters = data.results;
-        this.totalPages = data.info.pages;
-        // console.log(data);
+      .getCharacters(this.currentPage, this.searchQuery, this.statusQuery)
+      .subscribe({
+        next: (data) => {
+          this.characters = data.results;
+          this.totalPages = data.info.pages;
+          this.isLoading = false;
+          // console.log(data);
+        },
+        error: (err) => {
+          if (err.status === 429 || err.status === 0) {
+            this.error =
+              'Забагато запитів! Сервер втомився. Зачекайте 5 хвилин ☕️';
+          } else if (err.status === 404) {
+            this.error = 'Нічого не знайдено за цими параметрами 🤷‍♂️';
+            this.characters = []; // Очищаємо список
+          } else {
+            this.error = 'Сталася помилка завантаження даних.';
+          }
+          this.isLoading = false;
+        },
       });
   }
   prevPage() {
@@ -49,6 +74,23 @@ export class CharacterListComponent {
   onSearch(event: Event) {
     const input = event.target as HTMLInputElement;
     this.searchQuery = input.value;
+    this.currentPage = 1;
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+    this.searchTimeout = setTimeout(() => {
+      this.showCharters();
+    }, 1000);
+  }
+  onFilterStatus(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.statusQuery = select.value;
+    this.currentPage = 1;
+    this.showCharters();
+  }
+  resetFilters() {
+    this.searchQuery = '';
+    this.statusQuery = '';
     this.currentPage = 1;
     this.showCharters();
   }

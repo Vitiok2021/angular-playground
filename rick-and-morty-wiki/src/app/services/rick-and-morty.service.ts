@@ -10,10 +10,13 @@ export class RickAndMortyService {
 
   private apiUrl = 'https://rickandmortyapi.com/api';
 
-  getCharacters(page: number = 1, name: string = '') {
+  getCharacters(page: number = 1, name: string = '', status: string = '') {
     let params = new HttpParams().set('page', page.toString());
     if (name) {
       params = params.set('name', name);
+    }
+    if (status) {
+      params = params.set('status', status);
     }
     return this.http.get<ApiResponse<Character>>(`${this.apiUrl}/character`, {
       params,
