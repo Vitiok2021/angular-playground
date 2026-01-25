@@ -19,16 +19,20 @@ export class CharacterListComponent {
 
   currentPage: number = 1;
 
+  searchQuery: string = '';
+
   constructor() {
     this.showCharters();
   }
 
   showCharters() {
-    this.rickAndMorty.getCharacters(this.currentPage).subscribe((data) => {
-      this.characters = data.results;
-      this.totalPages = data.info.pages;
-      console.log(data);
-    });
+    this.rickAndMorty
+      .getCharacters(this.currentPage, this.searchQuery)
+      .subscribe((data) => {
+        this.characters = data.results;
+        this.totalPages = data.info.pages;
+        // console.log(data);
+      });
   }
   prevPage() {
     if (this.currentPage > 1) {
@@ -41,5 +45,11 @@ export class CharacterListComponent {
       this.currentPage = this.currentPage + 1;
       this.showCharters();
     }
+  }
+  onSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.searchQuery = input.value;
+    this.currentPage = 1;
+    this.showCharters();
   }
 }

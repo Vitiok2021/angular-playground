@@ -1,3 +1,12 @@
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Who are you looking for?"
+    (input)="onSearch($event)"
+    class="search-input"
+  />
+</div>
+
 <ul class="app__cards">
   @for (item of characters; track item.id) {
     <li class="app__card" [routerLink]="['/character', item.id]">
