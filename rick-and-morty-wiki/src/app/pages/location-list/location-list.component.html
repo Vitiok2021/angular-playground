@@ -1,3 +1,12 @@
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Search location..."
+    (input)="onSearch($event)"
+    class="search-input"
+  />
+</div>
+
 <ul class="app__cards">
   @for (loc of locations; track loc.id) {
     <li

@@ -17,15 +17,20 @@ export class LocationListComponent {
   totalPages: number = 0;
 
   currentPage: number = 1;
+
+  searchQuery: string = '';
+
   constructor() {
     this.loadLocations();
   }
   loadLocations() {
-    this.rickAndMorty.getLocations(this.currentPage).subscribe((data) => {
-      console.log('Locations:', data);
-      this.locations = data.results;
-      this.totalPages = data.info.pages;
-    });
+    this.rickAndMorty
+      .getLocations(this.currentPage, this.searchQuery)
+      .subscribe((data) => {
+        console.log('Locations:', data);
+        this.locations = data.results;
+        this.totalPages = data.info.pages;
+      });
   }
   prevPage() {
     if (this.currentPage > 1) {
@@ -38,5 +43,11 @@ export class LocationListComponent {
       this.currentPage++;
       this.loadLocations();
     }
+  }
+  onSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.searchQuery = input.value;
+    this.currentPage = 1;
+    this.loadLocations();
   }
 }

@@ -1,3 +1,11 @@
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Search episode..."
+    (input)="onSearch($event)"
+    class="search-input"
+  />
+</div>
 <ul class="app__cards">
   @for (item of episodes; track item.id) {
     <li class="app__card" [routerLink]="['/episode', item.id]">

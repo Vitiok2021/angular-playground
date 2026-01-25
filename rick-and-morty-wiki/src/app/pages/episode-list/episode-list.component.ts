@@ -21,6 +21,8 @@ export class EpisodeListComponent {
 
   currentPage: number = 1;
 
+  searchQuery: string = '';
+
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage = this.currentPage - 1;
@@ -34,10 +36,18 @@ export class EpisodeListComponent {
     }
   }
   loadEpisode() {
-    this.rickAndMorty.getEpisodes(this.currentPage).subscribe((data) => {
-      this.episodes = data.results;
-      this.totalPages = data.info.pages;
-      console.log(data);
-    });
+    this.rickAndMorty
+      .getEpisodes(this.currentPage, this.searchQuery)
+      .subscribe((data) => {
+        this.episodes = data.results;
+        this.totalPages = data.info.pages;
+        console.log(data);
+      });
+  }
+  onSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.searchQuery = input.value;
+    this.currentPage = 1;
+    this.loadEpisode();
   }
 }
