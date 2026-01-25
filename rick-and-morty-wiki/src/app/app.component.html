@@ -1,28 +1,5 @@
 <div class="app__container">
   <h1 class="app__title">{{ title }}</h1>
-  <div class="app__action app__action--category">
-    <a
-      routerLink="/character"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      class="app__btn-character"
-    >
-      Personages
-    </a>
-    <a
-      class="app__btn-location"
-      routerLink="/locations"
-      routerLinkActive="active"
-    >
-      Location
-    </a>
-    <a
-      class="app__btn-episode"
-      routerLink="/episodes"
-      routerLinkActive="active"
-    >
-      Episode
-    </a>
-  </div>
+  <app-navbar></app-navbar>
   <router-outlet />
 </div>
