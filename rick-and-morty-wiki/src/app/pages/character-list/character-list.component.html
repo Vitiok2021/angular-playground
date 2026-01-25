@@ -1,12 +1,10 @@
-@if (isLoading) {
-  <div class="loader">Loading... ⏳</div>
-} @else {}
 <div class="search-box">
   <input
     type="text"
     placeholder="Who are you looking for?"
     (input)="onSearch($event)"
     class="search-input"
+    [value]="searchQuery"
   />
   <select
     [value]="statusQuery"
@@ -33,16 +31,20 @@
   }
 </div>
 
-<ul class="app__cards">
-  @for (item of characters; track item.id) {
-    <li class="app__card" [routerLink]="['/character', item.id]">
-      <app-character-card [character]="item"></app-character-card>
-    </li>
-  }
-</ul>
-<app-pagination
-  [currentPage]="currentPage"
-  [totalPages]="totalPages"
-  (next)="nextPage()"
-  (prev)="prevPage()"
-></app-pagination>
+@if (isLoading) {
+  <div class="loader">Loading... ⏳</div>
+} @else {
+  <ul class="app__cards">
+    @for (item of characters; track item.id) {
+      <li class="app__card" [routerLink]="['/character', item.id]">
+        <app-character-card [character]="item"></app-character-card>
+      </li>
+    }
+  </ul>
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (next)="nextPage()"
+    (prev)="prevPage()"
+  ></app-pagination>
+}

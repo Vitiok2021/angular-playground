@@ -55,7 +55,9 @@ export class CharacterListComponent {
           } else {
             this.error = 'Сталася помилка завантаження даних.';
           }
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 500);
         },
       });
   }
@@ -79,6 +81,11 @@ export class CharacterListComponent {
       clearTimeout(this.searchTimeout);
     }
     this.searchTimeout = setTimeout(() => {
+      if (this.searchQuery.length > 0 && this.searchQuery.length < 3) {
+        console.log('Замало букв для пошуку... чекаю');
+        return;
+      }
+      console.log('Роблю запит...');
       this.showCharters();
     }, 1000);
   }
@@ -89,6 +96,9 @@ export class CharacterListComponent {
     this.showCharters();
   }
   resetFilters() {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
     this.searchQuery = '';
     this.statusQuery = '';
     this.currentPage = 1;
