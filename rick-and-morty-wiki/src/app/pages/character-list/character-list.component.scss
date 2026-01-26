@@ -124,7 +124,7 @@
   font-weight: bold;
 }
 .reset-btn {
-  background-color: #f44336; // Червоний
+  background-color: #e99089; // Червоний
   color: white;
   border: none;
   padding: 10px 15px;
@@ -134,7 +134,7 @@
   transition: background 0.3s;
 
   &:hover {
-    background-color: #d32f2f;
+    background-color: #cc7973;
   }
   &:disabled {
     background-color: #ccc;

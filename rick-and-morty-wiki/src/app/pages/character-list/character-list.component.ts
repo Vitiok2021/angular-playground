@@ -29,6 +29,9 @@ export class CharacterListComponent {
 
   isLoading: boolean = false;
 
+  initialCharacters: Character[] = [];
+  initialTotalPages: number = 0;
+
   constructor() {
     this.showCharters();
   }
@@ -44,6 +47,15 @@ export class CharacterListComponent {
           this.totalPages = data.info.pages;
           this.isLoading = false;
           // console.log(data);
+          if (
+            this.currentPage === 1 &&
+            !this.searchQuery &&
+            !this.statusQuery
+          ) {
+            this.initialCharacters = data.results;
+            this.initialTotalPages = data.info.pages;
+            console.log('Зберіг початковий список у кишеню! 💾');
+          }
         },
         error: (err) => {
           if (err.status === 429 || err.status === 0) {
@@ -102,6 +114,14 @@ export class CharacterListComponent {
     this.searchQuery = '';
     this.statusQuery = '';
     this.currentPage = 1;
-    this.showCharters();
+    this.error = '';
+
+    if (this.initialCharacters.length > 0) {
+      this.characters = this.initialCharacters;
+      this.totalPages = this.initialTotalPages;
+      console.log('Беру дані з кишені, сервер не чіпаю! 😎');
+    } else {
+      this.showCharters();
+    }
   }
 }
