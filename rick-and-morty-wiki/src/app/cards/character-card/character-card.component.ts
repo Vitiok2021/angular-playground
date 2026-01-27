@@ -32,6 +32,7 @@ export class CharacterCardComponent implements OnInit {
         favorites.splice(index, 1);
       }
     }
+    localStorage.setItem('favoriteCharacters', JSON.stringify(favorites));
   }
   private getFavoritesFromStorage(): number[] {
     const data = localStorage.getItem('favoriteCharacters');

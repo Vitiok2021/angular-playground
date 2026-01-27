@@ -5,6 +5,7 @@ import { LocationDetailsComponent } from './components/location-details/location
 import { LocationListComponent } from './pages/location-list/location-list.component';
 import { EpisodeListComponent } from './pages/episode-list/episode-list.component';
 import { EpisodeDetailsComponent } from './components/episode-details/episode-details.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,10 @@ export const routes: Routes = [
   {
     path: 'episode/:id',
     component: EpisodeDetailsComponent,
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

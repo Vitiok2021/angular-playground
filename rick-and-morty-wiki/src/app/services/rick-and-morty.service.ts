@@ -50,4 +50,9 @@ export class RickAndMortyService {
   getEpisode(id: number) {
     return this.http.get<Episode>(`${this.apiUrl}/episode/${id}`);
   }
+  getMultipleCharacters(ids: number[]) {
+    return this.http.get<Character[] | Character>(
+      `${this.apiUrl}/character/${ids.join(',')}`,
+    );
+  }
 }

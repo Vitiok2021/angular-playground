@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="header">
+    <a routerLink="/character" class="back-link">⬅ Back to List</a>
+    <h1>My Favorites ❤️</h1>
+  </div>
+
+  @if (characters.length > 0) {
+    <ul class="app__cards">
+      @for (item of characters; track item.id) {
+        <li class="app__card" [routerLink]="['/character', item.id]">
+          <app-character-card [character]="item"></app-character-card>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div class="empty-state">
+      <p>You haven't liked anyone yet 💔</p>
+      <a routerLink="/character">Go find some friends!</a>
+    </div>
+  }
+</div>
