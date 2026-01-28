@@ -14,17 +14,39 @@ export class CharacterDetailsComponent implements OnInit {
   private rickAndMorty = inject(RickAndMortyService);
 
   isFavorite: boolean = false;
+  currentId: number = 0;
 
   character: Character | null = null;
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    this.currentId = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (id) {
+    if (this.currentId) {
+      const favorites = this.getFavorites();
+      this.isFavorite = favorites.includes(this.currentId);
       this.rickAndMorty.getCharacter(Number(id)).subscribe((data) => {
         this.character = data;
         console.log(this.character);
       });
     }
   }
-  toggleFavorite(event: Event) {}
+  toggleFavorite(event: Event) {
+    this.isFavorite = !this.isFavorite;
+
+    const favorites = this.getFavorites();
+    if (this.isFavorite) {
+      favorites.push(this.currentId);
+    } else {
+      const index = favorites.indexOf(this.currentId);
+      if (index > -1) {
+        favorites.splice(index, 1);
+      }
+    }
+
+    localStorage.setItem('favoriteCharacters', JSON.stringify(favorites));
+  }
+  getFavorites() {
+    const data = localStorage.getItem('favoriteCharacters');
+    return data ? JSON.parse(data) : [];
+  }
 }
