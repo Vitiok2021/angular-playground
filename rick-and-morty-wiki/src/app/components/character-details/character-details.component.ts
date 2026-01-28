@@ -13,6 +13,8 @@ export class CharacterDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private rickAndMorty = inject(RickAndMortyService);
 
+  isFavorite: boolean = false;
+
   character: Character | null = null;
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -24,4 +26,5 @@ export class CharacterDetailsComponent implements OnInit {
       });
     }
   }
+  toggleFavorite(event: Event) {}
 }

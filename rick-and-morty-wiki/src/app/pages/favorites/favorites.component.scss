@@ -14,22 +14,6 @@
   }
 }
 
-.back-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 8px 15px;
-  border-radius: 30px;
-  background-color: #dda0dd;
-  font-weight: bold;
-  color: #333;
-  transition: all 0.3s ease 0s;
-  &:hover {
-    background-color: #e9b8e9;
-    color: #fff;
-  }
-}
-
 .empty-state {
   text-align: center;
   font-size: 1.5rem;

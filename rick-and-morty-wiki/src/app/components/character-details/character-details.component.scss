@@ -13,6 +13,7 @@
   padding: 10px 20px;
   background: #f0f0f0;
   border-radius: 5px;
+  transition: background 0.3s; // Додав плавність
 
   &:hover {
     background: #e0e0e0;
@@ -22,21 +23,77 @@
 .profile-header {
   display: flex;
   gap: 30px;
+  position: relative; // 👈 ВАЖЛИВО! Щоб кнопка позиціонувалась відносно цього блоку
+
+  // Адаптив: на мобільних ставимо стовпчиком
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
   .avatar {
     width: 300px;
+    height: 300px; // Фіксуємо висоту, щоб була гарна форма
+    object-fit: cover; // Щоб фото не розтягувалось
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
+  // 👇 СТИЛІ ДЛЯ СЕРЦЯ
+  .favorite-btn {
+    position: absolute; // "Літає" поверх блоку
+    top: 0;
+    right: 0; // Притиснули в правий верхній кут
+
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+    color: #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: #ff9800;
+    }
+
+    &.active {
+      color: red;
+      border-color: red;
+      background-color: #fff0f0;
+    }
+
+    // На мобільному кнопку можна опустити трохи нижче або змінити позицію
+    @media (max-width: 700px) {
+      position: static; // Повертаємо в потік
+      margin: 0 auto; // Центруємо
+    }
+  }
+
   .profile-info {
+    flex: 1; // Займає весь вільний простір
+
     h1 {
       margin-top: 0;
       font-size: 3rem;
+      color: #333;
     }
     p {
       font-size: 1.2rem;
       line-height: 1.5;
+      margin: 10px 0; // Трохи повітря між рядками
+
+      strong {
+        color: #555; // Трохи темніший для заголовків полів
+      }
     }
   }
 }
@@ -48,6 +105,7 @@
   background: gray;
   color: white;
   margin-bottom: 15px;
+  font-weight: bold; // Жирний текст читається краще
 
   &.alive {
     background: #55cc44;
