@@ -15,6 +15,8 @@ export class FavoritesComponent implements OnInit {
 
   characters: Character[] = [];
 
+  activeTab: 'characters' | 'locations' | 'episodes' = 'characters';
+
   ngOnInit(): void {
     this.loadFavorites();
   }

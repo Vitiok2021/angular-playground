@@ -3,18 +3,51 @@
     <h1>My Favorites ❤️</h1>
   </div>
 
-  @if (characters.length > 0) {
-    <ul class="app__cards">
-      @for (item of characters; track item.id) {
-        <li class="app__card" [routerLink]="['/character', item.id]">
-          <app-character-card [character]="item"></app-character-card>
-        </li>
-      }
-    </ul>
-  } @else {
+  <div class="tabs">
+    <button
+      [class.active]="activeTab === 'characters'"
+      (click)="activeTab = 'characters'"
+    >
+      Characters
+    </button>
+    <button
+      [class.active]="activeTab === 'locations'"
+      (click)="activeTab = 'locations'"
+    >
+      Locations
+    </button>
+    <button
+      [class.active]="activeTab === 'episodes'"
+      (click)="activeTab = 'episodes'"
+    >
+      Episodes
+    </button>
+  </div>
+
+  @if (activeTab === "characters") {
+    @if (characters.length > 0) {
+      <ul class="app__cards">
+        @for (item of characters; track item.id) {
+          <li class="app__card" [routerLink]="['/character', item.id]">
+            <app-character-card [character]="item"></app-character-card>
+          </li>
+        }
+      </ul>
+    } @else {
+      <div class="empty-state">
+        <p>You haven't liked anyone yet 💔</p>
+        <a routerLink="/character">Go find some friends!</a>
+      </div>
+    }
+  }
+  @if (activeTab === "locations") {
     <div class="empty-state">
-      <p>You haven't liked anyone yet 💔</p>
-      <a routerLink="/character">Go find some friends!</a>
+      <p>Locations coming soon... 🌍</p>
+    </div>
+  }
+  @if (activeTab === "episodes") {
+    <div class="empty-state">
+      <p>Episodes coming soon... 🎬</p>
     </div>
   }
 </div>
