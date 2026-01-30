@@ -55,4 +55,9 @@ export class RickAndMortyService {
       `${this.apiUrl}/character/${ids.join(',')}`,
     );
   }
+  getMultipleLocations(ids: number[]) {
+    return this.http.get<Location[] | Location>(
+      `${this.apiUrl}/location/${ids.join(',')}`,
+    );
+  }
 }

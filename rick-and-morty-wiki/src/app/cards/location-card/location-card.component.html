@@ -3,3 +3,10 @@
   <p class="app__type">{{ location.type }}</p>
   <p class="app__dimen">{{ location.dimension }}</p>
 </div>
+<button
+  class="favorite-btn"
+  [class.active]="isFavorite"
+  (click)="toggleFavorite($event)"
+>
+  ❤
+</button>

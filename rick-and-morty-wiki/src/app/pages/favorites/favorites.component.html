@@ -41,8 +41,17 @@
     }
   }
   @if (activeTab === "locations") {
+    @if (locations.length > 0) {
+      <ul class="locations-grid">
+        @for (loc of locations; track loc.id) {
+          <li>
+            <app-location-card [location]="loc"></app-location-card>
+          </li>
+        }
+      </ul>
+    }
     <div class="empty-state">
-      <p>Locations coming soon... 🌍</p>
+      <p>You haven't liked anyone yet 💔</p>
     </div>
   }
   @if (activeTab === "episodes") {
