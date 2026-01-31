@@ -29,10 +29,10 @@ export class EpisodeCardComponent implements OnInit {
         favorites.splice(index, 1);
       }
     }
-    localStorage.setItem('episodeFavorites', JSON.stringify(favorites));
+    localStorage.setItem('favoriteEpisode', JSON.stringify(favorites));
   }
   getEpisodesFromStorage(): number[] {
-    const data = localStorage.getItem('episodeFavorites');
+    const data = localStorage.getItem('favoriteEpisode');
     return data ? JSON.parse(data) : [];
   }
 }

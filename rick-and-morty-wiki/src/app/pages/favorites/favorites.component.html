@@ -56,8 +56,18 @@
     }
   }
   @if (activeTab === "episodes") {
-    <div class="empty-state">
-      <p>Episodes coming soon... 🎬</p>
-    </div>
+    @if (episodes.length > 0) {
+      <ul class="episode-grid">
+        @for (item of episodes; track item.id) {
+          <li>
+            <app-episode-card [episode]="item"></app-episode-card>
+          </li>
+        }
+      </ul>
+    } @else {
+      <div class="empty-state">
+        <p>Episodes coming soon... 🎬</p>
+      </div>
+    }
   }
 </div>
