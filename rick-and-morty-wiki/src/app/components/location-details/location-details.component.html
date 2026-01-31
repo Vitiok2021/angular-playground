@@ -13,24 +13,14 @@
         <p><strong>Dimension:</strong> {{ location.dimension }}</p>
 
         <p><strong>Residents count:</strong> {{ location.residents.length }}</p>
+        <button
+          class="favorite-btn"
+          [class.active]="isFavorite"
+          (click)="toggleFavorite($event)"
+        >
+          ❤
+        </button>
       </div>
-
-      <!-- @if (location.residents.length > 0) {
-        <div class="residents-list">
-          <h3>Residents:</h3>
-          <ul>
-            @for (resident of location.residents; track $index) {
-              <li>
-                <a [href]="resident" target="_blank"
-                  >Resident #{{ $index + 1 }}</a
-                >
-              </li>
-            }
-          </ul>
-        </div>
-      } @else {
-        <p>No residents found here.</p>
-      } -->
     </div>
   } @else {
     <p>Loading...</p>

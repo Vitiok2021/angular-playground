@@ -18,16 +18,17 @@ export class CharacterDetailsComponent implements OnInit {
 
   character: Character | null = null;
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
     this.currentId = Number(this.route.snapshot.paramMap.get('id'));
 
     if (this.currentId) {
       const favorites = this.getFavorites();
       this.isFavorite = favorites.includes(this.currentId);
-      this.rickAndMorty.getCharacter(Number(id)).subscribe((data) => {
-        this.character = data;
-        console.log(this.character);
-      });
+      this.rickAndMorty
+        .getCharacter(Number(this.currentId))
+        .subscribe((data) => {
+          this.character = data;
+          console.log(this.character);
+        });
     }
   }
   toggleFavorite(event: Event) {
