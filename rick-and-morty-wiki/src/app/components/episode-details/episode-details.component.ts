@@ -15,13 +15,35 @@ export class EpisodeDetailsComponent implements OnInit {
 
   episode: Episode | null = null;
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+  isFavorite: boolean = false;
+  currentId: number = 0;
 
-    if (id) {
-      this.rickAndMorty.getEpisode(Number(id)).subscribe((data) => {
+  ngOnInit(): void {
+    const currentId = this.route.snapshot.paramMap.get('id');
+
+    if (this.currentId) {
+      const favorites = this.getFavoritesFromLocalStorage();
+      this.isFavorite = favorites.includes(this.currentId);
+      this.rickAndMorty.getEpisode(Number(this.currentId)).subscribe((data) => {
         this.episode = data;
       });
     }
+  }
+  toggleFavorite(event: Event) {
+    this.isFavorite = !this.isFavorite;
+    const favorites = this.getFavoritesFromLocalStorage();
+
+    if (this.isFavorite) {
+      favorites.push(this.currentId);
+    } else {
+      const index = favorites.indexOf(this.currentId);
+      if (index > -1) {
+        favorites.splice(index, 1);
+      }
+    }
+  }
+  getFavoritesFromLocalStorage() {
+    const data = localStorage.getItem('episodeFavorites');
+    return data ? JSON.parse(data) : [];
   }
 }

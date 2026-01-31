@@ -7,6 +7,15 @@
         <p>{{ episode.air_date }}</p>
         <p>{{ episode.characters.length }}</p>
       </div>
+      <button
+        class="favorite-btn"
+        [class.active]="isFavorite"
+        (click)="toggleFavorite($event)"
+      >
+        ❤
+      </button>
     </div>
+  } @else {
+    <p>Loading...</p>
   }
 </div>

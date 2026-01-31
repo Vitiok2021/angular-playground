@@ -30,6 +30,7 @@ export class FavoritesComponent implements OnInit {
   ngOnInit(): void {
     this.loadFavorites();
     this.loadLocations();
+    this.loadEpisodes();
   }
   loadFavorites() {
     const favoritesData = localStorage.getItem('favoriteCharacters');

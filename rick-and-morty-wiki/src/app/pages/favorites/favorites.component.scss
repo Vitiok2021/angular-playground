@@ -72,11 +72,14 @@
     }
   }
 }
-.locations-grid {
+.locations-grid,
+.episode-grid {
   display: grid;
+  gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-.locations-grid li {
+.locations-grid li,
+.episode-grid li {
   border-radius: 4px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }

@@ -60,4 +60,9 @@ export class RickAndMortyService {
       `${this.apiUrl}/location/${ids.join(',')}`,
     );
   }
+  getMultipleEpisodes(ids: number[]) {
+    return this.http.get<Episode[] | Episode>(
+      `${this.apiUrl}/episode/${ids.join(',')}`,
+    );
+  }
 }

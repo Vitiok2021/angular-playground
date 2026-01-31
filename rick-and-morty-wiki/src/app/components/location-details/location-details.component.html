@@ -13,14 +13,14 @@
         <p><strong>Dimension:</strong> {{ location.dimension }}</p>
 
         <p><strong>Residents count:</strong> {{ location.residents.length }}</p>
-        <button
-          class="favorite-btn"
-          [class.active]="isFavorite"
-          (click)="toggleFavorite($event)"
-        >
-          ❤
-        </button>
       </div>
+      <button
+        class="favorite-btn"
+        [class.active]="isFavorite"
+        (click)="toggleFavorite($event)"
+      >
+        ❤
+      </button>
     </div>
   } @else {
     <p>Loading...</p>
