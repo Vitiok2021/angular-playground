@@ -2,4 +2,11 @@
   <h3 class="app__name">{{ episode.name }}</h3>
   <p class="app__air">{{ episode.air_date }}</p>
   <p class="app__epis">{{ episode.episode }}</p>
+  <button
+    class="favorite-btn"
+    [class.active]="isFavorite"
+    (click)="toggleFavorite($event)"
+  >
+    ❤
+  </button>
 </div>

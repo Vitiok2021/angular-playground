@@ -49,10 +49,11 @@
           </li>
         }
       </ul>
+    } @else {
+      <div class="empty-state">
+        <p>You haven't liked anyone yet 💔</p>
+      </div>
     }
-    <div class="empty-state">
-      <p>You haven't liked anyone yet 💔</p>
-    </div>
   }
   @if (activeTab === "episodes") {
     <div class="empty-state">
