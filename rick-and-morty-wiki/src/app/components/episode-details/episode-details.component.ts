@@ -41,10 +41,10 @@ export class EpisodeDetailsComponent implements OnInit {
         favorites.splice(index, 1);
       }
     }
-    localStorage.setItem('favoriteEpisode', JSON.stringify(favorites));
+    localStorage.setItem('favoriteEpisodes', JSON.stringify(favorites));
   }
   getFavoritesFromLocalStorage() {
-    const data = localStorage.getItem('favoriteEpisode');
+    const data = localStorage.getItem('favoriteEpisodes');
     return data ? JSON.parse(data) : [];
   }
 }
