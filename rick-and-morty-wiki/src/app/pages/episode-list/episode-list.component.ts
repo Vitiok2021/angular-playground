@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { EpisodeCardComponent } from '../../cards/episode-card/episode-card.component';
 import { Episode } from '../../models/character';
@@ -11,10 +11,7 @@ import { PaginationComponent } from '../../components/pagination/pagination.comp
   templateUrl: './episode-list.component.html',
   styleUrl: './episode-list.component.scss',
 })
-export class EpisodeListComponent {
-  constructor() {
-    this.loadEpisode();
-  }
+export class EpisodeListComponent implements OnInit {
   private rickAndMorty = inject(RickAndMortyService);
   episodes: Episode[] = [];
   totalPages: number = 0;
@@ -22,7 +19,9 @@ export class EpisodeListComponent {
   currentPage: number = 1;
 
   searchQuery: string = '';
-
+  ngOnInit(): void {
+    this.loadEpisode();
+  }
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage = this.currentPage - 1;

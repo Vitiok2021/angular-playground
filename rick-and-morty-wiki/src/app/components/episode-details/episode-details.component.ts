@@ -19,7 +19,7 @@ export class EpisodeDetailsComponent implements OnInit {
   currentId: number = 0;
 
   ngOnInit(): void {
-    const currentId = this.route.snapshot.paramMap.get('id');
+    this.currentId = Number(this.route.snapshot.paramMap.get('id'));
 
     if (this.currentId) {
       const favorites = this.getFavoritesFromLocalStorage();
@@ -41,9 +41,10 @@ export class EpisodeDetailsComponent implements OnInit {
         favorites.splice(index, 1);
       }
     }
+    localStorage.setItem('favoriteEpisode', JSON.stringify(favorites));
   }
   getFavoritesFromLocalStorage() {
-    const data = localStorage.getItem('episodeFavorites');
+    const data = localStorage.getItem('favoriteEpisode');
     return data ? JSON.parse(data) : [];
   }
 }

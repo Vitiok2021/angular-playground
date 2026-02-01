@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Episode } from '../../models/character';
 
 @Component({
   selector: 'app-episode-card',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './episode-card.component.scss',
 })
 export class EpisodeCardComponent implements OnInit {
-  @Input() episode: any;
+  @Input() episode!: Episode;
   isFavorite: boolean = false;
   ngOnInit(): void {
     const favorites = this.getEpisodesFromStorage();
