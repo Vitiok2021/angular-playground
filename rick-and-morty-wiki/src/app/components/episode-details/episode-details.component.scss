@@ -5,15 +5,22 @@
 }
 
 .back-btn {
-  display: inline-block;
-  margin-bottom: 1.5rem;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #333;
   text-decoration: none;
-  color: #555;
+  border-radius: 30px;
   font-weight: 600;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    color: #000;
+    background-color: #e0e0e0;
+    transform: translateX(-5px); /* Легкий зсув вліво при наведенні */
   }
 
   /* Додаємо стрілочку через CSS */
@@ -23,6 +30,7 @@
 }
 
 .episode-card {
+  position: relative;
   background: white;
   border-radius: 16px; /* Закруглені кути */
   padding: 3rem;
@@ -77,5 +85,40 @@
       font-weight: normal;
       margin-top: 4px;
     }
+  }
+}
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 1.4rem;
+  color: #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 10;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: #ff9800;
+  }
+
+  &.active {
+    color: red;
+    border-color: red;
+    background-color: #fff0f0;
+  }
+
+  // На мобільному кнопку можна опустити трохи нижче або змінити позицію
+  @media (max-width: 700px) {
+    position: static; // Повертаємо в потік
+    margin: 0 auto; // Центруємо
   }
 }
