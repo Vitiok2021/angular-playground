@@ -22,14 +22,14 @@
     title="Clear filters"
     [disabled]="isLoading"
   >
-    ❌
+    🗑️
   </button>
-  @if (error) {
-    <div class="error-message">
-      {{ error }}
-    </div>
-  }
 </div>
+@if (error) {
+  <div class="error-message">
+    {{ error }}
+  </div>
+}
 
 @if (isLoading) {
   <div class="loader">Loading... ⏳</div>

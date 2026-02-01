@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CharacterCardComponent } from '../../cards/character-card/character-card.component';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
@@ -10,7 +10,7 @@ import { PaginationComponent } from '../../components/pagination/pagination.comp
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
 })
-export class CharacterListComponent {
+export class CharacterListComponent implements OnInit {
   private rickAndMorty = inject(RickAndMortyService);
 
   characters: Character[] = [];
@@ -32,7 +32,7 @@ export class CharacterListComponent {
   initialCharacters: Character[] = [];
   initialTotalPages: number = 0;
 
-  constructor() {
+  ngOnInit(): void {
     this.showCharters();
   }
 
