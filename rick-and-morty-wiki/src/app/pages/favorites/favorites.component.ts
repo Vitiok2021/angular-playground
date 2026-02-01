@@ -55,7 +55,7 @@ export class FavoritesComponent implements OnInit {
     }
   }
   loadEpisodes() {
-    const favoritesData = localStorage.getItem('favoriteEpisode');
+    const favoritesData = localStorage.getItem('favoriteEpisodes');
     if (favoritesData) {
       const ids: number[] = JSON.parse(favoritesData);
       if (ids.length > 0) {
