@@ -14,13 +14,7 @@
 
         <p><strong>Residents count:</strong> {{ location.residents.length }}</p>
       </div>
-      <button
-        class="favorite-btn"
-        [class.active]="isFavorite"
-        (click)="toggleFavorite($event)"
-      >
-        ❤
-      </button>
+      <app-favorite-btn [id]="location.id" type="location"></app-favorite-btn>
     </div>
   } @else {
     <p>Loading...</p>
