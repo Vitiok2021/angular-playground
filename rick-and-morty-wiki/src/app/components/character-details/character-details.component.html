@@ -3,13 +3,8 @@
   @if (character) {
     <div class="profile-header">
       <img [src]="character.image" [alt]="character.name" class="avatar" />
-      <button
-        class="favorite-btn"
-        [class.active]="isFavorite"
-        (click)="toggleFavorite($event)"
-      >
-        ❤
-      </button>
+      <app-favorite-btn [id]="character.id" type="character"></app-favorite-btn>
+
       <div class="profile-info">
         <h1>{{ character.name }}</h1>
 
