@@ -1,1 +1,9 @@
-<p>coin-card works!</p>
+<div class="card-wrapper">
+  <img [src]="coin.image" [alt]="coin.name" width="50" />
+  <div class="info">
+    <h3>
+      {{ coin.name }} <span>{{ coin.symbol | uppercase }}</span>
+    </h3>
+    <p class="price">{{ coin.current_price | currency }}</p>
+  </div>
+</div>

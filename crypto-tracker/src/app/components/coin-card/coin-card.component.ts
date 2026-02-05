@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Coin } from '../../models/coin';
+import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-coin-card',
-  imports: [],
+  imports: [UpperCasePipe, CurrencyPipe],
   templateUrl: './coin-card.component.html',
-  styleUrl: './coin-card.component.scss'
+  styleUrl: './coin-card.component.scss',
 })
 export class CoinCardComponent {
-
+  @Input() coin!: Coin;
 }

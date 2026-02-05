@@ -1,5 +1,5 @@
 <div class="grid">
-  <app-coin-card></app-coin-card>
-  <app-coin-card></app-coin-card>
-  <app-coin-card></app-coin-card>
+  @for (coin of coins; track coin.id) {
+    <app-coin-card [coin]="coin"></app-coin-card>
+  }
 </div>
