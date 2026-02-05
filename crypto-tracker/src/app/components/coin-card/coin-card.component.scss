@@ -7,16 +7,69 @@
   align-items: center;
   gap: 1rem;
   color: white;
+  min-height: 100px; // Трохи зменшив, 130 було забагато
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+  cursor: pointer;
 
-  .symbol {
-    color: #888;
-    font-size: 0.8em;
+  &:hover {
+    transform: translateY(-3px);
+    border-color: #bb86fc;
+    background: #252525;
   }
 
-  .price {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #4caf50; // Зелений колір грошей
-    margin: 0;
+  .coin-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .info {
+    flex-grow: 1;
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .symbol {
+        color: #777;
+        font-size: 0.85rem;
+      }
+    }
+
+    .price-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+
+      .price {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #e0e0e0;
+      }
+    }
+  }
+
+  // Кольори тепер правильні!
+  .change {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+
+    &.up {
+      color: #4caf50; // Зелений на ріст
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    &.down {
+      color: #f44336; // Червоний на падіння
+      background: rgba(244, 67, 54, 0.1);
+    }
   }
 }

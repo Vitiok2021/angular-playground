@@ -1,9 +1,22 @@
 <div class="card-wrapper">
-  <img [src]="coin.image" [alt]="coin.name" width="50" />
+  <img [src]="coin.image" [alt]="coin.name" class="coin-logo" />
+
   <div class="info">
     <h3>
-      {{ coin.name }} <span>{{ coin.symbol | uppercase }}</span>
+      {{ coin.name }} <span class="symbol">{{ coin.symbol | uppercase }}</span>
     </h3>
-    <p class="price">{{ coin.current_price | currency }}</p>
+
+    <div class="price-info">
+      <p class="price">{{ coin.current_price | currency }}</p>
+
+      <span
+        class="change"
+        [class.up]="coin.price_change_percentage_24h > 0"
+        [class.down]="coin.price_change_percentage_24h < 0"
+      >
+        {{ coin.price_change_percentage_24h > 0 ? "+" : ""
+        }}{{ coin.price_change_percentage_24h | number: "1.2-2" }}%
+      </span>
+    </div>
   </div>
 </div>
