@@ -6,10 +6,10 @@
 }
 .search-container {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 
   input {
-    background: #1e1e1e;
+    background: #3a3737;
     border: 1px solid #333;
     padding: 15px 20px;
     border-radius: 30px;
@@ -21,6 +21,9 @@
 
     &:focus {
       border-color: #bb86fc; // Буде світитися фіолетовим
+    }
+    &::placeholder {
+      color: #c0bcbc;
     }
   }
 }
