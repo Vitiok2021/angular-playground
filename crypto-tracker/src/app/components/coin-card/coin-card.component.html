@@ -1,4 +1,4 @@
-<div class="card-wrapper">
+<div class="card-wrapper" [routerLink]="['/coin', coin.id]">
   <img [src]="coin.image" [alt]="coin.name" class="coin-logo" />
 
   <div class="info">
