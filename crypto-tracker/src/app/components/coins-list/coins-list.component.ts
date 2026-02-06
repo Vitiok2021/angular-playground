@@ -16,15 +16,28 @@ export class CoinsListComponent implements OnInit {
   filteredCoins: Coin[] = [];
   searchText = '';
 
+  isLoading: boolean = true;
+
+  errorMessage: string = '';
+
   ngOnInit(): void {
     this.loadCoin();
   }
 
   loadCoin() {
-    this.cryptoService.getCoins().subscribe((data) => {
-      this.coins = data;
-      this.filteredCoins = data;
-      console.log(data);
+    this.cryptoService.getCoins().subscribe({
+      next: (data) => {
+        this.coins = data;
+        this.filteredCoins = data;
+        console.log(data);
+        this.isLoading = false;
+        this.errorMessage = '';
+      },
+      error: (err) => {
+        console.log('Помилка API', err);
+        this.errorMessage = 'Щось пішло не так. Спробуйте пізніше';
+        this.isLoading = false;
+      },
     });
   }
 
