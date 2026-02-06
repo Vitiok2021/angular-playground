@@ -1,5 +1,13 @@
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Пошук..."
+    [(ngModel)]="searchText"
+    (input)="handleSearch()"
+  />
+</div>
 <div class="grid">
-  @for (coin of coins; track coin.id) {
+  @for (coin of filteredCoins; track coin.id) {
     <app-coin-card [coin]="coin"></app-coin-card>
   }
 </div>
