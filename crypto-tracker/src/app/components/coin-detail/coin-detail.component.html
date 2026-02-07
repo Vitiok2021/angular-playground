@@ -1,1 +1,35 @@
-<p>coin-detail works!</p>
+<div class="coin-detail" *ngIf="coin">
+  <header class="coin-header">
+    <img [src]="coin?.image?.large" [alt]="coin?.name" class="logo" />
+
+    <div class="title-section">
+      <h1>{{ coin?.name }}</h1>
+      <span class="symbol">{{ coin?.symbol | uppercase }}</span>
+      <span class="rank">Rank #{{ coin?.market_data?.market_cap_rank }}</span>
+    </div>
+  </header>
+
+  <section class="price-section">
+    <div class="current-price">
+      {{ coin?.market_data?.current_price?.usd | currency: "USD" }}
+    </div>
+
+    <div
+      class="change-tag"
+      [class.up]="(coin?.market_data?.price_change_percentage_24h ?? 0) > 0"
+      [class.down]="(coin?.market_data?.price_change_percentage_24h ?? 0) < 0"
+    >
+      {{ (coin?.market_data?.price_change_percentage_24h ?? 0) > 0 ? "+" : "" }}
+      {{ coin?.market_data?.price_change_percentage_24h | number: "1.2-2" }}%
+    </div>
+  </section>
+
+  <section class="description">
+    <h3>About {{ coin?.name }}</h3>
+    <p [innerHTML]="coin?.description?.en"></p>
+  </section>
+
+  <a routerLink="/" class="back-btn">← Back to list</a>
+</div>
+
+<div *ngIf="!coin" class="loading">Loading details...</div>

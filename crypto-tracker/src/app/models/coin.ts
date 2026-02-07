@@ -11,3 +11,23 @@ export interface Coin {
   ath: number;
   last_updated: string;
 }
+export interface CoinDetail {
+  id: string;
+  symbol: string;
+  name: string;
+  image: {
+    large: string;
+    small: string;
+    thumb: string;
+  };
+  description: {
+    en: string;
+  };
+  market_data: {
+    current_price: {
+      usd: number;
+    };
+    market_cap_rank: number;
+    price_change_percentage_24h: number;
+  };
+}

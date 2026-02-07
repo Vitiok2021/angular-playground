@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Coin } from '../models/coin';
+import { Coin, CoinDetail } from '../models/coin';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,6 @@ export class CryptoService {
   }
   getCoin(coinId: string) {
     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
-    return this.http.get<any>(url);
+    return this.http.get<CoinDetail>(url);
   }
 }

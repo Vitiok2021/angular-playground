@@ -4,5 +4,6 @@ import { CoinDetailComponent } from './components/coin-detail/coin-detail.compon
 
 export const routes: Routes = [
   { path: '', component: CoinsListComponent },
+  { path: 'list/', component: CoinsListComponent },
   { path: 'coin/:id', component: CoinDetailComponent },
 ];

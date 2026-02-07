@@ -10,15 +10,14 @@
   <div class="message-error">
     <p>{{ errorMessage }}</p>
   </div>
-}
-@if (!isLoading) {
+} @else if (isLoading) {
+  <div class="message-loading">
+    <p>Wait. Loading...</p>
+  </div>
+} @else {
   <div class="grid">
     @for (coin of filteredCoins; track coin.id) {
       <app-coin-card [coin]="coin"></app-coin-card>
     }
-  </div>
-} @else {
-  <div class="message-loading">
-    <p>Wait. Loading...</p>
   </div>
 }
