@@ -23,7 +23,37 @@
       {{ coin?.market_data?.price_change_percentage_24h | number: "1.2-2" }}%
     </div>
   </section>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="label">Market Cap</span>
+      <span class="value">{{
+        coin?.market_data?.market_cap?.usd
+          | currency: "USD" : "symbol" : "1.0-0"
+      }}</span>
+    </div>
 
+    <div class="stat-card">
+      <span class="label">Volume (24h)</span>
+      <span class="value">{{
+        coin?.market_data?.total_volume?.usd
+          | currency: "USD" : "symbol" : "1.0-0"
+      }}</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="label">Low 24h</span>
+      <span class="value text-red">{{
+        coin?.market_data?.low_24h?.usd | currency: "USD"
+      }}</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="label">High 24h</span>
+      <span class="value text-green">{{
+        coin?.market_data?.high_24h?.usd | currency: "USD"
+      }}</span>
+    </div>
+  </div>
   <section class="description">
     <h3>About {{ coin?.name }}</h3>
     <p [innerHTML]="coin?.description?.en"></p>
