@@ -1,0 +1,42 @@
+.app-header {
+  background-color: #333333; /* Дуже темний фон */
+  height: 64px;
+  display: flex;
+  align-items: center; /* Центруємо по вертикалі */
+  padding: 0 2rem;
+  border-bottom: 1px solid #333; /* Тонка лінія знизу */
+  position: sticky; /* Липне до верху при скролі */
+  top: 0;
+  z-index: 1000; /* Щоб був поверх всього */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 40px;
+  border-radius: 10px;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer; /* Курсор-рука */
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8; /* Ефект при наведенні */
+    }
+  }
+
+  .logo-icon {
+    font-size: 1.8rem;
+  }
+
+  .app-name {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    /* Градієнтний текст (бонус) */
+    background: linear-gradient(45deg, #bb86fc, #9c27b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
