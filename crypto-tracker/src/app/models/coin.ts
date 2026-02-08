@@ -15,30 +15,30 @@ export interface CoinDetail {
   id: string;
   symbol: string;
   name: string;
-  image: {
+  image?: {
     large: string;
     small: string;
     thumb: string;
   };
-  description: {
+  description?: {
     en: string;
   };
-  market_data: {
-    current_price: {
+  market_data?: {
+    current_price?: {
       usd: number;
     };
     market_cap_rank: number;
     price_change_percentage_24h: number;
-    market_cap: {
+    market_cap?: {
       usd: number;
     };
-    total_volume: {
+    total_volume?: {
       usd: number;
     };
-    high_24h: {
+    high_24h?: {
       usd: number;
     };
-    low_24h: {
+    low_24h?: {
       usd: number;
     };
   };
