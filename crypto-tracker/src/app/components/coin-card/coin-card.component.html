@@ -1,4 +1,11 @@
 <div class="card-wrapper" [routerLink]="['/coin', coin.id]">
+  <button
+    class="fav-btn"
+    [class.active]="isFavorite"
+    (click)="toggleLike($event)"
+  >
+    ♥
+  </button>
   <img [src]="coin.image" [alt]="coin.name" class="coin-logo" />
 
   <div class="info">

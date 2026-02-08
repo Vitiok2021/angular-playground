@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class StorageService implements OnInit {
+export class StorageService {
   private key = 'cryptoFavorites';
 
   getFavorites() {
@@ -16,7 +16,7 @@ export class StorageService implements OnInit {
   }
 
   toggleFavorite(id: string) {
-    let favList = this.getFavorites();
+    let favList: string[] = this.getFavorites();
 
     if (favList.includes(id)) {
       favList = favList.filter((item) => item !== id);
@@ -25,7 +25,9 @@ export class StorageService implements OnInit {
     }
     this.saveFavorites(favList);
   }
-  ngOnInit(): void {
-    // this.toggleFavorite();
+
+  isCoinFavorite(id: string) {
+    const data = this.getFavorites();
+    return data.includes(id);
   }
 }

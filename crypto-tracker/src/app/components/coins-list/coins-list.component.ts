@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   imports: [CoinCardComponent, FormsModule],
   templateUrl: './coins-list.component.html',
   styleUrl: './coins-list.component.scss',
+  standalone: true,
 })
 export class CoinsListComponent implements OnInit {
   private cryptoService = inject(CryptoService);
