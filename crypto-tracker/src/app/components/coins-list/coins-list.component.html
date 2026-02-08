@@ -21,3 +21,8 @@
     }
   </div>
 }
+@if (!searchText && !isLoading) {
+  <div class="load-more-container">
+    <button (click)="loadMore()" class="btn-load-more">Load More Coins</button>
+  </div>
+}

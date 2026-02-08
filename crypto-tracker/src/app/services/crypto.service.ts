@@ -12,8 +12,9 @@ export class CryptoService {
 
   constructor() {}
 
-  getCoins() {
-    return this.http.get<Coin[]>(this.apiUrl);
+  getCoins(currency: string, page: number = 1) {
+    const url = `${this.apiUrl}?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`;
+    return this.http.get<Coin[]>(url);
   }
   getCoin(coinId: string) {
     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;

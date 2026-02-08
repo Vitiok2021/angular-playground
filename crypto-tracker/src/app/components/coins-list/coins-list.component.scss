@@ -59,3 +59,29 @@
     opacity: 0.5;
   }
 }
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+
+  .btn-load-more {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #bb86fc; /* Фіолетовий при наведенні */
+      color: black;
+      transform: scale(1.05); /* Трохи збільшується */
+    }
+
+    &:active {
+      transform: scale(0.95); /* Натискається */
+    }
+  }
+}

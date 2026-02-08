@@ -20,15 +20,17 @@ export class CoinsListComponent implements OnInit {
 
   errorMessage: string = '';
 
+  currentPage = 1;
+
   ngOnInit(): void {
     this.loadCoin();
   }
 
   loadCoin() {
-    this.cryptoService.getCoins().subscribe({
+    this.cryptoService.getCoins('usd', this.currentPage).subscribe({
       next: (data) => {
-        this.coins = data;
-        this.filteredCoins = data;
+        this.coins = [...this.coins, ...data];
+        this.filteredCoins = this.coins;
         console.log(data);
         this.isLoading = false;
         this.errorMessage = '';
@@ -40,7 +42,10 @@ export class CoinsListComponent implements OnInit {
       },
     });
   }
-
+  loadMore() {
+    this.currentPage++;
+    this.loadCoin();
+  }
   handleSearch() {
     this.filteredCoins = this.coins.filter((coin) => {
       return (
