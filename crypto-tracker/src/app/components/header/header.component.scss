@@ -40,3 +40,17 @@
     -webkit-text-fill-color: transparent;
   }
 }
+.links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  a {
+    text-decoration: none;
+    color: #fff;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

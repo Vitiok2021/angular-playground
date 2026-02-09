@@ -17,7 +17,7 @@ export class CryptoService {
   getFavoriteCoins(ids: string[]) {
     const idsString = ids.join(',');
     const url = `${this.baseUrl}?vs_currency=usd&ids=${idsString}&order=market_cap_desc&sparkline=false`;
-    return this.http.get<CoinDetail>(url);
+    return this.http.get<Coin[]>(url);
   }
   getCoin(coinId: string) {
     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;

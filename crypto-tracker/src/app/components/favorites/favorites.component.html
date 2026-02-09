@@ -1,1 +1,12 @@
-<p>favorites works!</p>
+<div class="favorites-container">
+  <h2>My Favorite Coins ❤️</h2>
+
+  @if (coins.length === 0) {
+    <p class="empty">Ви ще нічого не додали... 😢</p>
+  }
+  <div class="coin-grid">
+    @for (coin of coins; track coin.id) {
+      <app-coin-card [coin]="coin"></app-coin-card>
+    }
+  </div>
+</div>

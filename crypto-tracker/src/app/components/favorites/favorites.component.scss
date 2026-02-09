@@ -1,0 +1,23 @@
+.favorites-container {
+  padding: 20px;
+
+  h2 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .empty {
+    text-align: center;
+    color: #888;
+    font-size: 1.5rem;
+    margin-top: 50px;
+  }
+
+  .coin-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+}
