@@ -3,6 +3,7 @@
 
   @if (coins.length === 0) {
     <p class="empty">Ви ще нічого не додали... 😢</p>
+    <a routerLink="/" class="back-link">Переглянути монети</a>
   }
   <div class="coin-grid">
     @for (coin of coins; track coin.id) {
