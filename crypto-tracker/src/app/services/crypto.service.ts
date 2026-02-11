@@ -23,4 +23,8 @@ export class CryptoService {
     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
     return this.http.get<CoinDetail>(url);
   }
+  getMarketHistory(coinId: string, days: number = 1) {
+    const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`;
+    return this.http.get<any>(url);
+  }
 }

@@ -8,10 +8,19 @@ import {
   UpperCasePipe,
 } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { BaseChartDirective } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-coin-detail',
-  imports: [DecimalPipe, NgIf, CurrencyPipe, UpperCasePipe, RouterLink],
+  imports: [
+    DecimalPipe,
+    NgIf,
+    CurrencyPipe,
+    UpperCasePipe,
+    RouterLink,
+    BaseChartDirective,
+  ],
   templateUrl: './coin-detail.component.html',
   styleUrl: './coin-detail.component.scss',
 })
@@ -30,5 +39,52 @@ export class CoinDetailComponent implements OnInit {
       console.log('Повне досьє:', data);
       this.isLoading = false;
     });
+    this.loadChart();
   }
+  // ==========Графік============================
+  public lineChartType: ChartType = 'line';
+
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [],
+    labels: [],
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    elements: {
+      point: { radius: 1 },
+    },
+  };
+  loadChart() {
+    this.cryptoService.getMarketHistory(this.id, 1).subscribe((data) => {
+      const prices = data.prices;
+
+      const priceData = prices.map((item: any[]) => item[1]);
+
+      const timeLabels = prices.map((item: any[]) => {
+        const date = new Date(item[0]);
+        return date.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+      });
+      this.lineChartData = {
+        datasets: [
+          {
+            data: priceData,
+            label: 'Price (USD)',
+            backgroundColor: 'rgba(255, 165, 0, 0.2)',
+            borderColor: 'orange',
+            pointBackgroundColor: 'orange',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'orange',
+            fill: 'origin', // Зафарбувати область під графіком
+          },
+        ],
+        labels: timeLabels,
+      };
+    });
+  }
+  // ============================================
 }
