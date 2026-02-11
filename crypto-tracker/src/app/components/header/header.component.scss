@@ -54,3 +54,17 @@
     }
   }
 }
+.currency-select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #2b2b2b; /* Темний фон під твою тему */
+  color: white;
+  cursor: pointer;
+  margin-left: 15px; // Відступ від посилань
+
+  &:focus {
+    outline: none;
+    border-color: orange; // Підсвітка при кліку
+  }
+}
