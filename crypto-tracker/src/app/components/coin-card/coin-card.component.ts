@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { Coin } from '../../models/coin';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -14,6 +14,10 @@ import { CryptoService } from '../../services/crypto.service';
 })
 export class CoinCardComponent implements OnInit {
   @Input() coin!: Coin;
+
+  currencyCode = computed(() =>
+    this.cryptoService.selectedCurrency().toUpperCase(),
+  );
 
   public cryptoService = inject(CryptoService);
   storage = inject(StorageService);

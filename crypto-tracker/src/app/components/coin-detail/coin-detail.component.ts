@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { CryptoService } from '../../services/crypto.service';
 import { CoinDetail } from '../../models/coin';
 import {
@@ -30,6 +30,10 @@ export class CoinDetailComponent implements OnInit {
   coin: CoinDetail | null = null;
 
   isLoading: boolean = true;
+
+  currencyCode = computed(() =>
+    this.cryptoService.selectedCurrency().toUpperCase(),
+  );
 
   @Input() id = '';
   ngOnInit(): void {

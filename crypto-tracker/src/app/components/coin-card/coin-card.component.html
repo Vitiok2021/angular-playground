@@ -15,7 +15,7 @@
 
     <div class="price-info">
       <p class="price">
-        {{ coin.current_price | currency: cryptoService.selectedCurrency() }}
+        {{ coin.current_price | currency: currencyCode() : "symbol" }}
       </p>
 
       <span
