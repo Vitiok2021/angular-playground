@@ -14,7 +14,9 @@
     </h3>
 
     <div class="price-info">
-      <p class="price">{{ coin.current_price | currency }}</p>
+      <p class="price">
+        {{ coin.current_price | currency: cryptoService.selectedCurrency() }}
+      </p>
 
       <span
         class="change"

@@ -11,7 +11,10 @@
 
   <section class="price-section">
     <div class="current-price">
-      {{ coin?.market_data?.current_price?.usd | currency: "USD" }}
+      {{
+        coin?.market_data?.current_price?.usd
+          | currency: cryptoService.selectedCurrency()
+      }}
     </div>
 
     <div

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Coin, CoinDetail } from '../models/coin';
 
 @Injectable({
@@ -8,9 +8,16 @@ import { Coin, CoinDetail } from '../models/coin';
 export class CryptoService {
   private http = inject(HttpClient);
   private baseUrl = 'https://api.coingecko.com/api/v3/coins/markets';
+
+  selectedCurrency = signal<string>('usd');
   constructor() {}
 
-  getCoins(currency: string, page: number = 1) {
+  setCurrency(currency: string) {
+    this.selectedCurrency.set(currency);
+  }
+
+  getCoins(page: number = 1) {
+    const currency = this.selectedCurrency();
     const url = `${this.baseUrl}?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`;
     return this.http.get<Coin[]>(url);
   }
@@ -24,7 +31,8 @@ export class CryptoService {
     return this.http.get<CoinDetail>(url);
   }
   getMarketHistory(coinId: string, days: number = 1) {
-    const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`;
+    const currency = this.selectedCurrency();
+    const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency}&days=${days}`;
     return this.http.get<any>(url);
   }
 }

@@ -25,7 +25,7 @@ import { ChartConfiguration, ChartType } from 'chart.js';
   styleUrl: './coin-detail.component.scss',
 })
 export class CoinDetailComponent implements OnInit {
-  private cryptoService = inject(CryptoService);
+  public cryptoService = inject(CryptoService);
 
   coin: CoinDetail | null = null;
 

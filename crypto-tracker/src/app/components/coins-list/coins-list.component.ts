@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { CoinCardComponent } from '../coin-card/coin-card.component';
 import { CryptoService } from '../../services/crypto.service';
 import { Coin } from '../../models/coin';
@@ -23,12 +23,23 @@ export class CoinsListComponent implements OnInit {
 
   currentPage = 1;
 
+  constructor() {
+    effect(() => {
+      const currentCurrency = this.cryptoService.selectedCurrency();
+      this.coins = [];
+      this.filteredCoins = [];
+      this.currentPage = 1;
+      this.isLoading = true;
+      this.loadCoin();
+    });
+  }
+
   ngOnInit(): void {
-    this.loadCoin();
+    // this.loadCoin();
   }
 
   loadCoin() {
-    this.cryptoService.getCoins('usd', this.currentPage).subscribe({
+    this.cryptoService.getCoins(this.currentPage).subscribe({
       next: (data) => {
         this.coins = [...this.coins, ...data];
         this.filteredCoins = this.coins;
