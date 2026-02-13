@@ -59,13 +59,22 @@
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #2b2b2b; /* Темний фон під твою тему */
+  background-color: #2b2b2b;
   color: white;
-  cursor: pointer;
-  margin-left: 15px; // Відступ від посилань
+  margin-left: 15px;
+
+  // 👇 ДОДАЙ ЦЕ:
+  cursor: pointer; // Курсор-рука
+  transition: all 0.3s ease; // Плавна анімація
+
+  &:hover {
+    border-color: #ffd700; // Золота рамка при наведенні
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); // Легке світіння
+    transform: scale(1.05); // Ледь помітне збільшення
+  }
 
   &:focus {
     outline: none;
-    border-color: orange; // Підсвітка при кліку
+    border-color: orange;
   }
 }
