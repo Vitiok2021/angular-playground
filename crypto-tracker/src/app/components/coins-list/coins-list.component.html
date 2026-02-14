@@ -11,8 +11,9 @@
     <p>{{ errorMessage }}</p>
   </div>
 } @else if (isLoading) {
-  <div class="message-loading">
-    <p>Wait. Loading...</p>
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <span>Завантажуємо крипту...</span>
   </div>
 } @else {
   <div class="grid">

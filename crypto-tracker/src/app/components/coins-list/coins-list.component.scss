@@ -37,28 +37,6 @@
   margin-bottom: 1rem;
 }
 
-.message-loading {
-  text-align: center;
-  color: #bb86fc; // Фіолетовий (акцентний)
-  font-size: 1.5rem;
-  margin-top: 3rem;
-  font-weight: bold;
-
-  // Маленька анімація пульсації (бонус)
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.5;
-  }
-}
 .load-more-container {
   display: flex;
   justify-content: center;
@@ -83,5 +61,49 @@
     &:active {
       transform: scale(0.95); /* Натискається */
     }
+  }
+}
+// Контейнер, щоб вирівняти по центру
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 15px; // Відступ між крутилкою і текстом
+
+  span {
+    color: #181716; // Золотий колір тексту
+    font-size: 1.1rem;
+    font-weight: 500;
+    animation: pulse 1.5s infinite; // Текст буде "дихати"
+  }
+}
+
+// Сама крутилка
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.5); // Напівпрозоре коло
+  border-top-color: #22211f; // Золота "шапка", яка крутиться
+  border-radius: 50%; // Робимо круглим
+  animation: spin 1s linear infinite; // Запуск анімації
+}
+
+// Анімація обертання
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Анімація пульсації тексту
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
