@@ -10,6 +10,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-coin-detail',
@@ -26,10 +27,13 @@ import { ChartConfiguration, ChartType } from 'chart.js';
 })
 export class CoinDetailComponent implements OnInit {
   public cryptoService = inject(CryptoService);
+  storage = inject(StorageService);
 
   coin: CoinDetail | null = null;
 
   isLoading: boolean = true;
+
+  isFavorite = false;
 
   currencyCode = computed(() =>
     this.cryptoService.selectedCurrency().toUpperCase(),
@@ -44,6 +48,10 @@ export class CoinDetailComponent implements OnInit {
       this.isLoading = false;
     });
     this.loadChart();
+  }
+  toggleLike(event: Event) {
+    this.isFavorite = !this.isFavorite;
+    this.storage.toggleFavorite(this.id);
   }
   // ==========Графік============================
   public lineChartType: ChartType = 'line';

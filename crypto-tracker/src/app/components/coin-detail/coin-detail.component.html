@@ -7,6 +7,13 @@
       <span class="symbol">{{ coin?.symbol | uppercase }}</span>
       <span class="rank">Rank #{{ coin?.market_data?.market_cap_rank }}</span>
     </div>
+    <button
+      class="fav-btn"
+      [class.active]="isFavorite"
+      (click)="toggleLike($event)"
+    >
+      ♥
+    </button>
   </header>
 
   <section class="price-section">
