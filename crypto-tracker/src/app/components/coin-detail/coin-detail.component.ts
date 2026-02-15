@@ -42,6 +42,7 @@ export class CoinDetailComponent implements OnInit {
   @Input() id = '';
   ngOnInit(): void {
     console.log('Id монети з URL', this.id);
+    this.isFavorite = this.storage.isCoinFavorite(this.id);
     this.cryptoService.getCoin(this.id).subscribe((data) => {
       this.coin = data;
       console.log('Повне досьє:', data);

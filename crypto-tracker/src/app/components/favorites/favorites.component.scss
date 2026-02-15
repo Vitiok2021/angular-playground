@@ -2,6 +2,7 @@
   padding: 20px;
   display: flex; // Додаємо флекс для всього контейнера
   flex-direction: column;
+  position: relative;
   align-items: center;
 
   h2 {
@@ -48,4 +49,29 @@
     justify-content: center;
     margin-top: 30px;
   }
+}
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 15px; // Відступ між крутилкою і текстом
+
+  span {
+    color: #181716; // Золотий колір тексту
+    font-size: 1.1rem;
+    font-weight: 500;
+    animation: pulse 1.5s infinite; // Текст буде "дихати"
+  }
+}
+
+// Сама крутилка
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.5); // Напівпрозоре коло
+  border-top-color: #22211f; // Золота "шапка", яка крутиться
+  border-radius: 50%; // Робимо круглим
+  animation: spin 1s linear infinite; // Запуск анімації
 }

@@ -17,6 +17,8 @@ export class FavoritesComponent implements OnInit {
 
   coins: Coin[] = [];
 
+  isLoading = true;
+
   ngOnInit(): void {
     this.loadFavorites();
   }
@@ -24,11 +26,19 @@ export class FavoritesComponent implements OnInit {
   loadFavorites() {
     const ids = this.storageService.getFavorites();
 
-    if (!ids.length) return;
-    else {
-      this.cryptoService.getFavoriteCoins(ids).subscribe((data) => {
-        this.coins = data;
-      });
+    if (ids.length === 0) {
+      this.isLoading = false;
+      return;
     }
+    this.cryptoService.getFavoriteCoins(ids).subscribe({
+      next: (data) => {
+        this.coins = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Помилка', err);
+        this.isLoading = false;
+      },
+    });
   }
 }
