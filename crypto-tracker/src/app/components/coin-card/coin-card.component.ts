@@ -1,4 +1,12 @@
-import { Component, computed, inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Coin } from '../../models/coin';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -14,6 +22,8 @@ import { CryptoService } from '../../services/crypto.service';
 })
 export class CoinCardComponent implements OnInit {
   @Input() coin!: Coin;
+
+  @Output() remove = new EventEmitter<string>();
 
   currencyCode = computed(() =>
     this.cryptoService.selectedCurrency().toUpperCase(),
@@ -33,5 +43,9 @@ export class CoinCardComponent implements OnInit {
     this.storage.toggleFavorite(this.coin.id);
 
     this.isFavorite = !this.isFavorite;
+
+    if (!this.isFavorite) {
+      this.remove.emit(this.coin.id);
+    }
   }
 }

@@ -41,4 +41,7 @@ export class FavoritesComponent implements OnInit {
       },
     });
   }
+  removeCoin(id: string) {
+    this.coins = this.coins.filter((coin) => coin.id !== id);
+  }
 }
