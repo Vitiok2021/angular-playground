@@ -5,8 +5,12 @@
   <ul class="list-tasks">
     @for (item of tasks; track item.id) {
       <p>
-        <span>{{ item.name }}</span>
+        <span>{{ item.id }}</span>
+
+        <span [class.red-text]="item.isDone">{{ item.name }}</span>
       </p>
+      <button (click)="delTask(item.id)">Delete</button>
+      <input type="checkbox" (change)="toggleIsDone(item.id)" />
     }
   </ul>
 </div>
