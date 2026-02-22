@@ -1,0 +1,12 @@
+<div class="container">
+  <input type="text" [(ngModel)]="task" />
+  <button (click)="addTask()">Add</button>
+
+  <ul class="list-tasks">
+    @for (item of tasks; track item.id) {
+      <p>
+        <span>{{ item.name }}</span>
+      </p>
+    }
+  </ul>
+</div>
