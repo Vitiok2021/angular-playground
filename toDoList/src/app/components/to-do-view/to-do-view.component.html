@@ -1,16 +1,24 @@
 <div class="container">
-  <input type="text" [(ngModel)]="task" />
-  <button (click)="addTask()">Add</button>
+  <h2>My To-Do List</h2>
+
+  <div class="input-group">
+    <input type="text" [(ngModel)]="task" placeholder="Що плануємо зробити?" />
+    <button class="btn-add" (click)="addTask()">Add</button>
+  </div>
 
   <ul class="list-tasks">
     @for (item of tasks; track item.id) {
-      <p>
-        <span>{{ item.id }}</span>
+      <li class="task-item">
+        <div class="task-info">
+          <input type="checkbox" (change)="toggleIsDone(item.id)" />
+          <span class="task-id">#{{ item.id }}</span>
+          <span [class.red-text]="item.isDone" class="task-name">{{
+            item.name
+          }}</span>
+        </div>
 
-        <span [class.red-text]="item.isDone">{{ item.name }}</span>
-      </p>
-      <button (click)="delTask(item.id)">Delete</button>
-      <input type="checkbox" (change)="toggleIsDone(item.id)" />
+        <button class="btn-delete" (click)="delTask(item.id)">Delete</button>
+      </li>
     }
   </ul>
 </div>
