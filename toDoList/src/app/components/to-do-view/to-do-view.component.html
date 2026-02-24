@@ -11,8 +11,10 @@
       <li class="task-item">
         <input type="checkbox" (change)="toggleIsDone(item.id)" />
 
-        <app-to-do-item [toDoItem]="item"></app-to-do-item>
-        <button class="btn-delete" (click)="delTask(item.id)">Delete</button>
+        <app-to-do-item
+          [toDoItem]="item"
+          (delBtn)="delTask($event)"
+        ></app-to-do-item>
       </li>
     }
   </ul>

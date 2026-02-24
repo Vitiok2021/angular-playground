@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../../interfaces/task';
 
 @Component({
@@ -9,4 +9,9 @@ import { Task } from '../../interfaces/task';
 })
 export class ToDoItemComponent {
   @Input() toDoItem!: Task;
+  @Output() delBtn = new EventEmitter<number>();
+
+  delTask(id: number) {
+    this.delBtn.emit(this.toDoItem.id);
+  }
 }
