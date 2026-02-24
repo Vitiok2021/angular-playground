@@ -12,6 +12,6 @@ export class ToDoItemComponent {
   @Output() delBtn = new EventEmitter<number>();
 
   delTask(id: number) {
-    this.delBtn.emit(this.toDoItem.id);
+    this.delBtn.emit(id);
   }
 }
