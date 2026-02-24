@@ -9,14 +9,9 @@
   <ul class="list-tasks">
     @for (item of tasks; track item.id) {
       <li class="task-item">
-        <div class="task-info">
-          <input type="checkbox" (change)="toggleIsDone(item.id)" />
-          <span class="task-id">#{{ item.id }}</span>
-          <span [class.red-text]="item.isDone" class="task-name">{{
-            item.name
-          }}</span>
-        </div>
+        <input type="checkbox" (change)="toggleIsDone(item.id)" />
 
+        <app-to-do-item [toDoItem]="item"></app-to-do-item>
         <button class="btn-delete" (click)="delTask(item.id)">Delete</button>
       </li>
     }
