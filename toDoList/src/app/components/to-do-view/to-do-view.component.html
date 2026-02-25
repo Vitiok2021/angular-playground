@@ -3,7 +3,7 @@
 
   <div class="input-group">
     <input type="text" [(ngModel)]="task" placeholder="Що плануємо зробити?" />
-    <button class="btn-add" (click)="addTask()">Add</button>
+    <button class="btn-add" (click)="addTaskView(task)">Add</button>
   </div>
 
   <ul class="list-tasks">
@@ -11,8 +11,8 @@
       <li class="task-item">
         <app-to-do-item
           [toDoItem]="item"
-          (delBtn)="delTask($event)"
-          (togChk)="toggleIsDone($event)"
+          (delBtn)="delTaskView($event)"
+          (togChk)="toggleIsDoneView($event)"
         ></app-to-do-item>
       </li>
     }
