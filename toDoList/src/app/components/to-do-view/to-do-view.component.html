@@ -9,11 +9,10 @@
   <ul class="list-tasks">
     @for (item of tasks; track item.id) {
       <li class="task-item">
-        <input type="checkbox" (change)="toggleIsDone(item.id)" />
-
         <app-to-do-item
           [toDoItem]="item"
           (delBtn)="delTask($event)"
+          (togChk)="toggleIsDone($event)"
         ></app-to-do-item>
       </li>
     }

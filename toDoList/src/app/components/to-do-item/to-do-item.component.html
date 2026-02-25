@@ -1,3 +1,5 @@
+<input type="checkbox" (change)="toggleChk(toDoItem.id)" />
+
 <div class="task-info">
   <span [class.red-text]="toDoItem.isDone" class="task-name">{{
     toDoItem.name

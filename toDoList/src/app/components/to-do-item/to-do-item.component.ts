@@ -11,7 +11,12 @@ export class ToDoItemComponent {
   @Input() toDoItem!: Task;
   @Output() delBtn = new EventEmitter<number>();
 
+  @Output() togChk = new EventEmitter<number>();
+
   delTask(id: number) {
     this.delBtn.emit(id);
+  }
+  toggleChk(id: number) {
+    this.togChk.emit(id);
   }
 }

@@ -1,5 +1,6 @@
 :host {
   display: flex;
+  column-gap: 10px;
   align-items: center;
   width: 100%; /* щоб він розтягнувся на всю ширину батьківського <li> */
 }
@@ -33,4 +34,8 @@
 
 .btn-delete:hover {
   background-color: #c56b74;
+}
+.red-text {
+  color: red;
+  text-decoration: line-through; /* Додав перекреслення, це круто виглядає для виконаних справ */
 }
