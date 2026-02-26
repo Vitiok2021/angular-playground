@@ -7,12 +7,12 @@ import { Task } from '../interfaces/task';
 export class ToDoService {
   tasks: Task[] = [];
   constructor() {}
-  addTask(task: Task) {
+  addTask(task: string) {
     const id = Date.now();
     const isDone = false;
 
     if (task) {
-      this.tasks.push({ id: id, name: task.name, isDone: isDone });
+      this.tasks.push({ id: id, name: task, isDone: isDone });
     }
   }
   delTask(id: number) {

@@ -12,6 +12,10 @@ import { ToDoService } from '../../services/to-do.service';
 export class ToDoViewComponent implements OnInit {
   task!: string;
 
+  get tasks(): Task[] {
+    return this.toDoService.tasks;
+  }
+
   private toDoService = inject(ToDoService);
   addTaskView(task: any) {
     this.toDoService.addTask(task);
