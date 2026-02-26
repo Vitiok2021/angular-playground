@@ -19,6 +19,7 @@ export class ToDoViewComponent implements OnInit {
   private toDoService = inject(ToDoService);
   addTaskView(task: any) {
     this.toDoService.addTask(task);
+    this.task = '';
   }
   delTaskView(id: number) {
     this.toDoService.delTask(id);
