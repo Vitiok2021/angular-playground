@@ -19,8 +19,8 @@ export class ToDoService {
 
     if (task) {
       this.tasks.push({ id: id, name: task, isDone: isDone });
+      this.saveToStorage();
     }
-    this.saveToStorage();
   }
   delTask(id: number) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
@@ -34,5 +34,26 @@ export class ToDoService {
 
   saveToStorage() {
     localStorage.setItem('toDoStorage', JSON.stringify(this.tasks));
+  }
+
+  currentFilter: 'all' | 'active' | 'completed' = 'all';
+  get filteredTask() {
+    let filteredTasks = this.tasks;
+    // if (this.currentFilter === 'active') {
+    //   return (filteredTasks = filteredTasks.filter((item) => !item.isDone));
+    // }
+    // if (this.currentFilter === 'completed') {
+    //   return (filteredTasks = filteredTasks.filter((item) => item.isDone));
+    // } else {
+    // return filteredTasks
+    // }
+    switch (this.currentFilter) {
+      case 'active':
+        return filteredTasks.filter((item) => !item.isDone);
+      case 'completed':
+        return filteredTasks.filter((item) => item.isDone);
+      default:
+        return filteredTasks;
+    }
   }
 }

@@ -9,11 +9,11 @@ import { ToDoService } from '../../services/to-do.service';
   templateUrl: './to-do-view.component.html',
   styleUrl: './to-do-view.component.css',
 })
-export class ToDoViewComponent implements OnInit {
+export class ToDoViewComponent {
   task!: string;
 
   get tasks(): Task[] {
-    return this.toDoService.tasks;
+    return this.toDoService.filteredTask;
   }
 
   private toDoService = inject(ToDoService);
@@ -27,5 +27,7 @@ export class ToDoViewComponent implements OnInit {
   toggleIsDoneView(id: number) {
     this.toDoService.toggleIsDone(id);
   }
-  ngOnInit(): void {}
+  changeFilter(filterType: any) {
+    this.toDoService.currentFilter = filterType;
+  }
 }
