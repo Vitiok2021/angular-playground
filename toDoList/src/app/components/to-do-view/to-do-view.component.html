@@ -18,7 +18,12 @@
     }
   </ul>
   <div class="actions">
-    <button (click)="changeFilter('all')">All</button>
+    <button
+      [class.active-btn]="toDoService.currentFilter === 'all'"
+      (click)="changeFilter('all')"
+    >
+      All
+    </button>
     <button (click)="changeFilter('active')">Active</button>
     <button (click)="changeFilter('completed')">Completed</button>
   </div>

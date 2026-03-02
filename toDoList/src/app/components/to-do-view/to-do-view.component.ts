@@ -16,7 +16,7 @@ export class ToDoViewComponent {
     return this.toDoService.filteredTask;
   }
 
-  private toDoService = inject(ToDoService);
+  toDoService = inject(ToDoService);
   addTaskView(task: any) {
     this.toDoService.addTask(task);
     this.task = '';
