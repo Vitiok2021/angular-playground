@@ -26,8 +26,10 @@
     </button>
     <button (click)="changeFilter('active')">Active</button>
     <button (click)="changeFilter('completed')">Completed</button>
+    <button (click)="toDoService.clearCompletedTasks()">Clear All</button>
   </div>
   <div class="count-tasks">
     <p class="active-task">Активних задач: {{ toDoService.activeCount }}</p>
+    <p class="active-task">Всього задач: {{ toDoService.allCount }}</p>
   </div>
 </div>
