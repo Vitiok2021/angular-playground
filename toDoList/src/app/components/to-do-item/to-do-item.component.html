@@ -1,8 +1,18 @@
-<input type="checkbox" (change)="toggleChk(toDoItem.id)" />
+<input
+  type="checkbox"
+  [checked]="toDoItem.isDone"
+  (change)="toggleChk(toDoItem.id)"
+/>
 
 <div class="task-info">
-  <span [class.red-text]="toDoItem.isDone" class="task-name">{{
-    toDoItem.name
-  }}</span>
+  @if (!toDoItem.isEdit) {
+    <span [class.red-text]="toDoItem.isDone" class="task-name">{{
+      toDoItem.name
+    }}</span>
+  } @else {
+    <input type="text" #editTask [value]="toDoItem.name" />
+    <button (click)="saveEdited(editTask.value, toDoItem.id)">Save</button>
+  }
 </div>
 <button class="btn-delete" (click)="delTask(toDoItem.id)">Delete</button>
+<button class="btn-edit" (click)="editTask()">Edit</button>

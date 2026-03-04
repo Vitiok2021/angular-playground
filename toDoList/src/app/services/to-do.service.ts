@@ -18,7 +18,7 @@ export class ToDoService {
     const isDone = false;
 
     if (task) {
-      this.tasks.push({ id: id, name: task, isDone: isDone });
+      this.tasks.push({ id: id, name: task, isDone: isDone, isEdit: false });
       this.saveToStorage();
     }
   }
@@ -54,6 +54,24 @@ export class ToDoService {
         return filteredTasks.filter((item) => item.isDone);
       default:
         return filteredTasks;
+    }
+  }
+  get activeCount() {
+    let filteredTasks = this.tasks;
+    return filteredTasks.filter((item) => !item.isDone).length;
+  }
+  get allCount() {
+    return this.tasks.length;
+  }
+  clearCompletedTasks() {
+    this.tasks = this.tasks.filter((task) => !task.isDone);
+    this.saveToStorage();
+  }
+  editedTask(name: string, id: number) {
+    const findedTask = this.tasks.find((task) => task.id === id);
+    if (findedTask) {
+      findedTask.name = name;
+      this.saveToStorage();
     }
   }
 }
