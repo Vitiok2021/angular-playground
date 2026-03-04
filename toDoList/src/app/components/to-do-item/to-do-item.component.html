@@ -12,6 +12,7 @@
   } @else {
     <input type="text" #editTask [value]="toDoItem.name" />
     <button (click)="saveEdited(editTask.value, toDoItem.id)">Save</button>
+    <button (click)="cancelEdited()">Cancel</button>
   }
 </div>
 <button class="btn-delete" (click)="delTask(toDoItem.id)">Delete</button>

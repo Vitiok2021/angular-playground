@@ -29,4 +29,7 @@ export class ToDoItemComponent {
     this.toDoServiceTasks.editedTask(value, id);
     this.toDoItem.isEdit = false;
   }
+  cancelEdited() {
+    this.toDoItem.isEdit = false;
+  }
 }
