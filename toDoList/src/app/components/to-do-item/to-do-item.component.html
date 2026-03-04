@@ -4,7 +4,7 @@
   (change)="toggleChk(toDoItem.id)"
 />
 
-<div class="task-info">
+<div class="task-info" @fade>
   @if (!toDoItem.isEdit) {
     <span [class.red-text]="toDoItem.isDone" class="task-name">{{
       toDoItem.name
