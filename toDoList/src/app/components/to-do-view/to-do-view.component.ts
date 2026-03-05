@@ -40,4 +40,7 @@ export class ToDoViewComponent {
   changeFilter(filterType: any) {
     this.toDoService.currentFilter = filterType;
   }
+  saveEditView(data: { value: string; id: number }) {
+    this.toDoService.editedTask(data.value, data.id);
+  }
 }

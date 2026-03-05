@@ -17,10 +17,10 @@ export class ToDoService {
     const id = Date.now();
     const isDone = false;
 
-    if (task) {
-      this.tasks.push({ id: id, name: task, isDone: isDone, isEdit: false });
-      this.saveToStorage();
-    }
+    if (!task.trim()) return;
+
+    this.tasks.push({ id: id, name: task, isDone: isDone, isEdit: false });
+    this.saveToStorage();
   }
   delTask(id: number) {
     this.tasks = this.tasks.filter((task) => task.id !== id);

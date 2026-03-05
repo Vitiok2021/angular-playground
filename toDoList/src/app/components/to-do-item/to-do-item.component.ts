@@ -9,12 +9,16 @@ import { ToDoService } from '../../services/to-do.service';
   styleUrl: './to-do-item.component.css',
 })
 export class ToDoItemComponent {
-  toDoServiceTasks = inject(ToDoService);
-
   @Input() toDoItem!: Task;
   @Output() delBtn = new EventEmitter<number>();
 
   @Output() togChk = new EventEmitter<number>();
+
+  @Output() saveEdit = new EventEmitter<{ value: string; id: number }>();
+
+  saveEdited(value: string, id: number) {
+    this.saveEdit.emit({ value, id });
+  }
 
   delTask(id: number) {
     this.delBtn.emit(id);
@@ -25,10 +29,7 @@ export class ToDoItemComponent {
   editTask() {
     this.toDoItem.isEdit = true;
   }
-  saveEdited(value: string, id: number) {
-    this.toDoServiceTasks.editedTask(value, id);
-    this.toDoItem.isEdit = false;
-  }
+
   cancelEdited() {
     this.toDoItem.isEdit = false;
   }
