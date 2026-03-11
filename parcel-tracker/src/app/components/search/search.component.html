@@ -1,4 +1,15 @@
 <div class="container">
   <input type="text" [(ngModel)]="inpValue" />
   <button (click)="onSearch()">Search</button>
+  @if (parcelData) {
+    <div class="list">
+      <h3>{{ parcelData.title }}</h3>
+    </div>
+  }
+  @if (errorMessage) {
+    <p style="color: red">{{ errorMessage }}</p>
+  }
+  @if (isLoading) {
+    <p class="loading-text">Ваша посилка шукається...</p>
+  }
 </div>
