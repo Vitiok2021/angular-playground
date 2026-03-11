@@ -1,0 +1,5 @@
+.active-link {
+  color: #60a5fa !important; /* Світло-синій колір для активного пункту */
+  font-weight: bold;
+  border-bottom: 2px solid #60a5fa;
+}

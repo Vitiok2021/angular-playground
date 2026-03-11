@@ -1,2 +1,24 @@
-<app-search></app-search>
-<router-outlet />
+<nav style="padding: 20px; background: #1f2937; display: flex; gap: 15px">
+  <a
+    routerLink="/home"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    style="color: white; text-decoration: none"
+    >Головна</a
+  >
+  <a
+    routerLink="/tracking"
+    routerLinkActive="active-link"
+    style="color: white; text-decoration: none"
+    >Трекінг посилки</a
+  >
+  <a
+    routerLink="/about"
+    routerLinkActive="active-link"
+    style="color: white; text-decoration: none"
+    >Про нас</a
+  >
+</nav>
+<main style="padding: 20px">
+  <router-outlet />
+</main>
