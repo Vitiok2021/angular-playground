@@ -4,6 +4,13 @@
   @if (parcelData) {
     <div class="list">
       <h3>{{ parcelData.title }}</h3>
+      <div class="status">
+        @if (parcelData.completed) {
+          <b style="color: green">Отримано</b>
+        } @else {
+          <b style="color: orange">В дорозі</b>
+        }
+      </div>
     </div>
   }
   @if (errorMessage) {
