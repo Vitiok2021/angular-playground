@@ -1,11 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TrackingService } from '../../services/tracking.service';
 import { Parcel } from '../../interfaces/search';
+import { ParcelCardComponent } from '../parcel-card/parcel-card.component';
 
 @Component({
   selector: 'app-search',
-  imports: [FormsModule],
+  imports: [FormsModule, ParcelCardComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css',
 })
@@ -15,6 +16,7 @@ export class SearchComponent {
   parcelData: Parcel | null = null;
   errorMessage: string = '';
   isLoading: boolean = false;
+
   onSearch() {
     if (!this.inpValue.trim()) return;
     this.isLoading = true;
@@ -33,5 +35,8 @@ export class SearchComponent {
         this.errorMessage = 'Посилку не знайдено';
       },
     });
+  }
+  delFromDad(id: number) {
+    this.parcelData = null;
   }
 }

@@ -2,16 +2,10 @@
   <input type="text" [(ngModel)]="inpValue" />
   <button (click)="onSearch()">Search</button>
   @if (parcelData) {
-    <div class="list">
-      <h3>{{ parcelData.title }}</h3>
-      <div class="status">
-        @if (parcelData.completed) {
-          <b style="color: green">Отримано</b>
-        } @else {
-          <b style="color: orange">В дорозі</b>
-        }
-      </div>
-    </div>
+    <app-parcel-card
+      [parcelCard]="parcelData"
+      (deletedCard)="delFromDad($event)"
+    ></app-parcel-card>
   }
   @if (errorMessage) {
     <p style="color: red">{{ errorMessage }}</p>

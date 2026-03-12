@@ -1,0 +1,11 @@
+<div class="list">
+  <h3>{{ parcelCard.title }}</h3>
+  <div class="status">
+    @if (parcelCard.completed) {
+      <b style="color: green">Отримано</b>
+    } @else {
+      <b style="color: orange">В дорозі</b>
+    }
+  </div>
+  <button (click)="onDelete()">Delete</button>
+</div>
