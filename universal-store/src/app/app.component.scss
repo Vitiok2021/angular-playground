@@ -1,0 +1,9 @@
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  main {
+    flex-grow: 1;
+  }
+}

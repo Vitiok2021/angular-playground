@@ -1,2 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./assets/reset";
+@use "./assets/reset";
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --color-primary: #337ab7;
+  --color-accent: #f0ad4e;
+  --color-border: #e0e0e0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+[class*="__container"] {
+  padding-inline: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
