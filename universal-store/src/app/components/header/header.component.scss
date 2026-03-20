@@ -3,16 +3,9 @@
 
   &__container {
     padding-block: 20px;
-  }
-
-  &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    column-gap: 20px;
-    background-color: #d7cfec;
-    position: relative;
-    z-index: 5;
   }
 
   &__logo {
