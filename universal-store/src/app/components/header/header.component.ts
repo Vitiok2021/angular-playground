@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, Inject, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-header',
   imports: [],
@@ -9,7 +9,17 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isOpen = false;
 
+  constructor(
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document,
+  ) {}
+
   toggleMenu() {
     this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      this.renderer.addClass(this.document.body, 'menu-open');
+    } else {
+      this.renderer.removeClass(this.document.body, 'menu-open');
+    }
   }
 }
