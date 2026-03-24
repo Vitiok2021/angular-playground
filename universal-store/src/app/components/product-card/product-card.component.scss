@@ -1,0 +1,26 @@
+.product-card {
+  border-radius: 12px;
+  background-color: #fff;
+  &__image {
+    position: relative;
+  }
+
+  &__favorite {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 2;
+  }
+
+  &__title {
+  }
+
+  &__footer {
+  }
+
+  &__price {
+  }
+
+  &__add-to-cart {
+  }
+}
