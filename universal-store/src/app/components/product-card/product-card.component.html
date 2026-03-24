@@ -1,13 +1,13 @@
 <article class="product-card">
   <a href="#" class="product-card__image">
-    <img src="/img/products/easy-shiner.jpg" alt="card 01" />
+    <img [src]="prodCard.imageUrl" alt="{{ prodCard.title }}" />
   </a>
   <h3 class="product-card__title">
-    <a href="#" class="product-card__title-link">Easy Shiner</a>
+    <a href="#" class="product-card__title-link">{{ prodCard.title }}</a>
   </h3>
   <div class="product-card__footer">
     <div class="product-card__price">
-      {{ 170 | currency: "UAH" : "symbol-narrow" : "1.0-0" }}
+      {{ prodCard.price | currency: "UAH" : "symbol-narrow" : "1.0-0" }}
     </div>
     <button class="product-card__add-to-cart" aria-label="Додати в кошик">
       <svg
