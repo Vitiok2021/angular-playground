@@ -1,1 +1,9 @@
-<p>catalog works!</p>
+<section class="catalog">
+  <div class="catalog__container">
+    <div class="catalog__grid">
+      @for (product of fishingProducts | async; track product.id) {
+        <app-product-card [prodCard]="product"></app-product-card>
+      }
+    </div>
+  </div>
+</section>
