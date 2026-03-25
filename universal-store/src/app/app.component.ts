@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductService } from './services/product.service';
 import { ProductCard } from './interfaces/product-card';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -14,32 +17,13 @@ import { ProductCard } from './interfaces/product-card';
     FooterComponent,
     HeroComponent,
     ProductCardComponent,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  testProducts: ProductCard[] = [
-    {
-      id: 1,
-      title: 'Keitech Easy Shiner',
-      price: 170,
-      imageUrl: '/img/products/easy-shiner.jpg',
-      isFavorite: false,
-    },
-    {
-      id: 2,
-      title: 'Keitech Easy Shiner',
-      price: 190,
-      imageUrl: '/img/products/swing-impact.jpg',
-      isFavorite: false,
-    },
-    {
-      id: 3,
-      title: 'Reins G-Tail Saturn Micro',
-      price: 185,
-      imageUrl: '/img/products/saturn-micro.jpg',
-      isFavorite: false,
-    },
-  ];
+  productService = inject(ProductService);
+  fishingProducts: Observable<ProductCard[]> =
+    this.productService.getProducts();
 }
