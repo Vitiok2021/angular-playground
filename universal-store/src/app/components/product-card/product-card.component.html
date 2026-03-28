@@ -1,9 +1,13 @@
 <article class="product-card">
-  <a href="#" class="product-card__image">
+  <a [routerLink]="['/product', prodCard.id]" class="product-card__image">
     <img [src]="prodCard.imageUrl" alt="{{ prodCard.title }}" />
   </a>
   <h3 class="product-card__title">
-    <a href="#" class="product-card__title-link">{{ prodCard.title }}</a>
+    <a
+      [routerLink]="['/product', prodCard.id]"
+      class="product-card__title-link"
+      >{{ prodCard.title }}</a
+    >
   </h3>
   <div class="product-card__footer">
     <div class="product-card__price">
