@@ -12,4 +12,10 @@ export class ProductService {
       'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store',
     );
   }
+
+  getProduct(id: string) {
+    return this.http.get<ProductCard>(
+      `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store/${id}`,
+    );
+  }
 }
