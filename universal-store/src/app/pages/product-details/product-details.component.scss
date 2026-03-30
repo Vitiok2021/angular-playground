@@ -1,0 +1,94 @@
+.product-details {
+  padding: 2rem 1rem;
+  font-family: sans-serif;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    /* На комп'ютерах робимо 2 колонки */
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  &__images {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    /* Стилізуємо головне фото, яке лежить прямо всередині __images */
+    > img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      padding: 15px;
+    }
+  }
+
+  &__thumbnails {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 5px 0 10px 0;
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: #ff6b00;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    color: #222;
+    margin: 0 0 1rem 0;
+  }
+
+  &__descr {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1.5rem;
+    margin: 0;
+  }
+
+  /* Групуємо однакові стилі для характеристик */
+  &__length,
+  &__weight,
+  &__color {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    border-bottom: 1px dashed #ccc;
+    padding: 0.8rem 0;
+  }
+}
