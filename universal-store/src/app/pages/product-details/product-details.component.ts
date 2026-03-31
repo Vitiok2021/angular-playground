@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../interfaces/product-details';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,6 +13,7 @@ import { ProductDetails } from '../../interfaces/product-details';
 export class ProductDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   productService = inject(ProductService);
+  cartService = inject(CartService);
   product!: ProductDetails;
   currentMainImgUrl?: string;
   galleryImages: string[] = [];
@@ -30,5 +32,9 @@ export class ProductDetailsComponent implements OnInit {
   }
   setMainImage(url: string) {
     this.currentMainImgUrl = url;
+  }
+  onAddToCart() {
+    console.log('1. Кнопку натиснуто! Товар, який передаємо:', this.product);
+    this.cartService.addToCart(this.product);
   }
 }
