@@ -12,7 +12,7 @@ export class CartService {
   cartItems$ = this.cartItemsSubject.asObservable();
 
   addToCart(item: ProductDetails) {
-    console.log('2. Сервіс отримав команду! ID товару:', item?.id);
+    // console.log('2. Сервіс отримав команду! ID товару:', item?.id);
     const currentItems = this.cartItemsSubject.getValue();
 
     const existingItem = currentItems.find(
@@ -25,6 +25,6 @@ export class CartService {
       currentItems.push({ ...item, quantity: 1 });
     }
     this.cartItemsSubject.next(currentItems);
-    console.log('Кошик зараз:', currentItems);
+    // console.log('Кошик зараз:', currentItems);
   }
 }
