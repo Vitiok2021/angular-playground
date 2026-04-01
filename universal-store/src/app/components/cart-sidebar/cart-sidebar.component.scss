@@ -1,0 +1,82 @@
+/* 1. Темний фон позаду кошика */
+.cart-backdrop {
+  position: fixed; /* Приклеюємо до екрана */
+  top: 0;
+  left: 0;
+  width: 100vw; /* На всю ширину екрана */
+  height: 100vh; /* На всю висоту екрана */
+  background-color: rgba(0, 0, 0, 0.5); /* Чорний колір на 50% прозорий */
+  z-index: 999; /* Кладемо НАД усім сайтом */
+  animation: fadeIn 0.3s ease-out; /* Плавна поява фону */
+}
+
+/* 2. Сама виїзна панель */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0; /* Притискаємо до правого краю */
+  width: 350px; /* Ширина кошика */
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); /* Тінь зліва від панелі */
+  z-index: 1000; /* Кладемо НАД темним фоном (бо 1000 > 999) */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  /* Магія виїзду: беремо анімацію slideIn */
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Шапка кошика (щоб заголовок і хрестик були на одному рівні) */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+}
+
+/* Красивий хрестик */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #ff4757; /* Червоніє при наведенні */
+  }
+}
+
+/* --- ОПИС АНІМАЦІЙ --- */
+
+/* Як панель виїжджає справа */
+@keyframes slideIn {
+  from {
+    transform: translateX(
+      100%
+    ); /* На початку панель повністю схована за правим краєм (зсунута на 100% своєї ширини) */
+  }
+  to {
+    transform: translateX(0); /* В кінці повертається на своє нормальне місце */
+  }
+}
+
+/* Як з'являється темний фон */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

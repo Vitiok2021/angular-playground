@@ -31,4 +31,8 @@ export class HeaderComponent implements OnInit {
       this.totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
     });
   }
+
+  onToggleCart() {
+    this.cartService.toggleCart();
+  }
 }

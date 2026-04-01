@@ -8,6 +8,16 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class CartService {
+  private isCartOpenSubject = new BehaviorSubject<boolean>(false);
+  isCartOpen$ = this.isCartOpenSubject.asObservable();
+  toggleCart() {
+    let currentVal = this.isCartOpenSubject.getValue();
+
+    currentVal = !currentVal;
+
+    this.isCartOpenSubject.next(currentVal);
+  }
+
   private platformId = inject(PLATFORM_ID);
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
