@@ -1,14 +1,12 @@
-@if (isOpen) {
-  <div class="cart-backdrop" (click)="closeCart()"></div>
+<div class="cart-backdrop" (click)="closeCart()" [class.show]="isOpen"></div>
 
-  <div class="cart-sidebar">
-    <div class="cart-header">
-      <h2>Мій кошик</h2>
-      <button class="close-btn" (click)="closeCart()">✕</button>
-    </div>
-
-    <div class="cart-body">
-      <p>Тут будуть твої приманки...</p>
-    </div>
+<div class="cart-sidebar" [class.open]="isOpen">
+  <div class="cart-header">
+    <h2>Мій кошик</h2>
+    <button class="close-btn" (click)="closeCart()">✕</button>
   </div>
-}
+
+  <div class="cart-body">
+    <p>Тут будуть твої приманки...</p>
+  </div>
+</div>
