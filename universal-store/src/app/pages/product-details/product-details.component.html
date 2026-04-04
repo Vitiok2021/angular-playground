@@ -1,29 +1,25 @@
 <article class="product-details">
   <div class="product-details__container">
     <div class="product-details__images">
-      <img [src]="currentMainImgUrl" alt="{{ product?.title }}" />
+      <img [src]="currentMainImgUrl" alt="{{ product.title }}" />
       <div class="product-details__thumbnails">
         @for (image of galleryImages; track image) {
           <img
             [src]="image"
             (click)="setMainImage(image)"
-            alt="{{ product?.title }}"
+            alt="{{ product.title }}"
           />
         }
       </div>
     </div>
     <div class="product-details__body">
-      <h2 class="product-details__title">{{ product?.title }}</h2>
-      <p class="product-details__descr">{{ product?.details?.description }}</p>
+      <h2 class="product-details__title">{{ product.title }}</h2>
+      <p class="product-details__descr">{{ product.details.description }}</p>
       <p class="product-details__length">
-        Довжина - {{ product?.details?.length }}
+        Довжина - {{ product.details.length }}
       </p>
-      <p class="product-details__weight">
-        Вага - {{ product?.details?.weight }}
-      </p>
-      <p class="product-details__color">
-        Колір - {{ product?.details?.color }}
-      </p>
+      <p class="product-details__weight">Вага - {{ product.details.weight }}</p>
+      <p class="product-details__color">Колір - {{ product.details.color }}</p>
       <button class="product-details__btn" (click)="onAddToCart()">
         Add to cart
       </button>
