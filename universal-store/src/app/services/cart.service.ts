@@ -10,6 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class CartService {
   private isCartOpenSubject = new BehaviorSubject<boolean>(false);
   isCartOpen$ = this.isCartOpenSubject.asObservable();
+
   toggleCart() {
     let currentVal = this.isCartOpenSubject.getValue();
 
@@ -17,6 +18,10 @@ export class CartService {
 
     this.isCartOpenSubject.next(currentVal);
   }
+
+  private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
+
+  cartItems$ = this.cartItemsSubject.asObservable();
 
   private platformId = inject(PLATFORM_ID);
   constructor() {
@@ -28,10 +33,6 @@ export class CartService {
       }
     }
   }
-  private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
-
-  cartItems$ = this.cartItemsSubject.asObservable();
-
   addToCart(item: ProductDetails) {
     // console.log('2. Сервіс отримав команду! ID товару:', item?.id);
     const currentItems = this.cartItemsSubject.getValue();
@@ -47,6 +48,34 @@ export class CartService {
     }
     this.cartItemsSubject.next(currentItems);
     // console.log('Кошик зараз:', currentItems);
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('fishing_cart', JSON.stringify(currentItems));
+    }
+  }
+  removeFromCart(id: number) {
+    const currentItems = this.cartItemsSubject.getValue();
+
+    const filteredItems = currentItems.filter((item) => item.id !== id);
+    this.cartItemsSubject.next(filteredItems);
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('fishing_cart', JSON.stringify(filteredItems));
+    }
+  }
+  updateQuantity(id: number, delta: number) {
+    const currentItems = this.cartItemsSubject.getValue();
+
+    const item = currentItems.find((item) => item.id === id);
+    if (item) {
+      if (item.quantity == 1 && delta === -1) {
+        this.removeFromCart(id);
+        return;
+      } else {
+        item.quantity += delta;
+      }
+    }
+    this.cartItemsSubject.next(currentItems);
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('fishing_cart', JSON.stringify(currentItems));

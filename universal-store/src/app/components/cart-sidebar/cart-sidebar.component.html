@@ -8,7 +8,28 @@
 
   <div class="cart-body">
     @for (item of cartItems; track item.id) {
-      <div class="cart-item"></div>
+      <div class="cart-item">
+        <div class="cart-item__image">
+          <img [src]="item.imageUrl" alt="{{ item.title }}" />
+        </div>
+        <h3 class="cart-item__title">{{ item.title }}</h3>
+        <p class="cart-item__quantity">{{ item.quantity }}</p>
+        <p class="cart-item__price">{{ item.price }}</p>
+        <div class="cart-item__quantity-controls">
+          <button (click)="cartService.updateQuantity(item.id, -1)">-</button>
+
+          <span>{{ item.quantity }} шт.</span>
+
+          <button (click)="cartService.updateQuantity(item.id, 1)">+</button>
+        </div>
+
+        <button
+          class="cart-item__remove"
+          (click)="cartService.removeFromCart(item.id)"
+        >
+          Видалити
+        </button>
+      </div>
     } @empty {
       <div class="empty-cart">
         <p>Кошик порожній</p>
