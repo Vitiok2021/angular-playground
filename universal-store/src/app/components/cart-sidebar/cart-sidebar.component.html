@@ -7,6 +7,12 @@
   </div>
 
   <div class="cart-body">
-    <p>Тут будуть твої приманки...</p>
+    @for (item of cartItems; track item.id) {
+      <div class="cart-item"></div>
+    } @empty {
+      <div class="empty-cart">
+        <p>Кошик порожній</p>
+      </div>
+    }
   </div>
 </div>
