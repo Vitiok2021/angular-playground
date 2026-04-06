@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../interfaces/product-details';
 import { CartService } from '../../services/cart.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +14,7 @@ import { CartService } from '../../services/cart.service';
 export class ProductDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   productService = inject(ProductService);
+  notificationService = inject(NotificationService);
   cartService = inject(CartService);
   product!: ProductDetails;
   currentMainImgUrl?: string;
@@ -36,5 +38,6 @@ export class ProductDetailsComponent implements OnInit {
   onAddToCart() {
     console.log('1. Кнопку натиснуто! Товар, який передаємо:', this.product);
     this.cartService.addToCart(this.product);
+    this.notificationService.show('Товар додано!');
   }
 }
