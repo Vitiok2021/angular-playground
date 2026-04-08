@@ -81,4 +81,8 @@ export class CartService {
       localStorage.setItem('fishing_cart', JSON.stringify(currentItems));
     }
   }
+  clearCart() {
+    this.cartItemsSubject.next([]);
+    localStorage.setItem('fishing_cart', JSON.stringify([]));
+  }
 }

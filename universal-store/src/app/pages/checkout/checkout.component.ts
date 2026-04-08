@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
+import { NotificationService } from '../../services/notification.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   imports: [ReactiveFormsModule],
@@ -8,6 +11,10 @@ import { Validators } from '@angular/forms';
   styleUrl: './checkout.component.scss',
 })
 export class CheckoutComponent {
+  cartService = inject(CartService);
+  notificationService = inject(NotificationService);
+  router = inject(Router);
+
   checkoutForm = new FormGroup({
     name: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
@@ -19,6 +26,9 @@ export class CheckoutComponent {
   });
 
   onSubmit() {
-    console.log(this.checkoutForm.value);
+    this.cartService.clearCart();
+    this.checkoutForm.reset();
+    this.notificationService.show('Готово! Товар замовлено!');
+    this.router.navigate(['/']);
   }
 }
