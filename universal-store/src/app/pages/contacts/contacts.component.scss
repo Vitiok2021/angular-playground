@@ -1,0 +1,88 @@
+.contacts-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #2c3e50;
+
+  h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 40px;
+    font-size: 16px;
+  }
+}
+
+.contacts-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+
+  /* На телефонах колонки стануть одна під одною */
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contacts-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .info-block {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db; /* Синя смужка зліва для стилю */
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #34495e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin: 4px 0 0 0;
+      color: #555;
+      font-size: 16px;
+
+      a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.contacts-map {
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #bdc3c7;
+
+    span {
+      color: #7f8c8d;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
