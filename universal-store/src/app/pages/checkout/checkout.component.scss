@@ -1,0 +1,87 @@
+.checkout-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #2c3e50;
+    font-size: 24px;
+  }
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Відстань між блоками форми */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+    font-size: 14px;
+  }
+
+  input {
+    padding: 12px 16px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+
+    &:focus {
+      outline: none;
+      border-color: #3498db;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    /* Магія Angular: червона рамка, якщо поле з помилкою і юзер його вже клацав */
+    &.ng-invalid.ng-touched {
+      border-color: #e74c3c;
+    }
+
+    /* Магія Angular: зелена рамка, якщо поле заповнено правильно */
+    &.ng-valid.ng-touched {
+      border-color: #7b5dcf;
+    }
+  }
+}
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 16px;
+  background-color: #876fc7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:not(:disabled):hover {
+    background-color: #876fc7;
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+}

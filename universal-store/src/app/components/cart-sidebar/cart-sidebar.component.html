@@ -43,4 +43,9 @@
       </div>
     }
   </div>
+  @if (cartItems.length > 0) {
+    <button class="checkout-btn" (click)="goToCheckout()">
+      Перейти до оплати
+    </button>
+  }
 </div>

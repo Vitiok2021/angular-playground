@@ -1,1 +1,53 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <h2>Оформлення замовлення</h2>
+
+  <form
+    [formGroup]="checkoutForm"
+    (ngSubmit)="onSubmit()"
+    class="checkout-form"
+  >
+    <div class="form-group">
+      <label for="name">Ім'я:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Наприклад: Віктор"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="surname">Прізвище:</label>
+      <input
+        type="text"
+        id="surname"
+        formControlName="surname"
+        placeholder="Наприклад: Коваленко"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Телефон:</label>
+      <input
+        type="tel"
+        id="phone"
+        formControlName="phone"
+        placeholder="+38 (099) 000-00-00"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="example@mail.com"
+      />
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="!checkoutForm.valid">
+      Підтвердити замовлення
+    </button>
+  </form>
+</div>

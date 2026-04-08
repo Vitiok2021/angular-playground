@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-sidebar',
@@ -14,6 +15,8 @@ export class CartSidebarComponent implements OnInit {
 
   cartItems: CartItem[] = [];
 
+  router = inject(Router);
+
   ngOnInit(): void {
     this.cartService.isCartOpen$.subscribe((status) => (this.isOpen = status));
 
@@ -22,5 +25,10 @@ export class CartSidebarComponent implements OnInit {
 
   closeCart() {
     this.cartService.toggleCart();
+  }
+
+  goToCheckout() {
+    this.closeCart();
+    this.router.navigate(['/checkout']);
   }
 }
