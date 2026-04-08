@@ -23,6 +23,10 @@ export class CartService {
 
   cartItems$ = this.cartItemsSubject.asObservable();
 
+  getCartItems() {
+    return this.cartItemsSubject.getValue();
+  }
+
   private platformId = inject(PLATFORM_ID);
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
