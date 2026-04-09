@@ -2,14 +2,15 @@ import { Component, inject, Inject, OnInit, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  private cartService = inject(CartService);
+  cartService = inject(CartService);
   totalItems = 0;
   isOpen = false;
 
@@ -27,11 +28,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.cartService.cartItems$.subscribe((items) => {
-      this.totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-    });
-  }
+  ngOnInit(): void {}
 
   onToggleCart() {
     this.cartService.toggleCart();

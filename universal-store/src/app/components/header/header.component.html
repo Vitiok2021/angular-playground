@@ -45,8 +45,12 @@
           />
         </svg>
 
-        @if (totalItems > 0) {
-          <span class="cart-header__badge">{{ totalItems }}</span>
+        @if (cartService.totalItems$ | async; as total) {
+          @if (total > 0) {
+            <span class="cart-header__badge">{{
+              cartService.totalItems$ | async
+            }}</span>
+          }
         }
       </div>
       <span class="cart-header__text">Кошик</span>

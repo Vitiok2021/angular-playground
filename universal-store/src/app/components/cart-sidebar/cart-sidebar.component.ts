@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart-item';
 import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart-sidebar',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './cart-sidebar.component.html',
   styleUrl: './cart-sidebar.component.scss',
 })

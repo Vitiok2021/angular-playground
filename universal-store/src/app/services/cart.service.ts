@@ -1,5 +1,5 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { ProductDetails } from '../interfaces/product-details';
 import { CartItem } from '../interfaces/cart-item';
 import { isPlatformBrowser } from '@angular/common';
@@ -20,7 +20,6 @@ export class CartService {
   }
 
   private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
-
   cartItems$ = this.cartItemsSubject.asObservable();
 
   getCartItems() {
@@ -89,4 +88,13 @@ export class CartService {
     this.cartItemsSubject.next([]);
     localStorage.setItem('fishing_cart', JSON.stringify([]));
   }
+
+  totalPrice$ = this.cartItems$.pipe(
+    map((items) =>
+      items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    ),
+  );
+  totalItems$ = this.cartItems$.pipe(
+    map((items) => items.reduce((sum, item) => sum + item.quantity, 0)),
+  );
 }

@@ -43,6 +43,7 @@
       </div>
     }
   </div>
+  <p>Загальна сума: {{ cartService.totalPrice$ | async }} грн</p>
   @if (cartItems.length > 0) {
     <button class="checkout-btn" (click)="goToCheckout()">
       Перейти до оплати
