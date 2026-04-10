@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -10,11 +11,19 @@ import { FormsModule } from '@angular/forms';
 })
 export class AuthComponent {
   authService = inject(AuthService);
+  router = inject(Router);
 
   userName = '';
   userPassword = '';
 
   onSubmit() {
-    this.authService.login(this.userName, this.userPassword);
+    const isSuccess = this.authService.login(this.userName, this.userPassword);
+    if (isSuccess) {
+      this.router.navigate(['']);
+    } else {
+      alert('Логін не правильний');
+      this.userName = '';
+      this.userPassword = '';
+    }
   }
 }

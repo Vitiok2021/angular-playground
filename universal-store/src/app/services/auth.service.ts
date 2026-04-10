@@ -15,7 +15,9 @@ export class AuthService {
     if (user == currentUser && password == currentPassword) {
       this.isLogined.next(true);
       localStorage.setItem('isAdmin', JSON.stringify('true'));
-      console.log(this.isLogined.getValue());
+      return true;
+    } else {
+      return false;
     }
   }
   logout() {
