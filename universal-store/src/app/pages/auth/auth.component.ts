@@ -19,7 +19,7 @@ export class AuthComponent {
   onSubmit() {
     const isSuccess = this.authService.login(this.userName, this.userPassword);
     if (isSuccess) {
-      this.router.navigate(['']);
+      this.router.navigate(['dashBoard']);
     } else {
       alert('Логін не правильний');
       this.userName = '';

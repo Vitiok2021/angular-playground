@@ -49,4 +49,6 @@ export class ProductService {
       }),
     );
   }
+
+  addProduct(product: Omit<ProductDetails, 'id'>) {}
 }

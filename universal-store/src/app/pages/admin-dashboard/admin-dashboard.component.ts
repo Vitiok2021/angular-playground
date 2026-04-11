@@ -23,5 +23,13 @@ export class AdminDashboardComponent {
       packSize: new FormControl(''),
     }),
   });
-  onAdd() {}
+  onAdd() {
+    const rawData = this.dashboardForm.value;
+    const imagesArray = rawData.images ? rawData.images.split(',') : [];
+    const finalProduct = {
+      ...rawData,
+      images: imagesArray,
+    };
+    console.log(finalProduct);
+  }
 }
