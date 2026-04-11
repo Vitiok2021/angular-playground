@@ -50,5 +50,10 @@ export class ProductService {
     );
   }
 
-  addProduct(product: Omit<ProductDetails, 'id'>) {}
+  addProduct(product: Omit<ProductDetails, 'id'>) {
+    return this.http.post(
+      'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store',
+      product,
+    );
+  }
 }

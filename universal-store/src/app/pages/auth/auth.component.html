@@ -1,11 +1,18 @@
 <form class="login-container" (ngSubmit)="onSubmit()">
   <h2>Вхід в Адмінку</h2>
-  <input [(ngModel)]="userName" type="text" placeholder="Логін" name="name" />
+  <input
+    [(ngModel)]="userName"
+    type="text"
+    placeholder="Логін"
+    name="name"
+    autocomplete="username"
+  />
   <input
     [(ngModel)]="userPassword"
     type="password"
     placeholder="Пароль"
     name="pass"
+    autocomplete="current-password"
   />
   <button>Увійти</button>
 </form>

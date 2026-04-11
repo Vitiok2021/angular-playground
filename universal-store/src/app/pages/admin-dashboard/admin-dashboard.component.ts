@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
+import { ProductDetails } from '../../interfaces/product-details';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -8,10 +10,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './admin-dashboard.component.scss',
 })
 export class AdminDashboardComponent {
+  productService = inject(ProductService);
   dashboardForm = new FormGroup({
     title: new FormControl(''),
     price: new FormControl(''),
-    image: new FormControl(''),
+    imageUrl: new FormControl(''),
     isFavorite: new FormControl(false),
     images: new FormControl(''),
     details: new FormGroup({
@@ -29,7 +32,17 @@ export class AdminDashboardComponent {
     const finalProduct = {
       ...rawData,
       images: imagesArray,
-    };
-    console.log(finalProduct);
+    } as unknown as Omit<ProductDetails, 'id'>;
+    // console.log(finalProduct);
+    this.productService.addProduct(finalProduct).subscribe({
+      next: (response) => {
+        console.log('Успіх! Сервер відповів:', response);
+        this.dashboardForm.reset();
+        alert('Товар додано');
+      },
+      error: (err) => {
+        console.error('Помилка', err);
+      },
+    });
   }
 }
