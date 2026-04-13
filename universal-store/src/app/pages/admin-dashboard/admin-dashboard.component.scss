@@ -113,5 +113,5 @@ button {
   // Автоматично підбирає кількість колонок. Мінімальна ширина картки - 250px
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }

@@ -54,7 +54,11 @@
   @if (getAllProducts | async; as products) {
     <div class="catalog__grid">
       @for (product of products; track product.id) {
-        <app-product-card [prodCard]="product"></app-product-card>
+        <app-product-card
+          [prodCard]="product"
+          [isAdmin]="true"
+          (onDelete)="delProduct($event)"
+        ></app-product-card>
       }
     </div>
   } @else {

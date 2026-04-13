@@ -66,4 +66,17 @@ export class ProductService {
         }),
       );
   }
+  delProduct(id: string) {
+    const mainInfo$ = this.http.delete(
+      `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store/${id}`,
+    );
+
+    const extraInfo$ = this.http.delete(
+      `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/product-details/${id}`,
+    );
+    return forkJoin({
+      main: mainInfo$,
+      extra: extraInfo$,
+    });
+  }
 }

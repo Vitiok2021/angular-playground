@@ -5,6 +5,7 @@ import { ProductDetails } from '../../interfaces/product-details';
 import { ProductCard } from '../../interfaces/product-card';
 import { AsyncPipe } from '@angular/common';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { error } from 'console';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -59,4 +60,11 @@ export class AdminDashboardComponent {
   //     .subscribe((data) => (this.products = data));
   // }
   getAllProducts = this.productService.getProducts();
+
+  delProduct(id: string) {
+    this.productService.delProduct(id).subscribe({
+      next: () => (this.getAllProducts = this.productService.getProducts()),
+      error: (err) => console.error('Помилка', err),
+    });
+  }
 }

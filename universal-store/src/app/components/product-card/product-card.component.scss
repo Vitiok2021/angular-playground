@@ -9,29 +9,32 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   &__image {
     overflow: hidden;
     aspect-ratio: 16/9;
+
     img {
       transition: transform 0.3s ease 0s;
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
+
     @media (any-hover: hover) {
-      &:hover {
-        img {
-          transform: scale(1.01);
-        }
+      &:hover img {
+        transform: scale(1.05); // Зробив зум трохи помітнішим
       }
     }
   }
 
-  &__favorite {
+  // СПІЛЬНІ стилі для кнопок у правому верхньому куті (Сердечко / Редагувати)
+  &__favorite,
+  &__change {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(245, 245, 245, 0.7);
+    background-color: rgba(245, 245, 245, 0.7);
     border-radius: 5px;
     padding: 6px;
     position: absolute;
@@ -41,35 +44,60 @@
     transition:
       color 0.3s ease 0s,
       background-color 0.3s ease 0s;
+
     @media (any-hover: hover) {
       &:hover {
-        color: red;
-        background-color: rgb(245, 245, 245, 1);
+        background-color: rgba(245, 245, 245, 1);
       }
     }
   }
 
-  // &__title {
-  // }
-  &__title-link {
-    font-weight: 600;
-    font-size: 20px;
-    flex-grow: 1;
-    transition: color 0.3s ease 0s;
+  // ІНДИВІДУАЛЬНІ стилі при наведенні для верхніх кнопок
+  &__favorite {
+    @media (any-hover: hover) {
+      &:hover {
+        color: red;
+      }
+    }
+  }
+
+  &__change {
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none; // Скидаємо дефолтні бордери кнопок
     @media (any-hover: hover) {
       &:hover {
         color: orange;
       }
     }
   }
+
+  &__title {
+    margin: 0; // Скидаємо дефолтні відступи h3
+    flex-grow: 1; // Переніс сюди: саме блок заголовка має розтягуватись, відштовхуючи футер
+  }
+
+  &__title-link {
+    font-weight: 600;
+    font-size: 20px;
+    transition: color 0.3s ease 0s;
+    text-decoration: none; // На випадок, якщо посилання має підкреслення
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: orange;
+      }
+    }
+  }
+
   &__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: auto;
+    margin-top: auto; // Завдяки цьому і flex-grow у title, футер завжди прибитий до низу
   }
 
   &__price {
@@ -77,15 +105,37 @@
     font-size: 18px;
   }
 
-  &__add-to-cart {
+  // СПІЛЬНІ стилі для кнопок у футері (Кошик / Видалити)
+  &__add-to-cart,
+  &__del {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 6px;
     transition: color 0.3s ease 0s;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  // ІНДИВІДУАЛЬНІ стилі для нижніх кнопок
+  &__add-to-cart {
     @media (any-hover: hover) {
       &:hover {
         color: orange;
+      }
+    }
+  }
+
+  &__del {
+    color: #d32f2f; // Робимо кнопку видалення червоною, щоб сигналізувала про небезпеку
+    font-weight: 600;
+    font-size: 14px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: #b71c1c;
+        text-decoration: underline;
       }
     }
   }

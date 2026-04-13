@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ProductCard } from '../../interfaces/product-card';
 import { RouterLink } from '@angular/router';
@@ -11,4 +11,10 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductCardComponent {
   @Input() prodCard!: ProductCard;
+  @Input() isAdmin: boolean = false;
+
+  @Output() onDelete = new EventEmitter();
+  onDeleteProduct() {
+    this.onDelete.emit(this.prodCard.id);
+  }
 }
