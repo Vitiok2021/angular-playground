@@ -5,7 +5,7 @@ import {
   ProductCharacteristics,
   ProductDetails,
 } from '../interfaces/product-details';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin, map, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -51,9 +51,19 @@ export class ProductService {
   }
 
   addProduct(product: Omit<ProductDetails, 'id'>) {
-    return this.http.post(
-      'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store',
-      product,
-    );
+    const { details, ...mainInfo } = product;
+    return this.http
+      .post(
+        'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store',
+        mainInfo,
+      )
+      .pipe(
+        switchMap((response: any) => {
+          return this.http.post(
+            'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/product-details',
+            { details, id: response.id },
+          );
+        }),
+      );
   }
 }

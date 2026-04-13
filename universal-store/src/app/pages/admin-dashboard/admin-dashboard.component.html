@@ -50,3 +50,14 @@
     <button [disabled]="!dashboardForm.valid">Add</button>
   </div>
 </form>
+<div class="products__container">
+  @if (getAllProducts | async; as products) {
+    <div class="catalog__grid">
+      @for (product of products; track product.id) {
+        <app-product-card [prodCard]="product"></app-product-card>
+      }
+    </div>
+  } @else {
+    <div class="loader"></div>
+  }
+</div>

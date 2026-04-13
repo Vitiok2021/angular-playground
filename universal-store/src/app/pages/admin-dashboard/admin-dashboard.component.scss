@@ -92,3 +92,26 @@ button {
     }
   }
 }
+// Відділяємо список від форми зверху
+.products__container {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px dashed #e0e0e0;
+
+  // Стиль для тексту "Завантаження" (якщо сервер довго думає)
+  .loader {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 20px;
+  }
+}
+
+// Сітка для карток товарів
+.catalog__grid {
+  display: grid;
+  // Автоматично підбирає кількість колонок. Мінімальна ширина картки - 250px
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  align-items: start;
+}

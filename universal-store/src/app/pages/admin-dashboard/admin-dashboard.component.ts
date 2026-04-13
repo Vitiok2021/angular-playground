@@ -2,10 +2,13 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../interfaces/product-details';
+import { ProductCard } from '../../interfaces/product-card';
+import { AsyncPipe } from '@angular/common';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ProductCardComponent, AsyncPipe],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss',
 })
@@ -33,6 +36,9 @@ export class AdminDashboardComponent {
       ...rawData,
       images: imagesArray,
     } as unknown as Omit<ProductDetails, 'id'>;
+    const { details, ...mainInfo } = finalProduct;
+    // console.log('Основна інфа для першої бази:', mainInfo);
+    // console.log('Деталі для другої бази:', details);
     // console.log(finalProduct);
     this.productService.addProduct(finalProduct).subscribe({
       next: (response) => {
@@ -45,4 +51,12 @@ export class AdminDashboardComponent {
       },
     });
   }
+
+  // products: ProductCard[] = [];
+  // getAllProducts() {
+  //   this.productService
+  //     .getProducts()
+  //     .subscribe((data) => (this.products = data));
+  // }
+  getAllProducts = this.productService.getProducts();
 }
