@@ -69,7 +69,11 @@ button {
   background-color: #28a745;
   border: none;
   border-radius: 8px;
-
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: #1f9139;
+    }
+  }
   cursor: pointer;
   transition:
     opacity 0.3s ease,
@@ -85,11 +89,6 @@ button {
     background-color: #6c757d;
     cursor: not-allowed;
     opacity: 0.6;
-  }
-  @media (any-hover: hover) {
-    &:hover {
-      background-color: #1f9139;
-    }
   }
 }
 // Відділяємо список від форми зверху
@@ -114,4 +113,17 @@ button {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   align-items: stretch;
+}
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty {
+  border: 1px solid red;
+  outline-color: red; // Щоб при кліку рамка теж була червоною
+}
+
+// Трохи краси для самого тексту помилки
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
 }

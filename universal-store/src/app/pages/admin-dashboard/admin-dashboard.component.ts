@@ -1,11 +1,15 @@
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../interfaces/product-details';
 import { ProductCard } from '../../interfaces/product-card';
 import { AsyncPipe } from '@angular/common';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
-import { error } from 'console';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,23 +17,52 @@ import { error } from 'console';
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss',
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
   productService = inject(ProductService);
   dashboardForm = new FormGroup({
-    title: new FormControl(''),
-    price: new FormControl(''),
-    imageUrl: new FormControl(''),
+    category: new FormControl('rods'),
+    title: new FormControl('', Validators.required),
+    price: new FormControl('', [Validators.required, Validators.min(1)]),
+    imageUrl: new FormControl('', Validators.required),
     isFavorite: new FormControl(false),
-    images: new FormControl(''),
+    images: new FormControl('', Validators.required),
     details: new FormGroup({
-      description: new FormControl(''),
-      manufacturer: new FormControl(''),
-      length: new FormControl(''),
+      description: new FormControl('', Validators.required),
+      manufacturer: new FormControl('', Validators.required),
+      length: new FormControl('', Validators.required),
       weight: new FormControl(''),
-      color: new FormControl(''),
-      packSize: new FormControl(''),
+      color: new FormControl('', Validators.required),
+      packSize: new FormControl('', Validators.required),
     }),
   });
+  titleLength: number = 0;
+  ngOnInit(): void {
+    this.dashboardForm
+      .get('title')
+      ?.valueChanges.subscribe(
+        (value) => (this.titleLength = value?.length || 0),
+      );
+    this.dashboardForm
+      .get('category')
+      ?.valueChanges.subscribe((selectedCategory) => {
+        const weightCtrl = this.dashboardForm.get('details.weight');
+
+        switch (selectedCategory) {
+          case 'baits':
+            weightCtrl?.setValidators([Validators.required]);
+            break;
+          case 'rods':
+          case 'reels':
+            weightCtrl?.clearValidators();
+            break;
+          default:
+            weightCtrl?.clearValidators();
+            break;
+        }
+        weightCtrl?.updateValueAndValidity();
+      });
+  }
+
   onAdd() {
     const rawData = this.dashboardForm.value;
     const imagesArray = rawData.images ? rawData.images.split(',') : [];

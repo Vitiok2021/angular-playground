@@ -1,7 +1,21 @@
 <form [formGroup]="dashboardForm" (ngSubmit)="onAdd()">
   <div class="form-line">
+    <select formControlName="category">
+      <option value="rods">Вудилища</option>
+      <option value="baits">Приманки</option>
+      <option value="reels">Котушки</option>
+    </select>
+  </div>
+  <div class="form-line">
     <label for="title">Назва товару</label>
     <input type="text" id="title" formControlName="title" />
+    @if (
+      dashboardForm.get("title")?.invalid &&
+      (dashboardForm.get("title")?.touched || dashboardForm.get("title")?.dirty)
+    ) {
+      <small class="error-text">Це поле обов'язкове</small>
+    }
+    <small> {{ titleLength }}</small>
   </div>
   <div class="form-line">
     <label for="price">Ціна товару</label>
