@@ -23,11 +23,14 @@ export class AdminDashboardComponent implements OnInit {
     category: new FormControl('rods'),
     title: new FormControl('', Validators.required),
     price: new FormControl('', [Validators.required, Validators.min(1)]),
-    imageUrl: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^https?:\/\/.*/),
+    ]),
     isFavorite: new FormControl(false),
     images: new FormControl('', Validators.required),
     details: new FormGroup({
-      description: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.minLength(20)),
       manufacturer: new FormControl('', Validators.required),
       length: new FormControl('', Validators.required),
       weight: new FormControl(''),
@@ -36,6 +39,7 @@ export class AdminDashboardComponent implements OnInit {
     }),
   });
   titleLength: number = 0;
+  descrLength!: number;
   ngOnInit(): void {
     this.dashboardForm
       .get('title')
@@ -61,6 +65,11 @@ export class AdminDashboardComponent implements OnInit {
         }
         weightCtrl?.updateValueAndValidity();
       });
+    this.dashboardForm
+      .get('details.description')
+      ?.valueChanges.subscribe(
+        (value) => (this.descrLength = 20 - (value?.length || 0)),
+      );
   }
 
   onAdd() {
