@@ -46,6 +46,18 @@
       formControlName="images"
       placeholder="url1, url2..."
     />
+    @if (
+      dashboardForm.get("images")?.touched || dashboardForm.get("images")?.dirty
+    ) {
+      @if (dashboardForm.get("images")?.hasError("required")) {
+        <small class="error-text">Поле не може бути порожнім</small>
+      }
+      @if (dashboardForm.get("images")?.hasError("invalidLinks")) {
+        <small class="error-text"
+          >Одна або кілька адрес не починаються з http:// або https:</small
+        >
+      }
+    }
   </div>
   <div class="form-descr" formGroupName="details">
     <div class="form-line">
