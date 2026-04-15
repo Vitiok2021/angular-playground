@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -7,9 +8,22 @@ import {
 } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../interfaces/product-details';
-import { ProductCard } from '../../interfaces/product-card';
 import { AsyncPipe } from '@angular/common';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+
+function imagesUrlValidator(control: AbstractControl) {
+  const controlVal = control.value;
+  if (!controlVal) return null;
+
+  let controlArr = controlVal.split(',');
+  for (let link of controlArr) {
+    let cleanLink = link.trim();
+    if (!cleanLink.startsWith('http://') && !cleanLink.startsWith('https://')) {
+      return { invalidLinks: true };
+    }
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -28,7 +42,7 @@ export class AdminDashboardComponent implements OnInit {
       Validators.pattern(/^https?:\/\/.*/),
     ]),
     isFavorite: new FormControl(false),
-    images: new FormControl('', Validators.required),
+    images: new FormControl('', [Validators.required, imagesUrlValidator]),
     details: new FormGroup({
       description: new FormControl('', Validators.minLength(20)),
       manufacturer: new FormControl('', Validators.required),
