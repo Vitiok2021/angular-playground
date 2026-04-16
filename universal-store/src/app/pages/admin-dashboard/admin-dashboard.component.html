@@ -1,4 +1,4 @@
-<form [formGroup]="dashboardForm" (ngSubmit)="onAdd()">
+<form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
   <div class="form-line">
     <select formControlName="category">
       <option value="rods">Вудилища</option>
@@ -94,7 +94,11 @@
     </div>
   </div>
   <div class="form-line">
-    <button [disabled]="!dashboardForm.valid">Add</button>
+    @if (isEditing) {
+      <button [disabled]="!dashboardForm.valid">Edit</button>
+    } @else {
+      <button [disabled]="!dashboardForm.valid">Add</button>
+    }
   </div>
 </form>
 <div class="products__container">
@@ -105,6 +109,7 @@
           [prodCard]="product"
           [isAdmin]="true"
           (onDelete)="delProduct($event)"
+          (onEdited)="editProduct($event)"
         ></app-product-card>
       }
     </div>

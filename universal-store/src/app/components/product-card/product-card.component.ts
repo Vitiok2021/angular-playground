@@ -17,4 +17,9 @@ export class ProductCardComponent {
   onDeleteProduct() {
     this.onDelete.emit(this.prodCard.id);
   }
+
+  @Output() onEdited = new EventEmitter();
+  onEditProduct() {
+    this.onEdited.emit(this.prodCard);
+  }
 }

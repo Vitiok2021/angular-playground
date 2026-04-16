@@ -18,12 +18,6 @@ export class ProductService {
     );
   }
 
-  // getProduct(id: string) {
-  //   return this.http.get<ProductDetails>(
-  //     `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store/${id}`,
-  //   );
-  // }
-
   getProductFullInfo(id: string) {
     const mainInfo$ = this.http.get<ProductCard>(
       `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store/${id}`,
@@ -62,6 +56,22 @@ export class ProductService {
           return this.http.post(
             'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/product-details',
             { details, id: response.id },
+          );
+        }),
+      );
+  }
+  updateProduct(id: string, product: Omit<ProductDetails, 'id'>) {
+    const { details, ...mainInfo } = product;
+    return this.http
+      .put(
+        `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store/${id}`,
+        mainInfo,
+      )
+      .pipe(
+        switchMap((response: any) => {
+          return this.http.put(
+            `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/product-details/${id}`,
+            { details },
           );
         }),
       );

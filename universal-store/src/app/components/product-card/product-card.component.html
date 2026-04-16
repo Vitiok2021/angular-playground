@@ -34,7 +34,9 @@
     }
   </div>
   @if (isAdmin) {
-    <button class="product-card__change">Редагувати</button>
+    <button (click)="onEditProduct()" class="product-card__change">
+      Редагувати
+    </button>
   } @else {
     <button class="product-card__favorite" aria-label="Додати в улюблені">
       <svg

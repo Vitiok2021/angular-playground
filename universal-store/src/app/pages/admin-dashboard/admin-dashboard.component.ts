@@ -10,6 +10,8 @@ import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../interfaces/product-details';
 import { AsyncPipe } from '@angular/common';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCard } from '../../interfaces/product-card';
+import { response } from 'express';
 
 function imagesUrlValidator(control: AbstractControl) {
   const controlVal = control.value;
@@ -36,7 +38,10 @@ export class AdminDashboardComponent implements OnInit {
   dashboardForm = new FormGroup({
     category: new FormControl('rods'),
     title: new FormControl('', Validators.required),
-    price: new FormControl('', [Validators.required, Validators.min(1)]),
+    price: new FormControl<number | null>(null, [
+      Validators.required,
+      Validators.min(1),
+    ]),
     imageUrl: new FormControl('', [
       Validators.required,
       Validators.pattern(/^https?:\/\/.*/),
@@ -86,7 +91,7 @@ export class AdminDashboardComponent implements OnInit {
       );
   }
 
-  onAdd() {
+  onSubmit() {
     const rawData = this.dashboardForm.value;
     const imagesArray = rawData.images ? rawData.images.split(',') : [];
     const finalProduct = {
@@ -94,27 +99,32 @@ export class AdminDashboardComponent implements OnInit {
       images: imagesArray,
     } as unknown as Omit<ProductDetails, 'id'>;
     const { details, ...mainInfo } = finalProduct;
-    // console.log('Основна інфа для першої бази:', mainInfo);
-    // console.log('Деталі для другої бази:', details);
-    // console.log(finalProduct);
-    this.productService.addProduct(finalProduct).subscribe({
-      next: (response) => {
-        console.log('Успіх! Сервер відповів:', response);
-        this.dashboardForm.reset();
-        alert('Товар додано');
-      },
-      error: (err) => {
-        console.error('Помилка', err);
-      },
-    });
+
+    if (this.currentProductId) {
+      this.productService
+        .updateProduct(this.currentProductId.toString(), finalProduct)
+        .subscribe({
+          next: (response) => {
+            this.dashboardForm.reset();
+            alert('Товар оновлено');
+            this.isEditing = false;
+            this.currentProductId = null;
+          },
+        });
+    } else {
+      this.productService.addProduct(finalProduct).subscribe({
+        next: (response) => {
+          console.log('Успіх! Сервер відповів:', response);
+          this.dashboardForm.reset();
+          alert('Товар додано');
+        },
+        error: (err) => {
+          console.error('Помилка', err);
+        },
+      });
+    }
   }
 
-  // products: ProductCard[] = [];
-  // getAllProducts() {
-  //   this.productService
-  //     .getProducts()
-  //     .subscribe((data) => (this.products = data));
-  // }
   getAllProducts = this.productService.getProducts();
 
   delProduct(id: string) {
@@ -122,5 +132,24 @@ export class AdminDashboardComponent implements OnInit {
       next: () => (this.getAllProducts = this.productService.getProducts()),
       error: (err) => console.error('Помилка', err),
     });
+  }
+
+  isEditing: boolean = false;
+  currentProductId: number | null = null;
+  editProduct(product: ProductCard) {
+    this.isEditing = true;
+    this.currentProductId = product.id;
+    this.productService.getProductFullInfo(product.id.toString()).subscribe({
+      next: (fullProduct) => {
+        const imagesString = fullProduct.images
+          ? fullProduct.images.join(', ')
+          : '';
+        const { id, ...productData } = fullProduct;
+        this.dashboardForm.patchValue({ ...productData, images: imagesString });
+      },
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // let imageString = product.images ? product.images.join(', ') : '';
+    // this.dashboardForm.patchValue({ ...product, images: imageString });
   }
 }
