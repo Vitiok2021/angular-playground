@@ -11,7 +11,6 @@ import { ProductDetails } from '../../interfaces/product-details';
 import { AsyncPipe } from '@angular/common';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductCard } from '../../interfaces/product-card';
-import { response } from 'express';
 
 function imagesUrlValidator(control: AbstractControl) {
   const controlVal = control.value;
@@ -44,7 +43,7 @@ export class AdminDashboardComponent implements OnInit {
     ]),
     imageUrl: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^https?:\/\/.*/),
+      Validators.pattern(/^(https?:\/\/|\/img\/).*/),
     ]),
     isFavorite: new FormControl(false),
     images: new FormControl('', [Validators.required, imagesUrlValidator]),
