@@ -1,119 +1,129 @@
-<form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
-  <div class="form-line">
-    <select formControlName="category">
-      <option value="rods">Вудилища</option>
-      <option value="baits">Приманки</option>
-      <option value="reels">Котушки</option>
-    </select>
+<div class="dashboard__container">
+  <div class="dashboard-line">
+    <button class="dashboard__exit" (click)="onLogout()">Exit</button>
   </div>
-  <div class="form-line">
-    <label for="title">Назва товару</label>
-    <input type="text" id="title" formControlName="title" />
-    @if (
-      dashboardForm.get("title")?.invalid &&
-      (dashboardForm.get("title")?.touched || dashboardForm.get("title")?.dirty)
-    ) {
-      <small class="error-text">Це поле обов'язкове</small>
-    }
-    <small> {{ titleLength }}</small>
-  </div>
-  <div class="form-line">
-    <label for="price">Ціна товару</label>
-    <input type="number" id="price" formControlName="price" />
-    @if (
-      dashboardForm.get("price")?.invalid &&
-      (dashboardForm.get("price")?.touched || dashboardForm.get("price")?.dirty)
-    ) {
-      <small class="error-text">Ціна не може бути меншою за 1 грн</small>
-    }
-  </div>
-  <div class="form-line">
-    <label for="imageUrl">Картинка товару</label>
-    <input type="text" id="imageUrl" formControlName="imageUrl" />
-    @if (
-      dashboardForm.get("imageUrl")?.invalid &&
-      (dashboardForm.get("imageUrl")?.touched ||
-        dashboardForm.get("imageUrl")?.dirty)
-    ) {
-      <small class="error-text">Некоректна адреса</small>
-    }
-  </div>
-  <div class="form-line">
-    <label for="images">Додаткові картинки</label>
-    <input
-      type="text"
-      id="images"
-      formControlName="images"
-      placeholder="url1, url2..."
-    />
-    @if (
-      dashboardForm.get("images")?.touched || dashboardForm.get("images")?.dirty
-    ) {
-      @if (dashboardForm.get("images")?.hasError("required")) {
-        <small class="error-text">Поле не може бути порожнім</small>
-      }
-      @if (dashboardForm.get("images")?.hasError("invalidLinks")) {
-        <small class="error-text"
-          >Одна або кілька адрес не починаються з http:// або https:</small
-        >
-      }
-    }
-  </div>
-  <div class="form-descr" formGroupName="details">
+  <form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
     <div class="form-line">
-      <label for="description">Опис товару</label>
-      <textarea id="description" formControlName="description"></textarea>
-
+      <select formControlName="category">
+        <option value="rods">Вудилища</option>
+        <option value="baits">Приманки</option>
+        <option value="reels">Котушки</option>
+      </select>
+    </div>
+    <div class="form-line">
+      <label for="title">Назва товару</label>
+      <input type="text" id="title" formControlName="title" />
       @if (
-        dashboardForm.get("details.description")?.invalid &&
-        (dashboardForm.get("details.description")?.touched ||
-          dashboardForm.get("details.description")?.dirty)
+        dashboardForm.get("title")?.invalid &&
+        (dashboardForm.get("title")?.touched ||
+          dashboardForm.get("title")?.dirty)
       ) {
-        <small class="error-text">Залишилось {{ descrLength }} символів</small>
+        <small class="error-text">Це поле обов'язкове</small>
+      }
+      <small> {{ titleLength }}</small>
+    </div>
+    <div class="form-line">
+      <label for="price">Ціна товару</label>
+      <input type="number" id="price" formControlName="price" />
+      @if (
+        dashboardForm.get("price")?.invalid &&
+        (dashboardForm.get("price")?.touched ||
+          dashboardForm.get("price")?.dirty)
+      ) {
+        <small class="error-text">Ціна не може бути меншою за 1 грн</small>
       }
     </div>
     <div class="form-line">
-      <label for="manufacturer">Виробник товару</label>
-      <input type="text" id="manufacturer" formControlName="manufacturer" />
+      <label for="imageUrl">Картинка товару</label>
+      <input type="text" id="imageUrl" formControlName="imageUrl" />
+      @if (
+        dashboardForm.get("imageUrl")?.invalid &&
+        (dashboardForm.get("imageUrl")?.touched ||
+          dashboardForm.get("imageUrl")?.dirty)
+      ) {
+        <small class="error-text">Некоректна адреса</small>
+      }
     </div>
     <div class="form-line">
-      <label for="length">Довжина</label>
-      <input type="text" id="length" formControlName="length" />
+      <label for="images">Додаткові картинки</label>
+      <input
+        type="text"
+        id="images"
+        formControlName="images"
+        placeholder="url1, url2..."
+      />
+      @if (
+        dashboardForm.get("images")?.touched ||
+        dashboardForm.get("images")?.dirty
+      ) {
+        @if (dashboardForm.get("images")?.hasError("required")) {
+          <small class="error-text">Поле не може бути порожнім</small>
+        }
+        @if (dashboardForm.get("images")?.hasError("invalidLinks")) {
+          <small class="error-text"
+            >Одна або кілька адрес не починаються з http:// або https:</small
+          >
+        }
+      }
+    </div>
+    <div class="form-descr" formGroupName="details">
+      <div class="form-line">
+        <label for="description">Опис товару</label>
+        <textarea id="description" formControlName="description"></textarea>
+
+        @if (
+          dashboardForm.get("details.description")?.invalid &&
+          (dashboardForm.get("details.description")?.touched ||
+            dashboardForm.get("details.description")?.dirty)
+        ) {
+          <small class="error-text"
+            >Залишилось {{ descrLength }} символів</small
+          >
+        }
+      </div>
+      <div class="form-line">
+        <label for="manufacturer">Виробник товару</label>
+        <input type="text" id="manufacturer" formControlName="manufacturer" />
+      </div>
+      <div class="form-line">
+        <label for="length">Довжина</label>
+        <input type="text" id="length" formControlName="length" />
+      </div>
+      <div class="form-line">
+        <label for="weight">Вага товару</label>
+        <input type="text" id="weight" formControlName="weight" />
+      </div>
+      <div class="form-line">
+        <label for="color">Колір</label>
+        <input type="text" id="color" formControlName="color" />
+      </div>
+      <div class="form-line">
+        <label for="packSize">Кількість</label>
+        <input type="text" id="packSize" formControlName="packSize" />
+      </div>
     </div>
     <div class="form-line">
-      <label for="weight">Вага товару</label>
-      <input type="text" id="weight" formControlName="weight" />
+      @if (isEditing) {
+        <button [disabled]="!dashboardForm.valid">Edit</button>
+      } @else {
+        <button [disabled]="!dashboardForm.valid">Add</button>
+      }
     </div>
-    <div class="form-line">
-      <label for="color">Колір</label>
-      <input type="text" id="color" formControlName="color" />
-    </div>
-    <div class="form-line">
-      <label for="packSize">Кількість</label>
-      <input type="text" id="packSize" formControlName="packSize" />
-    </div>
-  </div>
-  <div class="form-line">
-    @if (isEditing) {
-      <button [disabled]="!dashboardForm.valid">Edit</button>
+  </form>
+  <div class="products__container">
+    @if (getAllProducts | async; as products) {
+      <div class="catalog__grid">
+        @for (product of products; track product.id) {
+          <app-product-card
+            [prodCard]="product"
+            [isAdmin]="true"
+            (onDelete)="delProduct($event)"
+            (onEdited)="editProduct($event)"
+          ></app-product-card>
+        }
+      </div>
     } @else {
-      <button [disabled]="!dashboardForm.valid">Add</button>
+      <div class="loader"></div>
     }
   </div>
-</form>
-<div class="products__container">
-  @if (getAllProducts | async; as products) {
-    <div class="catalog__grid">
-      @for (product of products; track product.id) {
-        <app-product-card
-          [prodCard]="product"
-          [isAdmin]="true"
-          (onDelete)="delProduct($event)"
-          (onEdited)="editProduct($event)"
-        ></app-product-card>
-      }
-    </div>
-  } @else {
-    <div class="loader"></div>
-  }
 </div>

@@ -1,4 +1,15 @@
 /* Загальний контейнер форми (можеш додати клас form-container на сам тег form, якщо хочеш) */
+.dashboard-line {
+  text-align: end;
+}
+.dashboard__exit {
+  background-color: #adb5bd;
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: #b37258;
+    }
+  }
+}
 form {
   max-width: 700px;
   margin: 40px auto;

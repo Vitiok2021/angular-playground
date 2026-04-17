@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  isLogined = new BehaviorSubject<boolean>(false);
+  isLogined = new BehaviorSubject<boolean>(
+    localStorage.getItem('isAdmin') === 'true',
+  );
   isLoggedIn$ = this.isLogined.asObservable();
 
   login(user: string, password: any) {
@@ -14,7 +16,7 @@ export class AuthService {
 
     if (user == currentUser && password == currentPassword) {
       this.isLogined.next(true);
-      localStorage.setItem('isAdmin', JSON.stringify('true'));
+      localStorage.setItem('isAdmin', 'true');
       return true;
     } else {
       return false;

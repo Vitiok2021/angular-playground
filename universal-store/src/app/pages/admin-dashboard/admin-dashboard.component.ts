@@ -11,6 +11,8 @@ import { ProductDetails } from '../../interfaces/product-details';
 import { AsyncPipe } from '@angular/common';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductCard } from '../../interfaces/product-card';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 function imagesUrlValidator(control: AbstractControl) {
   const controlVal = control.value;
@@ -33,7 +35,13 @@ function imagesUrlValidator(control: AbstractControl) {
   styleUrl: './admin-dashboard.component.scss',
 })
 export class AdminDashboardComponent implements OnInit {
+  authService = inject(AuthService);
   productService = inject(ProductService);
+  router = inject(Router);
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
+  }
   dashboardForm = new FormGroup({
     category: new FormControl('rods'),
     title: new FormControl('', Validators.required),
