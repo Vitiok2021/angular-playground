@@ -5,19 +5,34 @@ import {
   ProductCharacteristics,
   ProductDetails,
 } from '../interfaces/product-details';
-import { forkJoin, map, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   http = inject(HttpClient);
-  getProducts() {
-    return this.http.get<ProductCard[]>(
-      'https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store',
-    );
-  }
+  products$ = new BehaviorSubject<ProductCard[]>([]);
+  private allProducts: ProductCard[] = [];
 
+  getProducts() {
+    return this.http
+      .get<
+        ProductCard[]
+      >('https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store')
+      .pipe(
+        tap((receivedProducts) => {
+          this.allProducts = receivedProducts;
+          this.products$.next(this.allProducts);
+        }),
+      );
+  }
+  search(query: string) {
+    const filteredList = this.allProducts.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase()),
+    );
+    this.products$.next(filteredList);
+  }
   getProductFullInfo(id: string) {
     const mainInfo$ = this.http.get<ProductCard>(
       `https://69c3b999b780a9ba03e7b907.mockapi.io/fishing-store/fishing-store/${id}`,
