@@ -3,6 +3,7 @@ import { BehaviorSubject, map } from 'rxjs';
 import { ProductDetails } from '../interfaces/product-details';
 import { CartItem } from '../interfaces/cart-item';
 import { isPlatformBrowser } from '@angular/common';
+import { ProductCard } from '../interfaces/product-card';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,7 @@ export class CartService {
       }
     }
   }
-  addToCart(item: ProductDetails) {
+  addToCart(item: ProductCard) {
     // console.log('2. Сервіс отримав команду! ID товару:', item?.id);
     const currentItems = this.cartItemsSubject.getValue();
 
@@ -47,7 +48,7 @@ export class CartService {
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-      currentItems.push({ ...item, quantity: 1 });
+      currentItems.push({ ...item, quantity: 1 } as CartItem);
     }
     this.cartItemsSubject.next(currentItems);
     // console.log('Кошик зараз:', currentItems);

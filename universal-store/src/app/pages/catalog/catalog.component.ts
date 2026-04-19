@@ -5,6 +5,8 @@ import { ProductCardComponent } from '../../components/product-card/product-card
 import { ProductCard } from '../../interfaces/product-card';
 import { ProductService } from '../../services/product.service';
 import { HeroComponent } from '../../components/hero/hero.component';
+import { CartService } from '../../services/cart.service';
+import { ProductDetails } from '../../interfaces/product-details';
 
 @Component({
   selector: 'app-catalog',
