@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductCard } from '../../interfaces/product-card';
@@ -12,8 +12,13 @@ import { HeroComponent } from '../../components/hero/hero.component';
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss',
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
   productService = inject(ProductService);
-  fishingProducts: Observable<ProductCard[]> =
-    this.productService.getProducts();
+  // fishingProducts: Observable<ProductCard[]> =
+  //   this.productService.getProducts();
+  fishingProducts = this.productService.products$;
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe();
+  }
 }

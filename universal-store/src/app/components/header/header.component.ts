@@ -3,9 +3,10 @@ import { DOCUMENT } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, AsyncPipe],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe, SearchBarComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
