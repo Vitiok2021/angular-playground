@@ -7,6 +7,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', component: CatalogComponent },
@@ -14,6 +15,10 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'login', component: AuthComponent },
-  { path: 'dashBoard', component: AdminDashboardComponent },
+  {
+    path: 'dashBoard',
+    component: AdminDashboardComponent,
+    canActivate: [adminGuard],
+  },
   { path: 'checkout', component: CheckoutComponent, canActivate: [cartGuard] },
 ];
