@@ -8,6 +8,7 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { adminGuard } from './guards/admin.guard';
+import { checkoutExitGuard } from './guards/checkout-exit.guard';
 
 export const routes: Routes = [
   { path: '', component: CatalogComponent },
@@ -20,5 +21,10 @@ export const routes: Routes = [
     component: AdminDashboardComponent,
     canActivate: [adminGuard],
   },
-  { path: 'checkout', component: CheckoutComponent, canActivate: [cartGuard] },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [cartGuard],
+    canDeactivate: [checkoutExitGuard],
+  },
 ];
