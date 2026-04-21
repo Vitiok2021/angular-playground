@@ -35,6 +35,21 @@
       }
     }
   }
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  &__favorites {
+    color: #bba5f1;
+    transition: color 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
 }
 
 .menu-header {

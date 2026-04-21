@@ -42,7 +42,12 @@
       Редагувати
     </button>
   } @else {
-    <button class="product-card__favorite" aria-label="Додати в улюблені">
+    <button
+      class="product-card__favorite"
+      aria-label="Додати в улюблені"
+      (click)="addToFavorite(prodCard)"
+      [class.favorites]="isFavorites$ | async"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
