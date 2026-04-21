@@ -29,7 +29,11 @@
           <button class="product-details__btn" (click)="onAddToCart()">
             Add to cart
           </button>
-          <button class="product-details__favorite">
+          <button
+            (click)="addToFav(product)"
+            class="product-details__favorite"
+            [class.favor]="isFavorites$ | async"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
