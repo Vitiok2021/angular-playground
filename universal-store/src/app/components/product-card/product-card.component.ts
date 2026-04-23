@@ -29,7 +29,7 @@ export class ProductCardComponent implements OnInit {
 
   isFavorites$!: Observable<boolean>;
   ngOnInit(): void {
-    this.isFavorites$ = this.favoriteService.favorites.pipe(
+    this.isFavorites$ = this.favoriteService.favorites$.pipe(
       map((favoritesArray) => {
         const searchedItem = favoritesArray.find(
           (item: ProductCard) => item.id === this.prodCard.id,

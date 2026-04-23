@@ -8,7 +8,9 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class FavoriteService {
-  favorites = new BehaviorSubject<any>([]);
+  private _favorites = new BehaviorSubject<ProductCard[]>([]);
+  favorites$ = this._favorites.asObservable();
+
   private platformId = inject(PLATFORM_ID);
 
   constructor() {
@@ -16,13 +18,13 @@ export class FavoriteService {
       const savedItems = localStorage.getItem('favorites');
 
       if (savedItems) {
-        this.favorites.next(JSON.parse(savedItems));
+        this._favorites.next(JSON.parse(savedItems));
       }
     }
   }
 
   toggle(product: ProductCard) {
-    const currentFavorites = this.favorites.getValue();
+    const currentFavorites = this._favorites.getValue();
 
     const searchingFavorite = currentFavorites.find(
       (item: ProductCard) => item.id === product.id,
@@ -32,15 +34,15 @@ export class FavoriteService {
       const updatedArray = currentFavorites.filter(
         (item: ProductCard) => item.id !== product.id,
       );
-      this.favorites.next(updatedArray);
+      this._favorites.next(updatedArray);
     } else {
       currentFavorites.push(product);
-      this.favorites.next(currentFavorites);
+      this._favorites.next(currentFavorites);
     }
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(
         'favorites',
-        JSON.stringify(this.favorites.getValue()),
+        JSON.stringify(this._favorites.getValue()),
       );
     }
   }

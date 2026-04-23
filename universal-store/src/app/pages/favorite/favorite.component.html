@@ -1,1 +1,5 @@
-<p>favorite works!</p>
+<div class="favorites__container">
+  @for (item of favorites | async; track item.id) {
+    <app-product-card [prodCard]="item"></app-product-card>
+  }
+</div>

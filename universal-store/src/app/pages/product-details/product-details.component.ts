@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id')!;
-    console.log(productId);
+    // console.log(productId);
     this.productService.getProductFullInfo(productId).subscribe((data) => {
       // console.log(data);
       this.product = data;
@@ -38,10 +38,10 @@ export class ProductDetailsComponent implements OnInit {
         this.galleryImages = [data.imageUrl, ...data.images];
       }
     });
-    this.isFavorites$ = this.favoritesService.favorites.pipe(
+    this.isFavorites$ = this.favoritesService.favorites$.pipe(
       map((favArr) => {
         const searchedItem = favArr.find(
-          (item: ProductCard) => item.id === this.product.id,
+          (item: ProductCard) => item.id === this.product?.id,
         );
         if (searchedItem) {
           return true;

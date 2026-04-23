@@ -1,0 +1,7 @@
+.favorites__container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

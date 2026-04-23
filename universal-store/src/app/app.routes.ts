@@ -9,6 +9,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { adminGuard } from './guards/admin.guard';
 import { checkoutExitGuard } from './guards/checkout-exit.guard';
+import { FavoriteComponent } from './pages/favorite/favorite.component';
 
 export const routes: Routes = [
   { path: '', component: CatalogComponent },
@@ -26,5 +27,9 @@ export const routes: Routes = [
     component: CheckoutComponent,
     canActivate: [cartGuard],
     canDeactivate: [checkoutExitGuard],
+  },
+  {
+    path: 'favorites',
+    component: FavoriteComponent,
   },
 ];
