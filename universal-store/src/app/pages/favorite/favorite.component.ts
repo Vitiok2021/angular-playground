@@ -12,5 +12,7 @@ import { ProductCardComponent } from '../../components/product-card/product-card
 export class FavoriteComponent {
   favoriteService = inject(FavoriteService);
 
+  totalFavorites = 0;
+
   favorites = this.favoriteService.favorites$;
 }

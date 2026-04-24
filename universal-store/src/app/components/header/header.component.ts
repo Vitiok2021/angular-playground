@@ -4,6 +4,7 @@ import { CartService } from '../../services/cart.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { FavoriteService } from '../../services/favorite.service';
 @Component({
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive, AsyncPipe, SearchBarComponent],
@@ -12,7 +13,8 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 })
 export class HeaderComponent implements OnInit {
   cartService = inject(CartService);
-  totalItems = 0;
+  favoriteService = inject(FavoriteService);
+
   isOpen = false;
 
   constructor(

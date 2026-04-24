@@ -60,7 +60,16 @@
     </div>
     <div class="header__bottom">
       <app-search-bar></app-search-bar>
-      <a routerLink="favorites" class="header__favorites">Улюблені</a>
+      <div class="header__favorites">
+        @if (favoriteService.totalFavorites$ | async; as favorites) {
+          @if (favorites > 0) {
+            <span class="header__favorites-badge">
+              {{ favoriteService.totalFavorites$ | async }}
+            </span>
+          }
+        }
+        <a routerLink="favorites" class="header__favorites">Улюблені</a>
+      </div>
     </div>
   </div>
 </header>

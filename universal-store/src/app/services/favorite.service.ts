@@ -1,5 +1,5 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { ProductCard } from '../interfaces/product-card';
 import { platformBrowser } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
@@ -46,4 +46,6 @@ export class FavoriteService {
       );
     }
   }
+
+  totalFavorites$ = this.favorites$.pipe(map((items) => items.length));
 }
