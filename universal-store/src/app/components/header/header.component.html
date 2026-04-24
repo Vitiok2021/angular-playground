@@ -49,9 +49,7 @@
 
           @if (cartService.totalItems$ | async; as total) {
             @if (total > 0) {
-              <span class="cart-header__badge">{{
-                cartService.totalItems$ | async
-              }}</span>
+              <span class="cart-header__badge">{{ total }}</span>
             }
           }
         </div>
@@ -64,11 +62,11 @@
         @if (favoriteService.totalFavorites$ | async; as favorites) {
           @if (favorites > 0) {
             <span class="header__favorites-badge">
-              {{ favoriteService.totalFavorites$ | async }}
+              {{ favorites }}
             </span>
           }
         }
-        <a routerLink="favorites" class="header__favorites">Улюблені</a>
+        <a routerLink="favorites" class="header__favorites-link">Улюблені</a>
       </div>
     </div>
   </div>

@@ -41,15 +41,6 @@
     justify-content: space-between;
     gap: 20px;
   }
-  &__favorites {
-    color: #bba5f1;
-    transition: color 0.3s ease 0s;
-    @media (any-hover: hover) {
-      &:hover {
-        color: #ffffff;
-      }
-    }
-  }
 }
 
 .menu-header {
@@ -222,4 +213,42 @@
 }
 .active {
   color: var(--color-primary);
+}
+.header__favorites {
+  position: relative; /* Це якір для нашого бейджа */
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  &-link {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    transition: color 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        color: #bba5f1;
+      }
+    }
+  }
+  &-badge {
+    position: absolute;
+    top: -8px; /* Піднімаємо вище тексту */
+    right: -15px; /* Зсуваємо правіше */
+
+    background-color: #e74c3c; /* Червоний колір привертає увагу */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+
+    /* Робимо ідеальний кружечок */
+    height: 20px;
+    min-width: 20px;
+    border-radius: 10px;
+
+    /* Центруємо цифру всередині кружечка */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px; /* Щоб цифри типу "10+" не сплющувались */
+  }
 }
