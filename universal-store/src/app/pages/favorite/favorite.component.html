@@ -1,5 +1,7 @@
 <div class="favorites__container">
   @for (item of favorites | async; track item.id) {
     <app-product-card [prodCard]="item"></app-product-card>
+  } @empty {
+    <div class="favorites__empty">Улюблених товарів ще немає...</div>
   }
 </div>

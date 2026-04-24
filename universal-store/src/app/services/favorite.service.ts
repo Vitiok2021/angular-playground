@@ -36,8 +36,8 @@ export class FavoriteService {
       );
       this._favorites.next(updatedArray);
     } else {
-      currentFavorites.push(product);
-      this._favorites.next(currentFavorites);
+      const newCurrentFavorites = [...currentFavorites, product];
+      this._favorites.next(newCurrentFavorites);
     }
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(
