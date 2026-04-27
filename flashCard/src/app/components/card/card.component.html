@@ -1,10 +1,18 @@
 <div class="card__container">
-  <div class="card__line">
-    <label for="word">Word:</label>
-    <input type="text" />
-  </div>
-  <div class="card__line">
-    <label for="translate">Translation:</label>
-    <input type="text" />
-  </div>
+  <form
+    [formGroup]="cardForm"
+    action=""
+    class="card__form"
+    (ngSubmit)="onTranslate()"
+  >
+    <div class="card__line">
+      <label for="word">Word:</label>
+      <input type="text" id="word" formControlName="word" />
+    </div>
+    <div class="card__line">
+      <label for="translate">Translation:</label>
+      <input type="text" id="translate" formControlName="translate" />
+    </div>
+    <button>Translate</button>
+  </form>
 </div>
