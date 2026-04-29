@@ -14,8 +14,11 @@ import {
 })
 export class CardComponent {
   cardForm = new FormGroup({
-    word: new FormControl('', Validators.minLength(2)),
-    translate: new FormControl('', Validators.minLength(2)),
+    word: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    translate: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
   });
   onTranslate() {}
 }

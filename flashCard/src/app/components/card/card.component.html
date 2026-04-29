@@ -8,11 +8,12 @@
     <div class="card__line">
       <label for="word">Word:</label>
       <input type="text" id="word" formControlName="word" />
+      <!-- <p>стан {{ cardForm.get("word")?.value }}</p> -->
     </div>
     <div class="card__line">
       <label for="translate">Translation:</label>
       <input type="text" id="translate" formControlName="translate" />
     </div>
-    <button>Translate</button>
+    <button class="card__button" type="submit">Translate</button>
   </form>
 </div>
