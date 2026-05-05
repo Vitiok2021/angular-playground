@@ -10,6 +10,20 @@ import { FormsModule } from '@angular/forms';
 export class FormsExample {
   user = {
     name: '',
-    age: null,
+    age: null as number | null,
+    phones: [this.createPhone()],
   };
+
+  get phones() {
+    return this.user.phones;
+  }
+  createPhone() {
+    return {
+      type: '',
+      number: '',
+    };
+  }
+  addPhone() {
+    this.phones.push(this.createPhone());
+  }
 }

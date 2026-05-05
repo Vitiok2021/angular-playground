@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-forms-example-reactive',
@@ -8,6 +8,24 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './forms-example-reactive.scss',
 })
 export class FormsExampleReactive {
-  name = new FormControl();
-  age = new FormControl();
+  user = new FormGroup({
+    name: new FormControl(),
+    age: new FormControl(),
+    phones: new FormArray([this.createPhone()]),
+  });
+
+  get phones() {
+    return this.user.get('phones') as FormArray;
+  }
+
+  createPhone() {
+    return new FormGroup({
+      type: new FormControl(),
+      number: new FormControl(),
+    });
+  }
+
+  addPhone() {
+    this.phones.push(this.createPhone());
+  }
 }
