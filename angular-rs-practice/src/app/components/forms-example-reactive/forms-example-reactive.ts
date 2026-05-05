@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forms-example-reactive',
@@ -9,8 +9,8 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 })
 export class FormsExampleReactive {
   user = new FormGroup({
-    name: new FormControl(),
-    age: new FormControl(),
+    name2: new FormControl('', [Validators.required]),
+    age: new FormControl('', [Validators.required]),
     phones: new FormArray([this.createPhone()]),
   });
 

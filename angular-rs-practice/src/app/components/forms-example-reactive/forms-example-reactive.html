@@ -1,11 +1,11 @@
-<form class="my-form" [formGroup]="user">
+<form class="my-form-reactive" [formGroup]="user">
   <div class="my-form__line">
-    <label class="my-form__label" for="name">Name</label>
-    <input class="my-form__inp" name="name" id="name" formControlName="name" />
+    <label class="my-form__label" for="name2">Name</label>
+    <input class="my-form__inp" name="name2" id="name2" formControlName="name2" />
   </div>
   <div class="my-form__line">
-    <label class="my-form__label" for="age">Age</label>
-    <input class="my-form__inp" name="age" id="age" formControlName="age" />
+    <label class="my-form__label" isInteger for="age2">Age</label>
+    <input class="my-form__inp" name="age2" id="age2" formControlName="age" />
   </div>
   <h2 class="my-form__title">Contact info</h2>
   <div class="my-form__block" formArrayName="phones">
