@@ -1,18 +1,11 @@
 <form class="my-form">
   <div class="my-form__line">
     <label class="my-form__label" for="name">Name</label>
-    <input
-      class="my-form__inp"
-      name="name"
-      id="name"
-      [(ngModel)]="user.name"
-      required
-      appIsInteger
-    />
+    <input class="my-form__inp" name="name" id="name" [(ngModel)]="user.name" required />
   </div>
   <div class="my-form__line">
     <label class="my-form__label" for="age">Age</label>
-    <input class="my-form__inp" name="age" id="age" [(ngModel)]="user.age" required />
+    <input class="my-form__inp" appIsInteger name="age" id="age" [(ngModel)]="user.age" required />
   </div>
   <h2 class="my-form__title">Phone info</h2>
   <div class="my-form__block" ngModelGroup="phones">

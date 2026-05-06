@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import appIsInteger from '../../validators/is-integer-func';
 @Component({
   selector: 'app-forms-example-reactive',
   imports: [ReactiveFormsModule],
@@ -10,7 +10,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 export class FormsExampleReactive {
   user = new FormGroup({
     name2: new FormControl('', [Validators.required]),
-    age: new FormControl('', [Validators.required]),
+    age2: new FormControl('', [Validators.required, appIsInteger]),
     phones: new FormArray([this.createPhone()]),
   });
 
@@ -27,5 +27,6 @@ export class FormsExampleReactive {
 
   addPhone() {
     this.phones.push(this.createPhone());
+    console.log(this.phones);
   }
 }
