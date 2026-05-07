@@ -8,7 +8,6 @@ import {
   Validators,
 } from '@angular/forms';
 import appIsInteger from '../../validators/is-integer-func';
-import { IsIntegerValidator } from '../../validators/is-integer';
 @Component({
   selector: 'app-forms-example-builder',
   imports: [ReactiveFormsModule],
@@ -21,13 +20,13 @@ export class FormsExampleBuilder implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      age: ['', [Validators.required, IsIntegerValidator]],
-      phones: this.formBuilder.array([this.createPhone()]),
+      name3: ['', Validators.required],
+      age3: ['', [Validators.required, appIsInteger]],
+      phones3: this.formBuilder.array([this.createPhone()]),
     });
   }
-  get phones() {
-    return this.userForm.get('phones') as FormArray;
+  get phones3() {
+    return this.userForm.get('phones3') as FormArray;
   }
 
   createPhone() {
@@ -37,6 +36,6 @@ export class FormsExampleBuilder implements OnInit {
     });
   }
   addPhone() {
-    this.phones.push(this.createPhone());
+    this.phones3.push(this.createPhone());
   }
 }

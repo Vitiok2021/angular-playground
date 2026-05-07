@@ -1,15 +1,15 @@
 <form class="my-form-reactive" [formGroup]="userForm">
   <div class="my-form__line">
-    <label class="my-form__label" for="name2">Name</label>
-    <input class="my-form__inp" name="name2" id="name2" formControlName="name2" />
+    <label class="my-form__label" for="name3">Name</label>
+    <input class="my-form__inp" name="name3" id="name3" formControlName="name3" />
   </div>
   <div class="my-form__line">
-    <label class="my-form__label" for="age2">Age</label>
-    <input class="my-form__inp" appIsInteger name="age2" id="age2" formControlName="age2" />
+    <label class="my-form__label" for="age3">Age</label>
+    <input class="my-form__inp" name="age3" id="age3" formControlName="age3" />
   </div>
   <h2 class="my-form__title">Contact info</h2>
-  <div class="my-form__block" formArrayName="phones">
-    @for (phone of phones.controls; track $index) {
+  <div class="my-form__block" formArrayName="phones3">
+    @for (phone of phones3.controls; track $index) {
       <div formGroupName="{{ $index }}">
         <div class="my-form__line">
           <label class="my-form__label" for="type">Type</label>
