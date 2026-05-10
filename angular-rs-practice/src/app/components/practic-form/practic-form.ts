@@ -6,10 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
+import { Tooltip } from '../../directives/tooltip';
 @Component({
   selector: 'app-practic-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Tooltip],
   templateUrl: './practic-form.html',
   styleUrl: './practic-form.scss',
 })

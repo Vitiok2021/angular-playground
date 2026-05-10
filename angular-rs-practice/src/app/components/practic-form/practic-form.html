@@ -1,5 +1,5 @@
 <form [formGroup]="itemForm" (ngSubmit)="itemForm.valid && submit()">
   <input type="number" placeholder="id" formControlName="id" />
   <input type="text" placeholder="name" formControlName="name" />
-  <button type="submit">Send form</button>
+  <button type="submit" appTooltip>Send form</button>
 </form>
