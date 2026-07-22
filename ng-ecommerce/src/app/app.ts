@@ -7,6 +7,7 @@ import { Header } from './layout/header/header';
   imports: [RouterOutlet, Header],
   template: `
     <app-header />
+
     <router-outlet />
   `,
   styles: [],
