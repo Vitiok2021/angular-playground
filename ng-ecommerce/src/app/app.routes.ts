@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'products' },
+  { path: '', pathMatch: 'full', redirectTo: 'products/all' },
   {
-    path: 'products',
+    path: 'products/:category',
     loadComponent: () => import('./pages/products-grid/products-grid'),
   },
   {
