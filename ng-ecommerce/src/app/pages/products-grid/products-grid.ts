@@ -1,31 +1,42 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { Product } from '../../models/product';
-
+import { ProductCard } from '../../components/product-card/product-card';
+import { MatSidenavContainer, MatSidenavContent, MatSidenav } from '@angular/material/sidenav';
+import { MatNavList, MatListItem, MatListItemTitle } from '@angular/material/list';
 @Component({
   selector: 'app-products-grid',
-  imports: [],
+  imports: [
+    ProductCard,
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatSidenav,
+    MatNavList,
+    MatListItem,
+    MatListItemTitle,
+  ],
   template: `
-    <div class="bg-gray-100 p-6 h-full">
-      <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ category() }}</h1>
-      <div class="responsive-grid">
-        @for (product of filteredProducts(); track $index) {
-          <div
-            class="bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full"
-          >
-            <img
-              [src]="product.imageUrl"
-              alt=""
-              class="w-full h-[300px] object-cover rounded-t-xl"
-            />
-            <div class="p-5 flex flex-col flex-1">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
-                {{ product.name }}
-              </h3>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
+    <mat-sidenav-container>
+      <mat-sidenav mode="side" opened="true">
+        <div class="p-6">
+          <h2 class="text-lg text-gray-900">Categories</h2>
+          <mat-nav-list>
+            @for (category of categories(); track category) {
+              <mat-list-item class="my-2">
+                <span matListItemTitle>{{ category }}</span>
+              </mat-list-item>
+            }
+          </mat-nav-list>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content class="bg-gray-100 p-6 h-full">
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ category() }}</h1>
+        <div class="responsive-grid">
+          @for (product of filteredProducts(); track product.id) {
+            <app-product-card [product]="product"></app-product-card>
+          }
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   `,
   styles: ``,
 })
@@ -71,8 +82,114 @@ export default class ProductsGrid {
       inStock: true,
       category: 'electronics',
     },
+    {
+      id: '4',
+      name: 'Smart Coffee Maker',
+      description:
+        'Brew your perfect cup of coffee every morning with this Wi-Fi enabled smart coffee maker.',
+      price: 149.99,
+      imageUrl: 'https://picsum.photos/400/300?random=4',
+      rating: 4.6,
+      reviewCount: 245,
+      inStock: true,
+      category: 'home',
+    },
+    {
+      id: '5',
+      name: 'Air Purifier',
+      description:
+        'Advanced HEPA air purifier that captures 99.97% of airborne particles, perfect for bedrooms.',
+      price: 199.5,
+      imageUrl: 'https://picsum.photos/400/300?random=5',
+      rating: 4.8,
+      reviewCount: 156,
+      inStock: true,
+      category: 'home',
+    },
+    {
+      id: '6',
+      name: 'Robot Vacuum',
+      description:
+        'Smart robot vacuum cleaner with self-charging and strong suction for pet hair and hard floors.',
+      price: 249.0,
+      imageUrl: 'https://picsum.photos/400/300?random=6',
+      rating: 4.7,
+      reviewCount: 412,
+      inStock: true,
+      category: 'home',
+    },
+    {
+      id: '7',
+      name: 'Classic Cotton T-Shirt',
+      description: 'Comfortable and breathable 100% cotton t-shirt for everyday wear.',
+      price: 19.99,
+      imageUrl: 'https://picsum.photos/400/300?random=7',
+      rating: 4.5,
+      reviewCount: 320,
+      inStock: true,
+      category: 'clothing',
+    },
+    {
+      id: '8',
+      name: 'Vintage Denim Jacket',
+      description: 'Timeless blue denim jacket with a relaxed fit and durable stitching.',
+      price: 79.5,
+      imageUrl: 'https://picsum.photos/400/300?random=8',
+      rating: 4.8,
+      reviewCount: 115,
+      inStock: true,
+      category: 'clothing',
+    },
+    {
+      id: '9',
+      name: 'Running Sneakers',
+      description: 'Lightweight running shoes with responsive cushioning for your daily workouts.',
+      price: 110.0,
+      imageUrl: 'https://picsum.photos/400/300?random=9',
+      rating: 4.7,
+      reviewCount: 289,
+      inStock: true,
+      category: 'clothing',
+    },
+    {
+      id: '10',
+      name: 'Leather Minimalist Watch',
+      description: 'Elegant analog watch with a genuine leather strap and water resistance.',
+      price: 125.0,
+      imageUrl: 'https://picsum.photos/400/300?random=10',
+      rating: 4.9,
+      reviewCount: 450,
+      inStock: true,
+      category: 'accessories',
+    },
+    {
+      id: '11',
+      name: 'Polarized Aviator Sunglasses',
+      description:
+        'Classic aviator sunglasses with polarized lenses for UV protection and glare reduction.',
+      price: 45.99,
+      imageUrl: 'https://picsum.photos/400/300?random=11',
+      rating: 4.6,
+      reviewCount: 198,
+      inStock: true,
+      category: 'accessories',
+    },
+    {
+      id: '12',
+      name: 'Slim RFID Blocking Wallet',
+      description:
+        'Compact cardholder wallet with built-in RFID blocking technology to protect your data.',
+      price: 29.5,
+      imageUrl: 'https://picsum.photos/400/300?random=12',
+      rating: 4.8,
+      reviewCount: 612,
+      inStock: true,
+      category: 'accessories',
+    },
   ]);
-  filteredProducts = computed(() =>
-    this.products().filter((p) => p.category === this.category().toLowerCase()),
-  );
+  filteredProducts = computed(() => {
+    if (this.category() === 'all') return this.products();
+    return this.products().filter((p) => p.category === this.category().toLowerCase());
+  });
+  categories = signal<string[]>(['all', 'electronics', 'clothing', 'sccessories', 'home']);
 }
