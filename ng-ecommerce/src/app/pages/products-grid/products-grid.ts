@@ -1,8 +1,11 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductCard } from '../../components/product-card/product-card';
 import { MatSidenavContainer, MatSidenavContent, MatSidenav } from '@angular/material/sidenav';
 import { MatNavList, MatListItem, MatListItemTitle } from '@angular/material/list';
+import { RouterLink } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
+import { EcommerceStore } from '../../ecommerce.store';
 @Component({
   selector: 'app-products-grid',
   imports: [
@@ -13,6 +16,8 @@ import { MatNavList, MatListItem, MatListItemTitle } from '@angular/material/lis
     MatNavList,
     MatListItem,
     MatListItemTitle,
+    RouterLink,
+    TitleCasePipe,
   ],
   template: `
     <mat-sidenav-container>
@@ -20,18 +25,30 @@ import { MatNavList, MatListItem, MatListItemTitle } from '@angular/material/lis
         <div class="p-6">
           <h2 class="text-lg text-gray-900">Categories</h2>
           <mat-nav-list>
-            @for (category of categories(); track category) {
-              <mat-list-item class="my-2">
-                <span matListItemTitle>{{ category }}</span>
+            @for (cat of categories(); track cat) {
+              <mat-list-item
+                [activated]="cat === category()"
+                class="my-2"
+                [routerLink]="['/products', cat]"
+              >
+                <span
+                  matListItemTitle
+                  class="font-medium"
+                  [class]="cat === category() ? '!text-white' : null"
+                  >{{ cat | titlecase }}</span
+                >
               </mat-list-item>
             }
           </mat-nav-list>
         </div>
       </mat-sidenav>
       <mat-sidenav-content class="bg-gray-100 p-6 h-full">
-        <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ category() }}</h1>
+        <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ category() | titlecase }}</h1>
+        <p class="text-base text-gray-600 mb-6">
+          {{ store.filteredProducts().length }} products found
+        </p>
         <div class="responsive-grid">
-          @for (product of filteredProducts(); track product.id) {
+          @for (product of store.filteredProducts(); track product.id) {
             <app-product-card [product]="product"></app-product-card>
           }
         </div>
@@ -42,154 +59,11 @@ import { MatNavList, MatListItem, MatListItemTitle } from '@angular/material/lis
 })
 export default class ProductsGrid {
   category = input<string>('all');
-  products = signal<Product[]>([
-    {
-      id: '1',
-      name: 'Wireless Noise-Cancelling Headphones',
-      description:
-        'Premium wireless headphones with active noise cancellation and 30-hour battery life.',
-      price: 299.99,
-      imageUrl:
-        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80',
-      rating: 4.8,
-      reviewCount: 124,
-      inStock: true,
-      category: 'electronics',
-    },
-    {
-      id: '2',
-      name: 'Smart 4K UHD Television',
-      description:
-        'Immersive 4K visual experience with built-in smart home integration and voice control.',
-      price: 899.5,
-      imageUrl:
-        'https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=400&q=80',
-      rating: 4.7,
-      reviewCount: 312,
-      inStock: true,
-      category: 'electronics',
-    },
-    {
-      id: '3',
-      name: 'Professional Mirrorless Camera',
-      description:
-        'High-resolution sensor and advanced autofocus system for stunning photography and 4K video.',
-      price: 1250.0,
-      imageUrl:
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=400&q=80',
-      rating: 4.9,
-      reviewCount: 89,
-      inStock: true,
-      category: 'electronics',
-    },
-    {
-      id: '4',
-      name: 'Smart Coffee Maker',
-      description:
-        'Brew your perfect cup of coffee every morning with this Wi-Fi enabled smart coffee maker.',
-      price: 149.99,
-      imageUrl: 'https://picsum.photos/400/300?random=4',
-      rating: 4.6,
-      reviewCount: 245,
-      inStock: true,
-      category: 'home',
-    },
-    {
-      id: '5',
-      name: 'Air Purifier',
-      description:
-        'Advanced HEPA air purifier that captures 99.97% of airborne particles, perfect for bedrooms.',
-      price: 199.5,
-      imageUrl: 'https://picsum.photos/400/300?random=5',
-      rating: 4.8,
-      reviewCount: 156,
-      inStock: true,
-      category: 'home',
-    },
-    {
-      id: '6',
-      name: 'Robot Vacuum',
-      description:
-        'Smart robot vacuum cleaner with self-charging and strong suction for pet hair and hard floors.',
-      price: 249.0,
-      imageUrl: 'https://picsum.photos/400/300?random=6',
-      rating: 4.7,
-      reviewCount: 412,
-      inStock: true,
-      category: 'home',
-    },
-    {
-      id: '7',
-      name: 'Classic Cotton T-Shirt',
-      description: 'Comfortable and breathable 100% cotton t-shirt for everyday wear.',
-      price: 19.99,
-      imageUrl: 'https://picsum.photos/400/300?random=7',
-      rating: 4.5,
-      reviewCount: 320,
-      inStock: true,
-      category: 'clothing',
-    },
-    {
-      id: '8',
-      name: 'Vintage Denim Jacket',
-      description: 'Timeless blue denim jacket with a relaxed fit and durable stitching.',
-      price: 79.5,
-      imageUrl: 'https://picsum.photos/400/300?random=8',
-      rating: 4.8,
-      reviewCount: 115,
-      inStock: true,
-      category: 'clothing',
-    },
-    {
-      id: '9',
-      name: 'Running Sneakers',
-      description: 'Lightweight running shoes with responsive cushioning for your daily workouts.',
-      price: 110.0,
-      imageUrl: 'https://picsum.photos/400/300?random=9',
-      rating: 4.7,
-      reviewCount: 289,
-      inStock: true,
-      category: 'clothing',
-    },
-    {
-      id: '10',
-      name: 'Leather Minimalist Watch',
-      description: 'Elegant analog watch with a genuine leather strap and water resistance.',
-      price: 125.0,
-      imageUrl: 'https://picsum.photos/400/300?random=10',
-      rating: 4.9,
-      reviewCount: 450,
-      inStock: true,
-      category: 'accessories',
-    },
-    {
-      id: '11',
-      name: 'Polarized Aviator Sunglasses',
-      description:
-        'Classic aviator sunglasses with polarized lenses for UV protection and glare reduction.',
-      price: 45.99,
-      imageUrl: 'https://picsum.photos/400/300?random=11',
-      rating: 4.6,
-      reviewCount: 198,
-      inStock: true,
-      category: 'accessories',
-    },
-    {
-      id: '12',
-      name: 'Slim RFID Blocking Wallet',
-      description:
-        'Compact cardholder wallet with built-in RFID blocking technology to protect your data.',
-      price: 29.5,
-      imageUrl: 'https://picsum.photos/400/300?random=12',
-      rating: 4.8,
-      reviewCount: 612,
-      inStock: true,
-      category: 'accessories',
-    },
-  ]);
-  filteredProducts = computed(() => {
-    if (this.category() === 'all') return this.products();
-    return this.products().filter((p) => p.category === this.category().toLowerCase());
-  });
-  categories = signal<string[]>(['all', 'electronics', 'clothing', 'sccessories', 'home']);
+
+  store = inject(EcommerceStore);
+
+  categories = signal<string[]>(['all', 'electronics', 'clothing', 'accessories', 'home']);
+  constructor() {
+    this.store.setCategory(this.category);
+  }
 }
