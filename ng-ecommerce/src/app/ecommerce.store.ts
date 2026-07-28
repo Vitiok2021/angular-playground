@@ -10,11 +10,13 @@ import {
 } from '@ngrx/signals';
 import { produce } from 'immer';
 import { Toaster } from './services/toaster';
+import { CartItem } from './models/cart';
 
 export type EcommerceState = {
   products: Product[];
   category: string;
   wishlistItems: Product[];
+  cartItems: CartItem[];
 };
 
 export const EcommerceStore = signalStore(
@@ -168,13 +170,15 @@ export const EcommerceStore = signalStore(
     ],
     category: 'all',
     wishlistItems: [],
+    cartItems: [],
   } as EcommerceState),
-  withComputed(({ category, products, wishlistItems }) => ({
+  withComputed(({ category, products, wishlistItems, cartItems }) => ({
     filteredProducts: computed(() => {
       if (category() === 'all') return products();
       return products().filter((p) => p.category === category().toLowerCase());
     }),
     wishlistCount: computed(() => wishlistItems().length),
+    cartCount: computed(() => cartItems().length),
   })),
   withMethods((store, toaster = inject(Toaster)) => ({
     setCategory: signalMethod<string>((category: string) => {
@@ -197,6 +201,20 @@ export const EcommerceStore = signalStore(
     },
     clearWishlist: () => {
       patchState(store, { wishlistItems: [] });
+    },
+    addToCart: (product: Product, quantity = 1) => {
+      const existingItemIndex = store.cartItems().findIndex((i) => i.product.id === product.id);
+      const updateCartItems = produce(store.cartItems(), (draft) => {
+        if (existingItemIndex !== -1) {
+          draft[existingItemIndex].quantity += quantity;
+          return;
+        }
+        draft.push({ product, quantity });
+      });
+      patchState(store, { cartItems: updateCartItems });
+      toaster.success(
+        existingItemIndex !== -1 ? 'Product added again' : 'Product added to the cart',
+      );
     },
   })),
 );
