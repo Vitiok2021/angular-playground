@@ -13,7 +13,7 @@ import { MatIcon } from '@angular/material/icon';
       <img [src]="item().product.imageUrl" class="w-24 h-24 rounded-lg object-cover" />
       <div>
         <div class="text-gray-900 text-lg font-semibold">{{ item().product.name }}</div>
-        <div class="text-gray-600 text-lg ">$ {{ item().product.price }}</div>
+        <div class="text-gray-600 text-lg ">\${{ item().product.price }}</div>
       </div>
     </div>
     <app-qty-selector
@@ -21,14 +21,12 @@ import { MatIcon } from '@angular/material/icon';
       (qtyUpdated)="store.setItemQuantity({ productId: item().product.id, quantity: $event })"
     ></app-qty-selector>
     <div class="flex flex-col items-end">
-      <div class="text-right font-semibold text-lg">
-        {{ total() }}
-      </div>
+      <div class="text-right font-semibold text-lg">\${{ total() }}</div>
       <div class="flex -me-3">
-        <button matIconButton>
+        <button matIconButton (click)="store.moveToWishlist(item().product)">
           <mat-icon>favorite_border</mat-icon>
         </button>
-        <button matIconButton class="danger">
+        <button matIconButton class="danger" (click)="store.removeFromCart(item().product)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
