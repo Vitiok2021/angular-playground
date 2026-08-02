@@ -17,7 +17,7 @@ import { MatIcon } from '@angular/material/icon';
         </button>
         <div class="px-3">{{ quantity() }}</div>
         <button matIconButton (click)="qtyUpdated.emit(quantity() + 1)">
-          <mat-icon>remove</mat-icon>
+          <mat-icon>add</mat-icon>
         </button>
       </div>
     </div>
