@@ -21,7 +21,13 @@ import { EcommerceStore } from '../../ecommerce.store';
         <div>
           <app-summarize-order>
             <ng-container actionButtons>
-              <button class="w-full mt-6 py-3" matButton="filled">Proceed to Checkout</button>
+              <button
+                class="w-full mt-6 py-3"
+                matButton="filled"
+                (click)="store.proceedToCheckout()"
+              >
+                Proceed to Checkout
+              </button>
             </ng-container>
           </app-summarize-order>
         </div>
