@@ -24,7 +24,11 @@ import { MatIcon } from '@angular/material/icon';
       </div>
     }
   `,
-  styles: ``,
+  styles: `
+    :host {
+      display: block;
+    }
+  `,
 })
 export class StockStatus {
   inStock = input(false);

@@ -1,19 +1,31 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { Product } from '../../../models/product';
 import { TitleCasePipe } from '@angular/common';
 import { StockStatus } from '../stock-status/stock-status';
 import { QtySelector } from '../../../components/qty-selector/qty-selector';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ToggleWishlistButton } from '../../../components/toggle-wishlist-button/toggle-wishlist-button/toggle-wishlist-button';
+import { EcommerceStore } from '../../../ecommerce.store';
 
 @Component({
   selector: 'app-product-info',
-  imports: [TitleCasePipe, StockStatus, QtySelector],
+  imports: [
+    TitleCasePipe,
+    StockStatus,
+    QtySelector,
+    MatButton,
+    MatIcon,
+    ToggleWishlistButton,
+    MatIconButton,
+  ],
   template: `
     <div class="text-xs rounded-xl bg-gray-100 px-2 py-1 w-fit mb-2">
       {{ product().category | titlecase }}
     </div>
     <h1 class="text-2xl font-extrabold mb-3">{{ product().name }}</h1>
     <p class="text-3xl font-extrabold mb-4">{{ product().price }}</p>
-    <app-stock-status [inStock]="product().inStock"></app-stock-status>
+    <app-stock-status class="mb-4" [inStock]="product().inStock"></app-stock-status>
     <p class="font-semibold mb-2">Description</p>
     <div class="text-gray-600 border-b border-gray-200 pb-4">{{ product().description }}</div>
     <div class="flex items-center gap-2 mb-3 pt-4">
@@ -23,10 +35,26 @@ import { QtySelector } from '../../../components/qty-selector/qty-selector';
         (qtyUpdated)="quantity.set($event)"
       ></app-qty-selector>
     </div>
+    <div class="flex gap-4 mb border-b border-gray-200 pb-4">
+      <button
+        matButton="filled"
+        class="w-2/3 flex items-center gap-2"
+        (click)="store.addToCart(product(), quantity())"
+        [disabled]="!product().inStock"
+      >
+        <mat-icon> shopping_cart </mat-icon>
+        {{ product().inStock ? 'Add to Cart' : 'Out of Stock' }}
+      </button>
+      <app-toggle-wishlist-button [product]="product()"></app-toggle-wishlist-button>
+      <button matIconButton>
+        <mat-icon>share</mat-icon>
+      </button>
+    </div>
   `,
   styles: ``,
 })
 export class ProductInfo {
   product = input.required<Product>();
   quantity = signal(1);
+  store = inject(EcommerceStore);
 }
