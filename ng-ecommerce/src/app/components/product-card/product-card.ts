@@ -36,7 +36,7 @@ import { StarRating } from '../star-rating/star-rating';
           <button
             matButton="filled"
             class="flex items-center gap-2"
-            (click)="store.addToCart(product())"
+            (click)="$event.stopPropagation(); store.addToCart(product())"
           >
             <mat-icon>shopping_cart</mat-icon>
             Add to Cart

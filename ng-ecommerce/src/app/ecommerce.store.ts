@@ -19,6 +19,13 @@ import { Order } from './models/order';
 import { withStorageSync } from '@angular-architects/ngrx-toolkit';
 import { AddReviewParams, UserReview } from './models/user-review';
 
+if (typeof window === 'undefined') {
+  (globalThis as any).localStorage = {
+    getItem: () => null,
+    setItem: () => {},
+    removeItem: () => {},
+  };
+}
 export type EcommerceState = {
   products: Product[];
   category: string;
