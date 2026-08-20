@@ -4,10 +4,19 @@ import { FormsExample } from './components/forms-example/forms-example';
 import { FormsExampleReactive } from './components/forms-example-reactive/forms-example-reactive';
 import { FormsExampleBuilder } from './components/forms-example-builder/forms-example-builder';
 import { PracticForm } from './components/practic-form/practic-form';
+import { RxjsComp } from './examples/rxjs-comp/rxjs-comp';
+import { LocalComponent } from './components/local-component/local-component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsExample, FormsExampleReactive, FormsExampleBuilder, PracticForm],
+  imports: [
+    FormsExample,
+    FormsExampleReactive,
+    FormsExampleBuilder,
+    PracticForm,
+    RxjsComp,
+    LocalComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
