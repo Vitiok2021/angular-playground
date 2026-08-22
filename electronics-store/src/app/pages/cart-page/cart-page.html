@@ -1,0 +1,5 @@
+<div class="cart__container">
+  @for (item of cartStore.readCartItems(); track item.id) {
+    <app-cart-item [product]="item"></app-cart-item>
+  }
+</div>

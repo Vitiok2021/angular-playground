@@ -5,9 +5,10 @@ import { Product } from '../../product/models/product.interface';
   providedIn: 'root',
 })
 export class CartStore {
-  private readonly cartItems = signal<Product[]>([]);
-  readonly cartCount = computed(() => this.cartItems().length);
+  readonly #cartItems = signal<Product[]>([]);
+  readCartItems = this.#cartItems.asReadonly();
+  readonly cartCount = computed(() => this.#cartItems().length);
   addToCart(product: Product) {
-    this.cartItems.update((items) => [...items, product]);
+    this.#cartItems.update((items) => [...items, product]);
   }
 }

@@ -1,0 +1,10 @@
+<div class="cart-item">
+  <div class="cart-item__img-wrapper">
+    <img class="cart-item__img" [src]="product().image" [alt]="product().title" />
+  </div>
+  <div class="cart-item__content">
+    <span class="cart-item__price">{{ product().price }} $</span>
+    <h2 class="cart-item__title">{{ product().title }}</h2>
+  </div>
+  <button class="cart-item__btn" (click)="onDelete()">Delete</button>
+</div>
