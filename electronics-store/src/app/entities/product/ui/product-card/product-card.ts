@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Product } from '../../models/product.interface';
+import { CartStore } from '../../../cart/model/cart.store';
 
 @Component({
   selector: 'app-product-card',
@@ -9,4 +10,9 @@ import { Product } from '../../models/product.interface';
 })
 export class ProductCard {
   product = input.required<Product>();
+  cartStore = inject(CartStore);
+
+  onAddToCart() {
+    this.cartStore.addToCart(this.product());
+  }
 }
