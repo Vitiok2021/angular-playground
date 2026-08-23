@@ -8,6 +8,9 @@ export class CartStore {
   readonly #cartItems = signal<Product[]>([]);
   readCartItems = this.#cartItems.asReadonly();
   readonly cartCount = computed(() => this.#cartItems().length);
+
+  totalPrice = computed(() => this.#cartItems().reduce((acc, item) => acc + item.price, 0));
+
   addToCart(product: Product) {
     this.#cartItems.update((items) => [...items, product]);
   }
