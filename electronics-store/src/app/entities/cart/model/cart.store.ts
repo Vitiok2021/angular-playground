@@ -11,4 +11,7 @@ export class CartStore {
   addToCart(product: Product) {
     this.#cartItems.update((items) => [...items, product]);
   }
+  deleteFromCart(id: number) {
+    this.#cartItems.update((items) => items.filter((item) => item.id !== id));
+  }
 }

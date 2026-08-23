@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Product } from '../../../product/models/product.interface';
+import { CartStore } from '../../model/cart.store';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,7 +9,10 @@ import { Product } from '../../../product/models/product.interface';
   styleUrl: './cart-item.scss',
 })
 export class CartItem {
+  cartStore = inject(CartStore);
   product = input.required<Product>();
 
-  onDelete() {}
+  onDelete(id: number) {
+    this.cartStore.deleteFromCart(id);
+  }
 }
