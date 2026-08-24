@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { Product } from '../../product/models/product.interface';
 import { CartQuantity } from './cart.interface';
 
@@ -10,6 +10,14 @@ export class CartStore {
 
   readCartItems = this.#cartItems.asReadonly();
   readonly cartCount = computed(() => this.#cartItems().length);
+
+  constructor() {
+    const savedProducts = localStorage.getItem('products_localStorage');
+    if (savedProducts) this.#cartItems.set(JSON.parse(savedProducts));
+    effect(() => {
+      localStorage.setItem('products_localStorage', JSON.stringify(this.#cartItems()));
+    });
+  }
 
   totalPrice = computed(() =>
     this.#cartItems().reduce((acc, item) => acc + item.price * item.quantity, 0),
