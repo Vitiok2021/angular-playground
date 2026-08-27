@@ -8,12 +8,17 @@ export class ToastService {
   private readonly toasts = signal<Toast[]>([]);
 
   readonly toastsCopy = this.toasts.asReadonly();
+
   showMessage(message: string, type: 'success' | 'error' | 'info') {
+    const currentToast = this.toasts();
+    if (currentToast.some((toast) => toast.message === message)) {
+      return;
+    }
     const id = Date.now();
     this.toasts.update((currentToast) => [...currentToast, { id, message, type }]);
     setTimeout(() => {
       this.removeMessage(id);
-    }, 3000);
+    }, 2000);
   }
 
   removeMessage(id: number) {

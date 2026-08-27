@@ -1,0 +1,7 @@
+<div class="toast__container">
+  @for (item of toastService.toastsCopy(); track item.id) {
+    <div class="toast__message">
+      {{ item.message }}
+    </div>
+  }
+</div>
