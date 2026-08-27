@@ -3,6 +3,6 @@
     <app-cart-item [product]="item"></app-cart-item>
   }
   @if (cartStore.readCartItems().length) {
-    <div class="cart__summary">Total sum {{ cartStore.totalPrice() }}</div>
+    <div class="cart__summary">Total sum {{ cartStore.totalPrice() | currency }} $</div>
   }
 </div>

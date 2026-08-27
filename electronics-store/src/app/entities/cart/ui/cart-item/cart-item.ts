@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
-import { Product } from '../../../product/models/product.interface';
 import { CartStore } from '../../model/cart.store';
+import { CartQuantity } from '../../model/cart.interface';
 
 @Component({
   selector: 'app-cart-item',
@@ -10,9 +10,13 @@ import { CartStore } from '../../model/cart.store';
 })
 export class CartItem {
   cartStore = inject(CartStore);
-  product = input.required<Product>();
+  product = input.required<CartQuantity>();
 
   onDelete(id: number) {
     this.cartStore.deleteFromCart(id);
+  }
+  onDecrement() {}
+  onIncrement() {
+    this.cartStore.addToCart(this.product() as any);
   }
 }
