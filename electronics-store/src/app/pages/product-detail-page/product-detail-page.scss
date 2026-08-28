@@ -1,0 +1,38 @@
+.product-details {
+  &__container {
+  }
+
+  &__loading {
+  }
+
+  &__error {
+  }
+
+  &__content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  &__img-wrapper {
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+
+  &__category {
+  }
+
+  &__price {
+  }
+
+  &__title {
+  }
+
+  &__description {
+  }
+
+  &__btn {
+  }
+}

@@ -25,4 +25,7 @@ export class ApiService {
     }
     return this.http.get<Product[]>(environment.apiUrl);
   }
+  getProduct(id: number) {
+    return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`);
+  }
 }

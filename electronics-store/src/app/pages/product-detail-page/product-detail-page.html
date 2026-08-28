@@ -1,0 +1,20 @@
+<div class="product-details__container">
+  @if (isLoading()) {
+    <div class="product-details__loading">Products are loading...</div>
+  } @else if (error()) {
+    <div class="product-details__error">{{ error() }}</div>
+  } @else {
+    <div class="product-details__content">
+      <div class="product-details__img-wrapper">
+        <img class="product-details__img" [src]="product()?.image" [alt]="product()?.title" />
+      </div>
+      <div class="product-details__content">
+        <span class="product-details__category">{{ product()?.category }}</span>
+        <span class="product-details__price">{{ product()?.price }} $</span>
+        <h2 class="product-details__title">{{ product()?.title }}</h2>
+        <p class="product-details__description">{{ product()?.description }}</p>
+      </div>
+      <button class="product-details__btn" (click)="onAddToCart()">Add to Cart</button>
+    </div>
+  }
+</div>

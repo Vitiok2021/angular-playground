@@ -1,4 +1,4 @@
-<div class="product-card">
+<a [routerLink]="['/product', product().id]" class="product-card">
   <div class="product-card__img-wrapper">
     <img class="product-card__img" [src]="product().image" [alt]="product().title" />
   </div>
@@ -8,5 +8,5 @@
     <h2 class="product-card__title">{{ product().title }}</h2>
     <p class="product-card__description">{{ product().description }}</p>
   </div>
-  <button class="product-card__btn" (click)="onAddToCart()">Add to Cart</button>
-</div>
+  <button class="product-card__btn" (click)="onAddToCart($event)">Add to Cart</button>
+</a>
