@@ -15,7 +15,9 @@ export class CartItem {
   onDelete(id: number) {
     this.cartStore.deleteFromCart(id);
   }
-  onDecrement() {}
+  onDecrement(id: number) {
+    this.cartStore.decrementQuantity(id);
+  }
   onIncrement() {
     this.cartStore.addToCart(this.product() as any);
   }

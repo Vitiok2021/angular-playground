@@ -35,6 +35,17 @@ export class CartStore {
       }
     });
   }
+  decrementQuantity(id: number) {
+    this.#cartItems.update((items) => {
+      const findedItem = items.find((item) => item.id === id);
+      if (findedItem && findedItem.quantity > 1) {
+        return items.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+        );
+      }
+      return items.filter((item) => item.id !== id);
+    });
+  }
   deleteFromCart(id: number) {
     this.#cartItems.update((items) => items.filter((item) => item.id !== id));
   }
