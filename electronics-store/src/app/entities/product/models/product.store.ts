@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from '../../../shared/api/api.service';
 import { Product } from './product.interface';
+// import { delay } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,15 +14,19 @@ export class ProductStore {
 
   loadProducts() {
     this.isLoading.set(true);
-    this.api.getProducts().subscribe({
-      next: (data) => {
-        this.products.set(data);
-        this.isLoading.set(false);
-      },
-      error: (err) => {
-        console.log(err);
-        this.isLoading.set(false);
-      },
-    });
+    this.api
+      .getProducts()
+      // .pipe(delay(500))
+      .subscribe({
+        next: (data) => {
+          this.products.set(data);
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.log(err);
+          this.error.set(`Error: ${err.message}`);
+          this.isLoading.set(false);
+        },
+      });
   }
 }

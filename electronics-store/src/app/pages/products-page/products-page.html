@@ -1,5 +1,13 @@
 <div class="products__container">
-  @for (product of store.products(); track product.id) {
-    <app-product-card [product]="product"></app-product-card>
+  @if (store.isLoading()) {
+    <div class="products__loading">Products are loading...</div>
+  } @else if (store.error()) {
+    <div class="products__error">{{ store.error() }}</div>
+  } @else {
+    <div class="products__grid">
+      @for (product of store.products(); track product.id) {
+        <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
   }
 </div>
