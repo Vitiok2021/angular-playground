@@ -8,13 +8,13 @@
       <div class="product-details__img-wrapper">
         <img class="product-details__img" [src]="product()?.image" [alt]="product()?.title" />
       </div>
-      <div class="product-details__content">
+      <div class="product-details__info">
         <span class="product-details__category">{{ product()?.category }}</span>
         <span class="product-details__price">{{ product()?.price }} $</span>
         <h2 class="product-details__title">{{ product()?.title }}</h2>
         <p class="product-details__description">{{ product()?.description }}</p>
+        <button class="product-details__btn" (click)="onAddToCart()">Add to Cart</button>
       </div>
-      <button class="product-details__btn" (click)="onAddToCart()">Add to Cart</button>
     </div>
   }
 </div>
