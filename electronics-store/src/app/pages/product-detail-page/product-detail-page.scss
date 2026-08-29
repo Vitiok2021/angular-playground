@@ -1,6 +1,6 @@
 .product-details {
   &__container {
-    padding: 40px 15px;
+    padding: 60px 15px;
     display: flex;
     max-width: 1400px;
     margin: 0 auto;
@@ -26,18 +26,28 @@
 
   &__img-wrapper {
     flex: 0 0 200px;
+    overflow: hidden;
+    @media (any-hover: hover) {
+      &:hover {
+        img {
+          transform: scale(1.02);
+        }
+      }
+    }
   }
 
   &__img {
     max-width: 100%;
+    transition: transform 0.3s ease 0s;
   }
   &__info {
     display: flex;
     flex-direction: column;
-    row-gap: 12px;
+    row-gap: 16px;
     align-items: start;
   }
   &__category {
+    font-size: 14px;
     background-color: #e6e6e6;
     padding: 5px 10px;
     border-radius: 12px;
