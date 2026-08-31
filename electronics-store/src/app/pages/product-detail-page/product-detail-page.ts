@@ -1,8 +1,9 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { ApiService } from '../../shared/api/api.service';
 import { Product } from '../../entities/product/models/product.interface';
 import { CartStore } from '../../entities/cart/model/cart.store';
 import { ToastService } from '../../shared/ui/toast/toast.service';
+import { Favorite } from '../../entities/favorite/model/favorite.store';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -20,6 +21,15 @@ export class ProductDetailPage {
   apiService = inject(ApiService);
   cartStore = inject(CartStore);
   toastService = inject(ToastService);
+  favoriteStore = inject(Favorite);
+
+  isFavorite = computed(() => {
+    const currentProduct = this.product();
+    if (currentProduct) {
+      return this.favoriteStore.favoriteIds().includes(currentProduct.id);
+    }
+    return false;
+  });
 
   constructor() {
     effect(() => {
@@ -42,5 +52,10 @@ export class ProductDetailPage {
       this.cartStore.addToCart(currentProduct);
       this.toastService.showMessage('Added to Cart!', 'success');
     }
+  }
+  onAddToFav(event: Event, id: number) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.favoriteStore.toggleFavorite(id);
   }
 }

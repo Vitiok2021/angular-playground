@@ -27,6 +27,7 @@
   &__img-wrapper {
     flex: 0 0 200px;
     overflow: hidden;
+    position: relative;
     @media (any-hover: hover) {
       &:hover {
         img {
@@ -81,6 +82,21 @@
       &:hover {
         background-color: rgb(102, 102, 243);
       }
+    }
+  }
+  &__fav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ef4444;
+    svg {
+      width: 100%;
+      height: 100%;
     }
   }
 }
