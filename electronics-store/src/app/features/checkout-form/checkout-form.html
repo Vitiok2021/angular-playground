@@ -1,0 +1,35 @@
+<form [formGroup]="checkoutForm" class="checkout-form" (ngSubmit)="onSubmit()">
+  <div class="checkout-form__line">
+    <label for="name" class="checkout-form__label">Your name:</label>
+    <input
+      type="text"
+      class="checkout-form__input"
+      placeholder="Enter your name..."
+      formControlName="name"
+      id="name"
+    />
+  </div>
+  <div class="checkout-form__line">
+    <label for="phone" class="checkout-form__label">Your phone:</label>
+    <input
+      type="number"
+      class="checkout-form__input"
+      placeholder="Enter your phone..."
+      formControlName="phone"
+      id="phone"
+    />
+  </div>
+  <div class="checkout-form__line">
+    <label for="address" class="checkout-form__label">Your address:</label>
+    <input
+      type="text"
+      class="checkout-form__input"
+      placeholder="Enter your address..."
+      formControlName="address"
+      id="address"
+    />
+  </div>
+  <div class="checkout-form__line">
+    <button type="submit" class="checkout-form__btn" [disabled]="!checkoutForm.valid">Send</button>
+  </div>
+</form>

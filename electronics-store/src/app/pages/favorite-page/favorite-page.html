@@ -1,5 +1,9 @@
 <div class="favorite__container">
-  @for (product of favoriteProducts(); track product.id) {
-    <app-product-card [product]="product"></app-product-card>
+  @if (favoriteStore.favoritesCount() > 0) {
+    @for (product of favoriteProducts(); track product.id) {
+      <app-product-card [product]="product"></app-product-card>
+    }
+  } @else {
+    <div class="favorite__empty">Your favorite list is empty...</div>
   }
 </div>

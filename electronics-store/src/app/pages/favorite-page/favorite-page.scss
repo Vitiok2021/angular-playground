@@ -13,3 +13,8 @@
     grid-template-columns: auto;
   }
 }
+.favorite__empty {
+  text-align: center;
+  grid-column: 1 / -1;
+  font-size: 20px;
+}
