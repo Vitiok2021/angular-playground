@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CartStore } from '../../entities/cart/model/cart.store';
 
 @Component({
   selector: 'app-checkout-form',
@@ -8,11 +9,23 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './checkout-form.scss',
 })
 export class CheckoutForm {
+  cartStore = inject(CartStore);
   checkoutForm = new FormGroup({
     name: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
   });
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.checkoutForm.invalid) return;
+    const customerData = this.checkoutForm.getRawValue();
+
+    const items = this.cartStore.readCartItems();
+
+    const orderData = {
+      customer: customerData,
+      orderItems: items,
+    };
+    console.log(orderData);
+  }
 }
