@@ -27,5 +27,7 @@ export class CheckoutForm {
       orderItems: items,
     };
     console.log(orderData);
+    this.checkoutForm.reset();
+    this.cartStore.clearCartItems();
   }
 }

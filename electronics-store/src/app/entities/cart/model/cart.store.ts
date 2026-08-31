@@ -49,4 +49,7 @@ export class CartStore {
   deleteFromCart(id: number) {
     this.#cartItems.update((items) => items.filter((item) => item.id !== id));
   }
+  clearCartItems() {
+    this.#cartItems.set([]);
+  }
 }
