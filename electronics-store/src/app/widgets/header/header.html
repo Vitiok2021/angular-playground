@@ -21,7 +21,7 @@
       </ul>
     </nav>
     <div class="header__actions">
-      <a class="header__favorite"
+      <a class="header__favorite" [routerLink]="'/favorite'"
         >Favorite
         @if (favoriteStore.favoritesCount() > 0) {
           <sup>{{ favoriteStore.favoritesCount() }}</sup>

@@ -54,7 +54,25 @@
   }
 
   &__favorite {
+    position: relative;
+    padding-right: 15px;
     cursor: pointer;
+    sup {
+      position: absolute;
+      right: 0;
+      top: -10px;
+      background-color: #ef4444;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
   }
 
   &__cart {

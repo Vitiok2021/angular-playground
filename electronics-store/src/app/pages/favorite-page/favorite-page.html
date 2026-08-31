@@ -1,0 +1,5 @@
+<div class="favorite__container">
+  @for (product of favoriteProducts(); track product.id) {
+    <app-product-card [product]="product"></app-product-card>
+  }
+</div>
