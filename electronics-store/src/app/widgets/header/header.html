@@ -27,7 +27,13 @@
           <sup>{{ favoriteStore.favoritesCount() }}</sup>
         }
       </a>
-      <a class="header__cart" routerLink="/cart">Cart ({{ cartStore.cartCount() }})</a>
+
+      <a class="header__cart" routerLink="/cart"
+        >Cart
+        @if (cartStore.cartCount()) {
+          <span>{{ cartStore.cartCount() }}</span>
+        }
+      </a>
     </div>
   </div>
 </header>

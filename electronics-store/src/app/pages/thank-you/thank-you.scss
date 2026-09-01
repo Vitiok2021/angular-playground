@@ -1,0 +1,29 @@
+.thank {
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 15px;
+    text-align: center;
+  }
+
+  &__text {
+    font-size: 28px;
+    &:not(:last-child) {
+      margin-bottom: 60px;
+    }
+  }
+  &__btn {
+    background-color: #0000ff;
+    padding: 12px 18px;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #8181df;
+      }
+    }
+  }
+}

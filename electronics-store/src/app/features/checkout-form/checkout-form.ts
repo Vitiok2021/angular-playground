@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CartStore } from '../../entities/cart/model/cart.store';
 import { ApiService } from '../../shared/api/api.service';
 import { OrderPayload } from '../../entities/order/order.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-form',
@@ -13,6 +14,7 @@ import { OrderPayload } from '../../entities/order/order.model';
 export class CheckoutForm {
   readonly cartStore = inject(CartStore);
   readonly apiService = inject(ApiService);
+  readonly router = inject(Router);
   checkoutForm = new FormGroup({
     name: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
@@ -34,6 +36,7 @@ export class CheckoutForm {
         console.log('Відповідь сервера:', response);
         this.checkoutForm.reset();
         this.cartStore.clearCartItems();
+        this.router.navigate(['/thank-page']);
       },
       error: (err) => {
         console.error('Помилка', err);

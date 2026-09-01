@@ -76,5 +76,23 @@
   }
 
   &__cart {
+    position: relative;
+    padding-right: 15px;
+    span {
+      position: absolute;
+      right: 0;
+      top: -10px;
+      background-color: #0000ff;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
   }
 }
