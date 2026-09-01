@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Product } from '../../entities/product/models/product.interface';
 import { environment } from '../../../environments/environment';
 import { of } from 'rxjs';
+import { OrderPayload } from '../../entities/order/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,8 @@ export class ApiService {
   }
   getProduct(id: number) {
     return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`);
+  }
+  createOrder(payload: OrderPayload) {
+    return this.http.post('https://fakestoreapi.com/carts', payload);
   }
 }

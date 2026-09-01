@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartStore } from '../../entities/cart/model/cart.store';
+import { ApiService } from '../../shared/api/api.service';
+import { OrderPayload } from '../../entities/order/order.model';
 
 @Component({
   selector: 'app-checkout-form',
@@ -9,7 +11,8 @@ import { CartStore } from '../../entities/cart/model/cart.store';
   styleUrl: './checkout-form.scss',
 })
 export class CheckoutForm {
-  cartStore = inject(CartStore);
+  readonly cartStore = inject(CartStore);
+  readonly apiService = inject(ApiService);
   checkoutForm = new FormGroup({
     name: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
@@ -22,12 +25,21 @@ export class CheckoutForm {
 
     const items = this.cartStore.readCartItems();
 
-    const orderData = {
+    const orderData: OrderPayload = {
       customer: customerData,
       orderItems: items,
     };
+    this.apiService.createOrder(orderData).subscribe({
+      next: (response) => {
+        console.log('Відповідь сервера:', response);
+        this.checkoutForm.reset();
+        this.cartStore.clearCartItems();
+      },
+      error: (err) => {
+        console.error('Помилка', err);
+      },
+    });
+
     console.log(orderData);
-    this.checkoutForm.reset();
-    this.cartStore.clearCartItems();
   }
 }
