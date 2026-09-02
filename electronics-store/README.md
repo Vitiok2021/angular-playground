@@ -1,59 +1,21 @@
-# ElectronicsStore
+# Electronics Store - Angular MVP
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+A responsive e-commerce frontend application demonstrating modern Angular practices, reactive state management, and scalable architectural patterns.
 
-## Development server
+**Key Features**
 
-To start a local development server, run:
+- **Dynamic Catalog:** Product listing with a "Load More" pagination mechanism integrated with FakeStoreAPI.
+- **Reactive Cart:** Instant state updates, cart counter, and seamless UI transitions using NgRx SignalStore.
+- **Checkout Flow:** Order form validation using Angular Reactive Forms, mock POST request handling, and routing to a success page.
+- **Resilient UI:** Graceful error handling (e.g., 403 API responses) and reactive loading state indicators to prevent layout shifts.
 
-```bash
-ng serve
-```
+**Tech Stack**
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Core:** Angular (latest), TypeScript, RxJS
+- **State Management:** NgRx SignalStore
+- **Architecture:** Feature-Sliced Design (FSD)
+- **Styling:** SCSS / Tailwind CSS
+- **Deployment:** Vercel
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Live Demo**
+https://angular-playground-lt65yhx1h-viktorpts1vol-9781.vercel.app/
