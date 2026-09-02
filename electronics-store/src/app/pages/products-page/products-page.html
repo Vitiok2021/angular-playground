@@ -1,5 +1,5 @@
 <div class="products__container">
-  @if (store.isLoading()) {
+  @if (store.isLoading() && store.products().length === 0) {
     <div class="products__loading">Products are loading...</div>
   } @else if (store.error()) {
     <div class="products__error">{{ store.error() }}</div>
@@ -10,4 +10,11 @@
       }
     </div>
   }
+  <button
+    class="products__btn-more"
+    (click)="store.loadMore()"
+    [disabled]="store.products().length === 20"
+  >
+    Load more
+  </button>
 </div>

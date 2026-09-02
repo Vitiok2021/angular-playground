@@ -11,7 +11,7 @@ import { OrderPayload } from '../../entities/order/order.model';
 export class ApiService {
   http = inject(HttpClient);
 
-  getProducts() {
+  getProducts(limit: number) {
     if (environment.useMockData) {
       return of<Product[]>([
         {
@@ -24,7 +24,7 @@ export class ApiService {
         },
       ]);
     }
-    return this.http.get<Product[]>(environment.apiUrl);
+    return this.http.get<Product[]>(`${environment.apiUrl}?limit=${limit}`);
   }
   getProduct(id: number) {
     return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`);

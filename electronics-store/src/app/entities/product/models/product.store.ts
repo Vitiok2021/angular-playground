@@ -11,11 +11,12 @@ export class ProductStore {
   products = signal<Product[]>([]);
   isLoading = signal(false);
   error = signal<string | null>(null);
+  limit = signal(6);
 
   loadProducts() {
     this.isLoading.set(true);
     this.api
-      .getProducts()
+      .getProducts(this.limit())
       // .pipe(delay(500))
       .subscribe({
         next: (data) => {
@@ -28,5 +29,9 @@ export class ProductStore {
           this.isLoading.set(false);
         },
       });
+  }
+  loadMore() {
+    this.limit.update((current) => current + 6);
+    this.loadProducts();
   }
 }

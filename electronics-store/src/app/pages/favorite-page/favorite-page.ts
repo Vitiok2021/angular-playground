@@ -22,7 +22,7 @@ export class FavoritePage {
   });
 
   constructor() {
-    this.apiService.getProducts().subscribe({
+    this.apiService.getProducts(6).subscribe({
       next: (data) => {
         this.allProducts.set(data);
       },
