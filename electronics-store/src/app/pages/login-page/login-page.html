@@ -1,0 +1,30 @@
+<div class="login__container">
+  <h2 class="login__title">Authorized form</h2>
+  <form class="login__form form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-login__line">
+      <label for="username" class="form-login__label">Username</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        name="username"
+        placeholder="Enter your username..."
+        class="form-login__input"
+      />
+    </div>
+    <div class="form-login__line">
+      <label for="password" class="form-login__label"></label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        name="password"
+        placeholder="Enter your password..."
+        class="form-login__input"
+      />
+    </div>
+    <div class="form-login__line">
+      <button type="submit" class="form-login__btn">Send</button>
+    </div>
+  </form>
+</div>
