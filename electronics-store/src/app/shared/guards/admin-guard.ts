@@ -3,11 +3,10 @@ import { CanActivateFn, Router } from '@angular/router';
 
 export const adminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const isAdmin = localStorage.getItem('isAdmin');
+  const token = localStorage.getItem('token');
 
-  if (isAdmin === 'true') {
+  if (token) {
     return true;
   }
-
   return router.createUrlTree(['/login']);
 };

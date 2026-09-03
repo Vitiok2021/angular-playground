@@ -26,6 +26,8 @@ export class LoginPage {
       this.authService.login(this.loginForm.value as AuthPayload).subscribe({
         next: (response) => {
           console.log('Успіх!', response);
+          localStorage.setItem('token', (response as any).token);
+          this.router.navigate(['/admin']);
         },
         error: (err) => {
           console.error('Error', err);
