@@ -27,6 +27,7 @@ export class LoginPage {
         next: (response) => {
           console.log('Успіх!', response);
           localStorage.setItem('token', (response as any).token);
+          this.authService.isAuth.set(true);
           this.router.navigate(['/admin']);
         },
         error: (err) => {

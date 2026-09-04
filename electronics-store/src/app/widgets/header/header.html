@@ -21,19 +21,25 @@
       </ul>
     </nav>
     <div class="header__actions">
-      <a class="header__favorite" [routerLink]="'/favorite'"
+      <a class="header__favorite" routerLink="/favorite" routerLinkActive="active"
         >Favorite
         @if (favoriteStore.favoritesCount() > 0) {
           <sup>{{ favoriteStore.favoritesCount() }}</sup>
         }
       </a>
 
-      <a class="header__cart" routerLink="/cart"
+      <a class="header__cart" routerLink="/cart" routerLinkActive="active"
         >Cart
         @if (cartStore.cartCount()) {
           <span>{{ cartStore.cartCount() }}</span>
         }
       </a>
+      @if (authService.isAuth()) {
+        <a class="header__admin" routerLink="/admin" routerLinkActive="active">Admin</a>
+        <a class="header__logout" (click)="onLogout()">LogOut</a>
+      } @else {
+        <a class="header__login" routerLink="/login" routerLinkActive="active">LogIn</a>
+      }
     </div>
   </div>
 </header>

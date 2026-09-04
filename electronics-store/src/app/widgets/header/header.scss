@@ -57,6 +57,14 @@
     position: relative;
     padding-right: 15px;
     cursor: pointer;
+    transition: color 0.3s ease 0s;
+    font-size: 14px;
+    @media (any-hover: hover) {
+      &:hover {
+        color: blue;
+      }
+    }
+
     sup {
       position: absolute;
       right: 0;
@@ -73,11 +81,21 @@
       justify-content: center;
       padding: 2px;
     }
+    &.active {
+      color: blue;
+    }
   }
 
   &__cart {
     position: relative;
     padding-right: 15px;
+    transition: color 0.3s ease 0s;
+    font-size: 14px;
+    @media (any-hover: hover) {
+      &:hover {
+        color: blue;
+      }
+    }
     span {
       position: absolute;
       right: 0;
@@ -94,5 +112,25 @@
       justify-content: center;
       padding: 2px;
     }
+    &.active {
+      color: blue;
+    }
+  }
+  &__admin,
+  &__login,
+  &__logout {
+    transition: color 0.3s ease 0s;
+    font-size: 14px;
+    @media (any-hover: hover) {
+      &:hover {
+        color: blue;
+      }
+    }
+    &.active {
+      color: blue;
+    }
+  }
+  &__logout {
+    cursor: pointer;
   }
 }
