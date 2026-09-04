@@ -19,4 +19,15 @@ export class AdminPage implements OnInit {
       },
     });
   }
+
+  onDelete(id: number) {
+    this.apiService.deleteProduct(id).subscribe({
+      next: () => {
+        this.products.update((currentProduct) =>
+          currentProduct.filter((product) => product.id !== id),
+        );
+        // this.products.set(this.products().filter((product) => product.id !== id));
+      },
+    });
+  }
 }

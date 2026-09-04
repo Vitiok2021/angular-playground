@@ -32,4 +32,7 @@ export class ApiService {
   createOrder(payload: OrderPayload) {
     return this.http.post('https://fakestoreapi.com/carts', payload);
   }
+  deleteProduct(id: number) {
+    return this.http.delete(`https://fakestoreapi.com/products/${id}`);
+  }
 }
