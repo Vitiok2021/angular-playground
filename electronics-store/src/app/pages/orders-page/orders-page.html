@@ -1,0 +1,16 @@
+<div class="orders__container">
+  <a routerLink="/admin" class="orders__admin">Admin</a>
+  @for (order of orders(); track order.id) {
+    <div class="orders__item">
+      <div class="orders__id">{{ order.id }}</div>
+
+      <div class="orders__user-id">{{ order.userId }}</div>
+
+      <div class="orders__date">{{ order.date }}</div>
+      @for (product of order.products; track product.productId) {
+        <div class="orders__product-id">{{ product.productId }}</div>
+        <div class="orders__quantity">{{ product.quantity }}</div>
+      }
+    </div>
+  }
+</div>

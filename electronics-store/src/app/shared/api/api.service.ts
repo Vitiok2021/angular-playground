@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Product } from '../../entities/product/models/product.interface';
 import { environment } from '../../../environments/environment';
 import { of } from 'rxjs';
-import { OrderPayload } from '../../entities/order/order.model';
+import { OrderPayload, OrderResponse } from '../../entities/order/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +34,8 @@ export class ApiService {
   }
   deleteProduct(id: number) {
     return this.http.delete(`https://fakestoreapi.com/products/${id}`);
+  }
+  getOrders() {
+    return this.http.get<OrderResponse[]>('https://fakestoreapi.com/carts');
   }
 }

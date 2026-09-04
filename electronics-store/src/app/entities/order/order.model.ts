@@ -8,3 +8,10 @@ export interface OrderPayload {
   };
   orderItems: Product[];
 }
+
+export interface OrderResponse {
+  id: number;
+  userId: number;
+  date: string;
+  products: { productId: number; quantity: number }[];
+}

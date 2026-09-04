@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../shared/api/api.service';
 import { Product } from '../../entities/product/models/product.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
 })

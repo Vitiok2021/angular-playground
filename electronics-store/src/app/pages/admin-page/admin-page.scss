@@ -3,6 +3,14 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+.admin__orders {
+  transition: color 0.3s ease 0s;
+  margin-bottom: 30px;
+  display: inline-block;
+  &:hover {
+    color: blue;
+  }
+}
 
 .admin__table {
   width: 100%;
