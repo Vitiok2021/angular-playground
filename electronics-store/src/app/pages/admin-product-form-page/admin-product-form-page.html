@@ -1,0 +1,35 @@
+<div class="new-product__container">
+  <form [formGroup]="productForm" class="new-product__form" (ngSubmit)="onSubmit()">
+    <div class="new-product__line">
+      <label for="title" class="new-product__label">Title</label>
+      <input type="text" id="title" formControlName="title" class="new-product__input" />
+    </div>
+    <div class="new-product__line">
+      <label for="price" class="new-product__label">Price</label>
+      <input type="number" id="price" formControlName="price" class="new-product__input" />
+    </div>
+    <div class="new-product__line">
+      <label for="category" class="new-product__label">Category</label>
+      <input type="text" id="category" formControlName="category" class="new-product__input" />
+    </div>
+    <div class="new-product__line">
+      <label for="description" class="new-product__label">Description</label>
+      <input
+        type="text"
+        id="description"
+        formControlName="description"
+        class="new-product__input"
+      />
+    </div>
+    <div class="new-product__line">
+      <label for="image" class="new-product__label">Image</label>
+      <input type="text" id="image" formControlName="image" class="new-product__input" />
+    </div>
+
+    <div class="new-product__line">
+      <button class="new-product__btn" type="submit" [disabled]="productForm.invalid">
+        Save Product
+      </button>
+    </div>
+  </form>
+</div>

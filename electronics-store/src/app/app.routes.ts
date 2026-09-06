@@ -50,4 +50,18 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/login-page/login-page').then((m) => m.LoginPage),
   },
+  {
+    path: 'admin/product/new',
+    loadComponent: () =>
+      import('./pages/admin-product-form-page/admin-product-form-page').then(
+        (m) => m.AdminProductFormPage,
+      ),
+  },
+  {
+    path: 'admin/product/edit/:id',
+    loadComponent: () =>
+      import('./pages/admin-product-form-page/admin-product-form-page').then(
+        (m) => m.AdminProductFormPage,
+      ),
+  },
 ];
