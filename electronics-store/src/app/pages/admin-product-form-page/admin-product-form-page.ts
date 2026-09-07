@@ -5,8 +5,9 @@ import {
   ɵInternalFormsSharedModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../shared/api/api.service';
+import { Product } from '../../entities/product/models/product.interface';
 
 @Component({
   selector: 'app-admin-product-form-page',
@@ -16,7 +17,9 @@ import { ApiService } from '../../shared/api/api.service';
 })
 export class AdminProductFormPage implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private apiService = inject(ApiService);
+  productId: string | null = null;
 
   fb = inject(FormBuilder);
 
@@ -29,18 +32,32 @@ export class AdminProductFormPage implements OnInit {
   });
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.apiService.getProduct(Number(id)).subscribe({
+    this.productId = this.route.snapshot.paramMap.get('id');
+    if (this.productId) {
+      this.apiService.getProduct(Number(this.productId)).subscribe({
         next: (response) => {
           const { title, price, category, description, image } = response;
           this.productForm.patchValue({ title, price, category, description, image });
         },
       });
-    } else {
     }
   }
   onSubmit() {
     console.log(this.productForm.value);
+    if (this.productId) {
+      this.apiService
+        .updateProduct(Number(this.productId), this.productForm.value as Product)
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/admin']);
+          },
+        });
+    } else {
+      this.apiService.createProduct(this.productForm.value as Product).subscribe({
+        next: () => {
+          this.router.navigate(['/admin']);
+        },
+      });
+    }
   }
 }

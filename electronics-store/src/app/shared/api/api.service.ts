@@ -38,4 +38,10 @@ export class ApiService {
   getOrders() {
     return this.http.get<OrderResponse[]>('https://fakestoreapi.com/carts');
   }
+  createProduct(payload: Product) {
+    return this.http.post('https://fakestoreapi.com/products', payload);
+  }
+  updateProduct(id: number, payload: Product) {
+    return this.http.put(`https://fakestoreapi.com/products/${id}`, payload);
+  }
 }

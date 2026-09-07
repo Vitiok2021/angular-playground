@@ -1,5 +1,8 @@
 <div class="admin__container">
-  <a routerLink="/admin/orders" routerLinkActive="active" class="admin__orders">Orders</a>
+  <div class="admin__header">
+    <a routerLink="/admin/orders" routerLinkActive="active" class="admin__orders">Orders</a>
+    <button routerLink="/admin/product/new" class="admin__btn-add">Add Product</button>
+  </div>
   <table class="admin__table">
     <thead>
       <tr>
@@ -17,7 +20,10 @@
           <td><img [src]="product.image" alt="product" width="50" /></td>
           <td>{{ product.title }}</td>
           <td>{{ product.price }}</td>
-          <td><button class="admin__btn-delete" (click)="onDelete(product.id)">Delete</button></td>
+          <td>
+            <a [routerLink]="['/admin/product/edit', product.id]" class="admin__btn-edit">Edit</a
+            ><a class="admin__btn-delete" (click)="onDelete(product.id)">Delete</a>
+          </td>
         </tr>
       }
     </tbody>
