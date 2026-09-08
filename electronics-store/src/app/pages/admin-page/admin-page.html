@@ -21,8 +21,10 @@
           <td>{{ product.title }}</td>
           <td>{{ product.price }}</td>
           <td>
-            <a [routerLink]="['/admin/product/edit', product.id]" class="admin__btn-edit">Edit</a
-            ><a class="admin__btn-delete" (click)="onDelete(product.id)">Delete</a>
+            <div class="admin__actions-wrapper">
+              <a [routerLink]="['/admin/product/edit', product.id]" class="admin__btn-edit">Edit</a>
+              <a class="admin__btn-delete" (click)="onDelete(product.id)">Delete</a>
+            </div>
           </td>
         </tr>
       }
