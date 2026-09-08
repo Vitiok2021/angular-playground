@@ -13,10 +13,10 @@ export class ProductStore {
   error = signal<string | null>(null);
   limit = signal(6);
 
-  loadProducts() {
+  loadProducts(customLimit?: number) {
     this.isLoading.set(true);
     this.api
-      .getProducts(this.limit())
+      .getProducts(customLimit || this.limit())
       // .pipe(delay(500))
       .subscribe({
         next: (data) => {
@@ -33,5 +33,8 @@ export class ProductStore {
   loadMore() {
     this.limit.update((current) => current + 6);
     this.loadProducts();
+  }
+  addProductToState(newProduct: Product) {
+    this.products.update((currentProducts) => [...currentProducts, newProduct]);
   }
 }

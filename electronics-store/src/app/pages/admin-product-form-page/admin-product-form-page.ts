@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../shared/api/api.service';
 import { Product } from '../../entities/product/models/product.interface';
+import { ProductStore } from '../../entities/product/models/product.store';
 
 @Component({
   selector: 'app-admin-product-form-page',
@@ -20,6 +21,7 @@ export class AdminProductFormPage implements OnInit {
   private router = inject(Router);
   private apiService = inject(ApiService);
   productId: string | null = null;
+  readonly productStore = inject(ProductStore);
 
   fb = inject(FormBuilder);
 
@@ -54,8 +56,12 @@ export class AdminProductFormPage implements OnInit {
         });
     } else {
       this.apiService.createProduct(this.productForm.value as Product).subscribe({
-        next: () => {
+        next: (response) => {
+          this.productStore.addProductToState(response);
           this.router.navigate(['/admin']);
+        },
+        error: (err) => {
+          console.error(err);
         },
       });
     }

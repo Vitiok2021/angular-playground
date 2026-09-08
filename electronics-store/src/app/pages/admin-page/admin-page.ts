@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../shared/api/api.service';
 import { Product } from '../../entities/product/models/product.interface';
 import { RouterLink } from '@angular/router';
+import { ProductStore } from '../../entities/product/models/product.store';
 
 @Component({
   selector: 'app-admin-page',
@@ -11,20 +12,24 @@ import { RouterLink } from '@angular/router';
 })
 export class AdminPage implements OnInit {
   private apiService = inject(ApiService);
-  readonly products = signal<Product[]>([]);
+  readonly productStore = inject(ProductStore);
+  // readonly products = signal<Product[]>([]);
 
   ngOnInit(): void {
-    this.apiService.getProducts(20).subscribe({
-      next: (response) => {
-        this.products.set(response);
-      },
-    });
+    if (this.productStore.products().length < 20) {
+      this.productStore.loadProducts(20);
+    }
+    // this.apiService.getProducts(20).subscribe({
+    //   next: (response) => {
+    //     this.products.set(response);
+    //   },
+    // });
   }
 
   onDelete(id: number) {
     this.apiService.deleteProduct(id).subscribe({
       next: () => {
-        this.products.update((currentProduct) =>
+        this.productStore.products.update((currentProduct) =>
           currentProduct.filter((product) => product.id !== id),
         );
         // this.products.set(this.products().filter((product) => product.id !== id));
